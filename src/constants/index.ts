@@ -3,6 +3,7 @@ import person from "@/assets/images/upload.png";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 const token = getCookie("token");
+export const baseURL = "http://194.163.167.131:7400/api/v1"
 export const ApiEndpoint = axios.create({
   baseURL: "http://194.163.167.131:7400/api/v1",
   headers: {

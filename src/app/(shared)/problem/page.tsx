@@ -11,8 +11,9 @@ import toast from "react-hot-toast";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
-import { ApiEndpoint } from "@/constants";
+import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
+import axios from "axios"
 
 const ReportProblemModel = () => {
   const navigate = useRouter();
@@ -53,16 +54,22 @@ const ReportProblemModel = () => {
     formResponse.append("record", "");
     formResponse.append("details", JSON.stringify(formData));
     
-    ApiEndpoint.post("/problems/create", formResponse)
+    console.log(formResponse, selectedFile)
+    axios.post(`${baseURL}/problems/create`, formResponse)
     .then((response)=>{
       setLoading(false);
       toast.success(response.data?.data?.message)
       console.log(response.data);
     })
-    .catch((err) => {
-      toast.error(err.response?.data?.error, {
-        duration: 5000
-      });
+    .catch((err: any) => {
+      if(err.message === "Network Error") {
+        toast.error("Request unable to reach our servers. Slow Network Connection Problem!")
+      }
+      else{
+        toast.error(err.response?.data?.error ?? "An Error Occured! If it persists contact the support at support@rangurura.com", {
+          duration: 5000
+        });
+      }
       console.log(err);
       setLoading(false);
       });

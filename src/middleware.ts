@@ -21,7 +21,7 @@ export default function middleware(
   //   console.error("Error parsing date:", error);
   // }
 
-  if (req.nextUrl.pathname.startsWith("/locales/") || req.nextUrl.pathname === "/") {
+  if (req.nextUrl.pathname.startsWith("/locales/") || req.nextUrl.pathname === "/" || req.nextUrl.pathname === "/problem" || req.nextUrl.pathname === "/suggestion") {
     return NextResponse.next();
   }
 
@@ -46,6 +46,6 @@ export default function middleware(
 
 export const config = {
   matcher: [
-    "/((?!api|/problem|/suggestion|/|/locales/*|register/*|verify|forgot|reset|_next/static|public|_next/image|favicon.ico|images|logo.svg|logo.png|rca.jpeg|favicon.svg|favicon.png).*)",
+    "/((?!api|/problem/*|/suggestion|/|/locales/*|register/*|verify|forgot|reset|_next/static|public|_next/image|favicon.ico|images|logo.svg|logo.png|rca.jpeg|favicon.svg|favicon.png).*)",
   ],
 };

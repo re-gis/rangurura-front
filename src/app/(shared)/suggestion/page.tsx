@@ -10,8 +10,9 @@ import SelectLevel from "@/components/core/Level";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
-import { ApiEndpoint } from "@/constants";
+import { ApiEndpoint, baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
+import axios from "axios"
 
 const ReportProblemModel = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -22,7 +23,8 @@ const ReportProblemModel = () => {
   const [level, setLevel] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [category, setCategory] = useState("");
-  const [problem, setProblem] = useState("");
+  const [suggestion, setSuggestion] = useState("");
+  const [nationalId, setNationalId] = useState("");
 
 
   const onChangeCategory = (e: any) => {
@@ -30,33 +32,41 @@ const ReportProblemModel = () => {
   };
   const submitSuggestion = (e: any) => {
     e.preventDefault();
+    if(!category || !level  || !nationalId || !phoneNumber) {
+      console.log(level, category, suggestion, nationalId, phoneNumber)
+      toast.error("Fill All Fields!");
+      return;
+    }
     setLoading(true);
     const formData = {
-      category: category,
-      ikibazo: problem,
-      urwego: organisationLevel.toUpperCase(),
-      phoneNumber: phoneNumber,
-      upperLevel: organisationLevel.toUpperCase(),
-      location: level,
-      nationalId: ""
+      "category": category,
+      "igitekerezo": suggestion,
+      "urwego": organisationLevel.toUpperCase(),
+      "phoneNumber": phoneNumber,
+      "upperLevel": organisationLevel.toUpperCase(),
+      "location": level,
+      "nationalId": nationalId,
+      "target":level
     }
-    
-    ApiEndpoint.post("/suggestions/send_idea", formData)
+    axios.post(`${baseURL}/suggestions/send_idea`, formData)
     .then((response)=>{
       setLoading(false);
-      toast.success(response.data?.data?.message)
+      toast.success("Suggestion Reported Successfully! Consider Tracking the Progress by Creating your Account.")
+      setOrganisationLevel("");
+      setOrganisationCategory("");
+      setLevel("");
+      setSuggestion("");
+      close();
+      
       console.log(response.data);
     })
-    .catch((err) => {
+    .catch((err: any) => {
       toast.error(err.response?.data.error, {
         duration: 5000
       });
-      console.log(err);
+      console.log("Send suggestions error ",err);
       setLoading(false);
       });
-    // console.log(formData);
-    // toast.success("Problem reported successfully");
-    // navigate.push("/");
   };
   return (
     <section className="flex justify-center items-center w-screen h-screen bg-[#EEF3F9]">
@@ -80,6 +90,7 @@ const ReportProblemModel = () => {
               className="border-[#C3C3C3] border-2 rounded-md p-2"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              disabled={loading}
             >
               <option value="">Select Value</option>
               <option value="UBUZIMA">Ubuzima</option>
@@ -90,6 +101,18 @@ const ReportProblemModel = () => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
+              Nimero y'Indangamuntu <span className="text-red-600">*</span>
+            </label>
+            <input
+              value={nationalId}
+              onChange={(e)=> setNationalId(e.target.value)}
+              placeholder="Nimero y'Indangamuntu"
+              className="border-[#C3C3C3] border-2 rounded-md p-2"
+              disabled={loading}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold text-black">
               Nimero ya telephone <span className="text-red-600">*</span>
             </label>
             <input
@@ -97,13 +120,27 @@ const ReportProblemModel = () => {
               onChange={(e)=> setPhoneNumber(e.target.value)}
               placeholder="Nimero ya telephone"
               className="border-[#C3C3C3] border-2 rounded-md p-2"
+              disabled={loading}
             />
           </div>
+          {/* <div className="flex flex-col gap-1">
+            <label className="font-semibold text-black">
+              Aho Utuye <span className="text-red-600">*</span>
+            </label>
+            <input
+              value={location}
+              onChange={(e)=> setLocation(e.target.value)}
+              placeholder="Aho Utuye"
+              className="border-[#C3C3C3] border-2 rounded-md p-2"
+              disabled={loading}
+            />
+          </div> */}
 
           <div className="flex items-center justify-center pt-3">
             <button
               onClick={open}
               className="btn_primary text-white p-2 px-10 rounded-md"
+              disabled={loading}
             >
               {loading ? <div className="w-full h-full flex justify-center items-center">
                 <ClipLoader size={18} color="white" />
@@ -142,7 +179,7 @@ const ReportProblemModel = () => {
             {organisationCategory === "Ikigo cya Leta" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
-                  Hitamo aho ushaka kugeza Igitekerezo{" "}
+                  Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
                 <select
@@ -161,12 +198,13 @@ const ReportProblemModel = () => {
             {organisationCategory === "Urwego Rw'Ibanze" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
-                  Hitamo {organisationCategory} ushaka kugeza Igitekerezo{" "}
+                  Hitamo {organisationCategory} ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
                 <select
                   required
                   className="border-[#C3C3C3] border-2 rounded-md p-2"
+                  value={organisationLevel}
                   onChange={(e) => setOrganisationLevel(e.target.value)}
                 >
                   <option value="">Hitamo</option>
@@ -192,10 +230,12 @@ const ReportProblemModel = () => {
               placeholder="Igitekerezo"
               className="min-h-[8rem] border-[#C3C3C3] border-2 rounded-md p-2"
               style={{ resize: "none" }}
+              value={suggestion}
+              onChange={(event)=> setSuggestion(event.target.value)}
             ></textarea>
           </div>
           <div className="flex items-center justify-center pt-3">
-            <button onClick={open} className="btn_primary text-white p-2 px-10 rounded-md">
+            <button disabled={loading} onClick={open} className="btn_primary text-white p-2 px-10 rounded-md">
               Komeza
             </button>
           </div>
