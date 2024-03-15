@@ -23,7 +23,7 @@ const ProblemsTable = () => {
   const [isOpened, { open, close }] = useDisclosure(false);
   const [problemsData, setProblemsData] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+
   const columns: ColumnDef<any>[] = [
     {
       accessorKey: "Description",
@@ -75,8 +75,12 @@ const ProblemsTable = () => {
     setLoading(true);
     ApiEndpoint.get("/problems/my/asked")
       .then((res) => {
-        console.log(res.data);
-        setProblemsData(res.data.data);
+        console.log(res.data?.data);
+        if(res.data?.data?.message){
+          setProblemsData([]);
+        }else{
+          setProblemsData(res.data.data);
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -86,21 +90,30 @@ const ProblemsTable = () => {
   }, []);
 
   return (
-    <div className="w-full h-full px-2 bg-white mt-8">
+    <div className="w-full h-full px-2 mt-8">
       <Modal opened={isOpened} onClose={close} size={"auto"}>
         <LocationTracker username={"David"} location="Kicukiro" />
       </Modal>
-      <div className="w-full h-[80%]">
+      <div className="w-full h-[80%] flex flex-col items-center">
         {loading ? (
           <TableSkeleton columns={columns} />
-        ) : (
-          <DataTable
-            allowPagination={true}
-            data={problemsData}
-            columns={columns}
-            tableClass=""
-          />
-        )}
+        ) : 
+          problemsData?.length === 0 ? 
+          <div>
+            <h3>No Data Found!</h3>
+          </div>
+          :
+          (
+            <div className="w-full h-[90%] bg-white">
+              <DataTable
+              allowPagination={true}
+              data={problemsData}
+              columns={columns}
+              tableClass=""
+              />
+            </div>
+          )
+        }
       </div>
     </div>
   );

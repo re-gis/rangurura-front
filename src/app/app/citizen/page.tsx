@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
 
 const Page = () => {
+  
   return (
     <section className="w-full md:h-[90%] flex flex-col justify-between md:gap-0 mt-4">
       <div className="w-full h-[47%] flex flex-col md:flex-row justify-between gap-5 md:gap-0">
