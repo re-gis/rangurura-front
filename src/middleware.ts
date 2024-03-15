@@ -21,11 +21,20 @@ export default function middleware(
   //   console.error("Error parsing date:", error);
   // }
 
-  if (req.nextUrl.pathname.startsWith("/locales/") || req.nextUrl.pathname === "/" || req.nextUrl.pathname === "/problem" || req.nextUrl.pathname === "/suggestion") {
+  if (
+    req.nextUrl.pathname.startsWith("/locales/") ||
+    req.nextUrl.pathname === "/" ||
+    req.nextUrl.pathname === "/problem" ||
+    req.nextUrl.pathname === "/suggestion"
+  ) {
     return NextResponse.next();
   }
 
-  if (!token && req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/") {
+  if (
+    !token &&
+    req.nextUrl.pathname !== "/login" &&
+    req.nextUrl.pathname !== "/"
+  ) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 

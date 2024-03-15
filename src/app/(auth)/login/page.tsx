@@ -31,10 +31,11 @@ const Login = () => {
   const login = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    axios.post("http://194.163.167.131:7400/api/v1/auth/login", formData)
+    axios
+      .post("http://194.163.167.131:7400/api/v1/auth/login", formData)
       .then((res) => {
         console.log(res.data.data);
-        setCookie("token",res.data.data);
+        setCookie("token", res.data.data);
         const decoded = jwtDecode(res.data.data) as { role: string };
         console.log(decoded);
         if (decoded.role == "UMUYOBOZI" || decoded.role == "ADMIN") {

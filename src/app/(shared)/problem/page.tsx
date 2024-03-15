@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
-import axios from "axios"
+import axios from "axios";
 
 const ReportProblemModel = () => {
   const navigate = useRouter();
@@ -28,13 +28,14 @@ const ReportProblemModel = () => {
   const [problem, setProblem] = useState("");
   const [loading, setLoading] = useState(false);
   const [level, setLevel] = useState("");
+  const [nationalId, setNationalId] = useState("");
 
   const onChangeCategory = (e: any) => {
     setOrganisationCategory(e.target.value);
   };
   const handleSelectedFile = (e: any) => {
     const file = e.target.files[0];
-    setSelectedFile(file)
+    setSelectedFile(file);
     setFileName(file.name);
     console.log(fileName);
     setShowUpload(true);
@@ -47,31 +48,38 @@ const ReportProblemModel = () => {
       category: category,
       ikibazo: problem,
       urwego: organisationLevel.toUpperCase(),
-      phoneNumber: phoneNumber
-    }
+      phoneNumber: phoneNumber,
+      nationalId: nationalId,
+    };
     const formResponse = new FormData();
     formResponse.append("proof", selectedFile);
     formResponse.append("record", "");
     formResponse.append("details", JSON.stringify(formData));
-    
-    console.log(formResponse, selectedFile)
-    axios.post(`${baseURL}/problems/create`, formResponse)
-    .then((response)=>{
-      setLoading(false);
-      toast.success(response.data?.data?.message)
-      console.log(response.data);
-    })
-    .catch((err: any) => {
-      if(err.message === "Network Error") {
-        toast.error("Request unable to reach our servers. Slow Network Connection Problem!")
-      }
-      else{
-        toast.error(err.response?.data?.error ?? "An Error Occured! If it persists contact the support at support@rangurura.com", {
-          duration: 5000
-        });
-      }
-      console.log(err);
-      setLoading(false);
+
+    console.log(formResponse, selectedFile);
+    axios
+      .post(`${baseURL}/problems/create`, formResponse)
+      .then((response) => {
+        setLoading(false);
+        toast.success(response.data?.data?.message);
+        console.log(response.data);
+      })
+      .catch((err: any) => {
+        if (err.message === "Network Error") {
+          toast.error(
+            "Request unable to reach our servers. Slow Network Connection Problem!",
+          );
+        } else {
+          toast.error(
+            err.response?.data?.error ??
+              "An Error Occured! If it persists contact the support at support@rangurura.com",
+            {
+              duration: 5000,
+            },
+          );
+        }
+        console.log(err);
+        setLoading(false);
       });
     // console.log(formData);
     // toast.success("Problem reported successfully");
@@ -110,11 +118,22 @@ const ReportProblemModel = () => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
-              Nimero ya telephone <span className="text-red-600">*</span>
+              Nimero y'Indangamuntu <span className="text-red-600">*</span>
+            </label>
+            <input
+              value={nationalId}
+              onChange={(e) => setNationalId(e.target.value)}
+              placeholder="Nimero y'Indangamuntu"
+              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold text-black">
+              Nimero ya Telephone <span className="text-red-600">*</span>
             </label>
             <input
               value={phoneNumber}
-              onChange={(e)=> setPhoneNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="Nimero ya telephone"
               className="border-[#C3C3C3] border-2 rounded-md p-2"
             />
@@ -125,9 +144,13 @@ const ReportProblemModel = () => {
               onClick={open}
               className="btn_primary text-white p-2 px-10 rounded-md"
             >
-              {loading ? <div className="w-full h-full flex justify-center items-center">
-                <ClipLoader size={18} color="white" />
-              </div> : "Tanga ikibazo"}
+              {loading ? (
+                <div className="w-full h-full flex justify-center items-center">
+                  <ClipLoader size={18} color="white" />
+                </div>
+              ) : (
+                "Tanga ikibazo"
+              )}
             </button>
           </div>
         </form>

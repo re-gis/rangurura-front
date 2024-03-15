@@ -32,6 +32,33 @@ export const problemColumns: ColumnDef<Problem>[] = [
     cell: ({ row }) => <h6 className="text-[80%]">{row.original.level}</h6>,
   },
 ];
+export const citizenProblemColumns: ColumnDef<Problem>[] = [
+  {
+    accessorKey: "Description",
+    header: ({ column }) => <h4>Description</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">
+        {row.original.description.toString().length < 30
+          ? row.original.description
+          : `${row.original.description.slice(0, 38)} . . .`}
+      </h6>
+    ),
+  },
+  {
+    accessorKey: "completed",
+    header: ({ column }) => <FaRegCheckSquare color={"#ccc"} />,
+    cell: ({ row }) => (
+      <Tooltip content="Solved">
+        <FaRegCheckSquare />
+      </Tooltip>
+    ),
+  },
+  {
+    accessorKey: "Level",
+    header: ({ column }) => <h4>Level</h4>,
+    cell: ({ row }) => <h6 className="text-[80%]">{row.original.level}</h6>,
+  },
+];
 
 export const suggestionColumns: ColumnDef<Problem>[] = [
   {

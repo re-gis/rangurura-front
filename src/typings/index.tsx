@@ -20,6 +20,11 @@ export type Problem = {
   level: string;
   completed: boolean;
 };
+export type Suggestion = {
+  igitekerezo: string;
+  level: string;
+  status: string;
+};
 
 export type Chat = {
   image: StaticImageData;

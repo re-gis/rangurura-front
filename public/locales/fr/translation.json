@@ -34,9 +34,9 @@
     "continue": "Continue",
     "recover": "Changer le mot de passe"
   },
-  "suggestions":{
-      "suggestions":"Suggestions",
-      "no_data":"Aucune donnée disponible!"
+  "suggestions": {
+    "suggestions": "Suggestions",
+    "no_data": "Aucune donnée disponible!"
   },
   "landing": {
     "search": "Recherche",
@@ -44,8 +44,8 @@
     "desc": "“Rangurura” est votre canal direct pour faire entendre votre voix. Nous croyons que les préoccupations et problèmes de chaque citoyen sont importants. Notre plateforme vous permet de signaler des problèmes, partager des commentaires et demander de l'aide facilement.",
     "welc_btn": "S'inscrire"
   },
-  
-  "working_section":{
+
+  "working_section": {
     "working": "Comment ça functionne",
     "work_desc": "Faites une différence dans votre communauté dès aujourd'hui. Signalez vos préoccupations, et laissez-nous vous aider à construire un avenir meilleur avec Rangurura.",
     "fast": "Plus rapide",
@@ -57,11 +57,11 @@
     "transparency": "Processus de transparence",
     "transparency_desc": "Nous assurons la transparence en suivant la progression de vos rapports.",
     "community_eng": "Engagement communautaire",
-    "communtiy_eng_desc":"Joignez-vous à vos concitoyens en signalant votre préoccupation"
+    "communtiy_eng_desc": "Joignez-vous à vos concitoyens en signalant votre préoccupation"
   },
 
-  "problem_section":{
-  "feat_prob": "Problème en vedette",
+  "problem_section": {
+    "feat_prob": "Problème en vedette",
     "prob_desc": "Améliorer la communication entre citoyens et dirigeants pour une société plus forte. Plongez dans des solutions qui comblent le fossé et permettent aux citoyens de se connecter plus efficacement avec leurs dirigeants.",
     "test1": "Parfois, il est difficile pour des personnes comme moi d'obtenir des soins de santé qui nous conviennent parfaitement. La façon dont les choses fonctionnent actuellement ne nous offre pas d'aide personnalisée, et je pense que nous avons besoin de nouvelles idées. L'utilisation de solutions innovantes peut améliorer les soins de santé, afin que nous recevions les soins appropriés et que nos informations de santé soient protégées.",
     "case_test1": "Santé",
@@ -69,10 +69,9 @@
     "case_test2": "Identification",
     "test3": "Vivre dans une zone affectée par les guerres est difficile. Il ne s'agit pas seulement du danger ; il s'agit aussi des luttes quotidiennes telles que trouver des nécessités de base et rester en contact avec ses proches. Nous avons besoin de solutions pratiques de toute urgence pour rendre la vie plus sûre et plus gérable dans les zones de conflit.",
     "case_test3": "Unité"
-    
   },
 
-   "tips_section":{
+  "tips_section": {
     "prob_sugg": "Problème et suggestion",
     "prob_sugg_desc": "Rangurura est un assistant virtuel qui vous aidera à signaler votre problème et à donner votre suggestion.",
     "prob_tip_title": "Conseils de signalement de problème",
@@ -91,9 +90,9 @@
     "sugg_tip2_desc": "En plus de la clarté et de la concision, mettez en avant la valeur de votre suggestion. Articulez clairement l'impact positif ou les avantages qu'elle apporte sans recourir à des détails inutiles ou un langage agressif. Une déclaration brève et axée sur la valeur renforce l'attrait et la considération de votre suggestion.",
     "sugg_btn": "Donner une suggestion",
     "prob_btn": "Signaler un problème"
-   },
- 
-   "contact_section":{
+  },
+
+  "contact_section": {
     "contact": "Contactez notre équipe sympathique",
     "email": "Email",
     "email_desc": "Discutez avec notre équipe sympathique et recevez des mises à jour par e-mail",
@@ -101,9 +100,9 @@
     "meds_desc": "Suivez-nous sur Facebook ou Instagram pour recevoir des mises à jour quotidiennes",
     "call": "Appelez-nous",
     "call_desc": "Appelez notre équipe  sympathique"
-   },
-  
-  "faq_section":{
+  },
+
+  "faq_section": {
     "faq": "Foire aux questions",
     "faq_desc": "Découvrez plus sur Rangurura avec nos FAQ - votre guide",
     "faq1": "Quels types de problèmes sont présentés sur la plateforme ?",
@@ -130,4 +129,3 @@
     "all_rights": "Rangurura. Tous droits réservés"
   }
 }
-

@@ -26,7 +26,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import Link from "next/link";
-import {useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Props {
   type: "citizen" | "leader" | "organisation";
@@ -151,7 +151,7 @@ const Navbar = ({ type }: Props) => {
                 key="logout"
                 color="danger"
                 className="hover:bg-[#FF0000] hover:text-white"
-                onClick={()=> navigate.push("/login")}
+                onClick={() => navigate.push("/login")}
               >
                 Log Out
               </DropdownItem>

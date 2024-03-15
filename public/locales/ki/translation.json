@@ -60,100 +60,97 @@
     "continue": "Gukomeza",
     "recover": "Guhindura ijambobanga"
   },
-  "suggestions":{
-      "suggestions":"Ibitekerezo",
-      "no_data":"Nta Makuru Ahari!"
+  "suggestions": {
+    "suggestions": "Ibitekerezo",
+    "no_data": "Nta Makuru Ahari!"
   },
-  "landing":{
-    "search":"Shakisha",
-    "welcome":"Murakaza neza",
-    "desc":"Rangurura ni umuyoboro wawe utaziguye kugira ngo ijwi ryawe ryumvikane. Twizera ko ibibazo bya buri muturage bifite akamaro. Ihuriro ryacu riguha imbaraga zo gutanga ibibazo, gusangira ibitekerezo, no gusaba ubufasha byoroshye.",
-    "welc_btn":"Iyandikishe"
-
+  "landing": {
+    "search": "Shakisha",
+    "welcome": "Murakaza neza",
+    "desc": "Rangurura ni umuyoboro wawe utaziguye kugira ngo ijwi ryawe ryumvikane. Twizera ko ibibazo bya buri muturage bifite akamaro. Ihuriro ryacu riguha imbaraga zo gutanga ibibazo, gusangira ibitekerezo, no gusaba ubufasha byoroshye.",
+    "welc_btn": "Iyandikishe"
   },
-  "working_section":{
-    "working":"Uburyo dukoramo",
-    "work_desc":"Gira icyo uhindura mu muryango wawe uyumunsi. Menyesha impungenge zawe, reka tugufashe kubaka ejo heza hamwe na Rangurura",
-    "fast":"Byihuse",
-    "fast_desc":"Ikibazo kigera aho kijya mu mutekano kandi byihuse",
-    "privacy":"Umutekano w'amakuru",
-    "privacy_desc":"Twita ku mutekano w'imyirondoro y'utanga ikibazo tuyahisha",
-    "report_prob":"Gutanga ibibazo",
-    "report_prob_desc":"Ushobora kumenyesha ibibazo byoroshye ubuyobozi bwibanze ukoresheje urubuga rwacu.",
-    "transparency":"Gukorera mu mucyo",
-    "transparency_desc":"Dukorera mu mucyo dukurikirana aho raporo zanyu zigeze.",
-    "community_eng":"Uruhare rwabaturage ",
-    "communtiy_eng_desc":"Dufatanyirize hamwe nabenegihugu mugutangaza impungenge zawe"
+  "working_section": {
+    "working": "Uburyo dukoramo",
+    "work_desc": "Gira icyo uhindura mu muryango wawe uyumunsi. Menyesha impungenge zawe, reka tugufashe kubaka ejo heza hamwe na Rangurura",
+    "fast": "Byihuse",
+    "fast_desc": "Ikibazo kigera aho kijya mu mutekano kandi byihuse",
+    "privacy": "Umutekano w'amakuru",
+    "privacy_desc": "Twita ku mutekano w'imyirondoro y'utanga ikibazo tuyahisha",
+    "report_prob": "Gutanga ibibazo",
+    "report_prob_desc": "Ushobora kumenyesha ibibazo byoroshye ubuyobozi bwibanze ukoresheje urubuga rwacu.",
+    "transparency": "Gukorera mu mucyo",
+    "transparency_desc": "Dukorera mu mucyo dukurikirana aho raporo zanyu zigeze.",
+    "community_eng": "Uruhare rwabaturage ",
+    "communtiy_eng_desc": "Dufatanyirize hamwe nabenegihugu mugutangaza impungenge zawe"
   },
 
+  "problem_section": {
+    "feat_prob": "Bimwe mu bibazo byatanzwe",
+    "prob_desc": "Gutezimbere Itumanaho ry’Abayobozi n’Abaturage twubaka umuryango ukomeye - Wibire mu bisubizo bikemura icyuho kandi biha imbaraga abaturage guhuza neza n’abayobozi babo.",
+    "test1": "Rimwe na rimwe, biragoye kubantu nkanjye kubona ubuvuzi butubereye. Uburyo ibintu bikorwa ubu ntabwo bidufasha guhabwa ubufasha bwihariye, kandi ndatekereza ko dukeneye ibitekerezo bishya. Gukoresha ibisubizo bishya bishobora gutuma ubuvuzi burushaho kuba bwiza, bityo tukabona ubuvuzi bukwiye kandi amakuru yubuzima akabikwa neza.",
+    "case_test1": "Ubuzima",
+    "test2": "Kubona indangamuntu yanjye byabaye ikibazo gikomeye. Inzira iriho iragoye kandi akenshi isaba igihe kinini. Nizera ko dukeneye inzira nziza zo korohereza buri wese, hamwe nibisubizo bishya byoroshya urugendo.",
+    "case_test2": "Irangamimerere",
+    "test3": "Gutura mu gace kibasiwe nintambara biragoye. Ntabwo ari akaga gusa; ni urugamba rwa burimunsi nko gushaka ibikenerwa byibanze . Dukeneye byihutirwa ibisubizo bifatika kugirango ubuzima bugire umutekano kandi burusheho gucungwa neza,",
+    "case_test3": "Ubumwe"
+  },
 
-"problem_section":{
-     "feat_prob":"Bimwe mu bibazo byatanzwe",
-    "prob_desc":"Gutezimbere Itumanaho ry’Abayobozi n’Abaturage twubaka umuryango ukomeye - Wibire mu bisubizo bikemura icyuho kandi biha imbaraga abaturage guhuza neza n’abayobozi babo.",
-     "test1":"Rimwe na rimwe, biragoye kubantu nkanjye kubona ubuvuzi butubereye. Uburyo ibintu bikorwa ubu ntabwo bidufasha guhabwa ubufasha bwihariye, kandi ndatekereza ko dukeneye ibitekerezo bishya. Gukoresha ibisubizo bishya bishobora gutuma ubuvuzi burushaho kuba bwiza, bityo tukabona ubuvuzi bukwiye kandi amakuru yubuzima akabikwa neza.",
-     "case_test1":"Ubuzima",
-     "test2":"Kubona indangamuntu yanjye byabaye ikibazo gikomeye. Inzira iriho iragoye kandi akenshi isaba igihe kinini. Nizera ko dukeneye inzira nziza zo korohereza buri wese, hamwe nibisubizo bishya byoroshya urugendo.",
-     "case_test2":"Irangamimerere",
-     "test3":"Gutura mu gace kibasiwe nintambara biragoye. Ntabwo ari akaga gusa; ni urugamba rwa burimunsi nko gushaka ibikenerwa byibanze . Dukeneye byihutirwa ibisubizo bifatika kugirango ubuzima bugire umutekano kandi burusheho gucungwa neza,",
-     "case_test3":"Ubumwe"
-},
- 
-"tips_section":{
- "prob_sugg":"Ibibazo n'Ibitekerezo",
-     "prob_sugg_desc":"Rangurura ni umufasha wukuri uzagufasha kumenyesha ikibazo cyawe no gutanga igitekerezo cyawe",
-     "prob_tip_title":"Uburyo bunoze bwo gutanga ikibazo cyawe",
-     "prob_tip1":"Sobanura ikibazo neza",
-     "prob_tip1_desc":"Tangira utanga ibisobanuro byumvikana kandi bigufi byikibazo. Irinde amakuru adakenewe. Vuga ikibazo mu nteruro imwe niba bishoboka. Irinde gukoresha imvugo ishinja cyangwa ikaze. Ahubwo, wibande ku gusobanura ikibazo mu buryo bufite intego. Wubahe mu itumanaho ryawe, nubwo waba ubabajwe n'ikibazo",
-     "prob_tip2":"Sobanura ingaruka",
-     "prob_tip2_desc":"Sobanura uburyo ikibazo gikugiraho ingaruka cyangwa abandi. Sobanura ingaruka. Niba ari ikibazo gisubirwamo, vuga inshuro bikunze kubaho. Niba bishoboka, shyiramo amashusho, amafoto, cyangwa inyandiko zerekana ikibazo. Tanga ibimenyetso bifatika bishobora gufasha abakemura ikibazo kubyumva neza",
-     "prob_tip3":"Sobanura niba hari icyakozwe mu kugikemura",
-     "prob_tip3_desc":"Vuga niba wagerageje gukemura ibibazo cyangwa ibisubizo wenyine. Sobanura ibisubizo by'ibi bigeragezo, byaba byaragenze neza cyangwa ntibyatsinzwe.",
-     "prob_tip4":"Sobanura ibyo witeze",
-     "prob_tip4_desc":"Vuga neza ibyo utegereje nkigisubizo cyikibazo. Jya ushyira mu gaciro mubyo witeze. Niba utazi neza igisubizo, garagaza icyifuzo cyawe cyo kuyobora cyangwa ubufasha mugukemura ikibazo. ",
-     "sugg_tip_title":"Uburyo bunoze bwo gutanga igitekerezo",
-     "sugg_tip1":"Sobanura neza igitekerezo:",
-     "sugg_tip1_desc":"Tangira utanga ibisobanuro byumvikana kandi bisobanutse kubitekerezo. Irinde ibisobanuro bitari ngombwa. Vuga igitekerezo mu nteruro imwe niba bishoboka. Irinde gukoresha imvugo ishinja cyangwa ikaze. Ahubwo, wibande ku gusobanura igitekerezo cyawe.",
-     "sugg_tip2":"Shimangira agaciro k'igitekerezo cyawe",
-     "sugg_tip2_desc":"Usibye kumvikana, garagaza agaciro k'igitekerezo cyawe. Vuga neza ingaruka nziza cyangwa inyungu bizana udakoresheje amakuru adakenewe cyangwa imvugo ikaze. Amagambo magufi, yibanze ku gaciro yongerera ubujurire no gusuzuma icyifuzo cyawe",
-     "sugg_btn":"Tanga igitekerezo",
-     "prob_btn":"Tanga ikibazo"
-},
-    
-"contact_section":{
-     "contact":"Ukeneye kuvugana natwe",
-     "email":"Imeri",
-     "email_desc":"Andikira itsinda ryacu binyuze kuri imeri",
-     "socio_meds":"Imbuga nkoranyambaga",
-     "meds_desc":"Dukurikire kuri facebook cyangwa instagram kugirango wakire amakuru ya buri munsi",
-     "call":"Kuduhamagara",
-     "call_desc":"Wahamagara itsinda ryacu"
-}    ,
+  "tips_section": {
+    "prob_sugg": "Ibibazo n'Ibitekerezo",
+    "prob_sugg_desc": "Rangurura ni umufasha wukuri uzagufasha kumenyesha ikibazo cyawe no gutanga igitekerezo cyawe",
+    "prob_tip_title": "Uburyo bunoze bwo gutanga ikibazo cyawe",
+    "prob_tip1": "Sobanura ikibazo neza",
+    "prob_tip1_desc": "Tangira utanga ibisobanuro byumvikana kandi bigufi byikibazo. Irinde amakuru adakenewe. Vuga ikibazo mu nteruro imwe niba bishoboka. Irinde gukoresha imvugo ishinja cyangwa ikaze. Ahubwo, wibande ku gusobanura ikibazo mu buryo bufite intego. Wubahe mu itumanaho ryawe, nubwo waba ubabajwe n'ikibazo",
+    "prob_tip2": "Sobanura ingaruka",
+    "prob_tip2_desc": "Sobanura uburyo ikibazo gikugiraho ingaruka cyangwa abandi. Sobanura ingaruka. Niba ari ikibazo gisubirwamo, vuga inshuro bikunze kubaho. Niba bishoboka, shyiramo amashusho, amafoto, cyangwa inyandiko zerekana ikibazo. Tanga ibimenyetso bifatika bishobora gufasha abakemura ikibazo kubyumva neza",
+    "prob_tip3": "Sobanura niba hari icyakozwe mu kugikemura",
+    "prob_tip3_desc": "Vuga niba wagerageje gukemura ibibazo cyangwa ibisubizo wenyine. Sobanura ibisubizo by'ibi bigeragezo, byaba byaragenze neza cyangwa ntibyatsinzwe.",
+    "prob_tip4": "Sobanura ibyo witeze",
+    "prob_tip4_desc": "Vuga neza ibyo utegereje nkigisubizo cyikibazo. Jya ushyira mu gaciro mubyo witeze. Niba utazi neza igisubizo, garagaza icyifuzo cyawe cyo kuyobora cyangwa ubufasha mugukemura ikibazo. ",
+    "sugg_tip_title": "Uburyo bunoze bwo gutanga igitekerezo",
+    "sugg_tip1": "Sobanura neza igitekerezo:",
+    "sugg_tip1_desc": "Tangira utanga ibisobanuro byumvikana kandi bisobanutse kubitekerezo. Irinde ibisobanuro bitari ngombwa. Vuga igitekerezo mu nteruro imwe niba bishoboka. Irinde gukoresha imvugo ishinja cyangwa ikaze. Ahubwo, wibande ku gusobanura igitekerezo cyawe.",
+    "sugg_tip2": "Shimangira agaciro k'igitekerezo cyawe",
+    "sugg_tip2_desc": "Usibye kumvikana, garagaza agaciro k'igitekerezo cyawe. Vuga neza ingaruka nziza cyangwa inyungu bizana udakoresheje amakuru adakenewe cyangwa imvugo ikaze. Amagambo magufi, yibanze ku gaciro yongerera ubujurire no gusuzuma icyifuzo cyawe",
+    "sugg_btn": "Tanga igitekerezo",
+    "prob_btn": "Tanga ikibazo"
+  },
 
+  "contact_section": {
+    "contact": "Ukeneye kuvugana natwe",
+    "email": "Imeri",
+    "email_desc": "Andikira itsinda ryacu binyuze kuri imeri",
+    "socio_meds": "Imbuga nkoranyambaga",
+    "meds_desc": "Dukurikire kuri facebook cyangwa instagram kugirango wakire amakuru ya buri munsi",
+    "call": "Kuduhamagara",
+    "call_desc": "Wahamagara itsinda ryacu"
+  },
 
-"faq_section":{
-  "faq":"Ibibazo bikunze kubazwa",
-  "faq_desc":"Fungura ubushishozi kuri Rangurura hamwe nibibazo byacu - ubuyobozi bwihuse bwo gutanga ibisubizo, gukomeza kuvugururwa, no kwemeza ubuzima bwite.",
-  "faq1": "Ni ubuhe bwoko bw'ibibazo bugaragara ku rubuga?",
-  "faq1_desc": "Urubuga rigaragaza ibibazo bitandukanye bitandukanye mu nzego zitandukanye nk'ubuzima, kumenyekanisha, ubumwe, n'ibindi. Tugamije gukemura ibibazo abaturage bahura nabyo mu buzima bwabo bwa buri munsi.",  
-  "faq2":"Nigute mubasha kwita ku mutekano w'imyirondoro y'utanga ikibazo?",
-  "faq2_desc":"Dufatana uburemere ibanga n'umutekano. Amakuru yose asangiwe mugihe cyo gutanga yatanzwe hamwe nibanga ryinshi. Amakuru yihariye abikwa neza, kandi urubuga rwacu rukoresha ingamba zikomeye z'umutekano kugirango turinde ubusugire bwamakuru utanga. .",
-  "faq3":"Nigute nshobora kuguma menyeshwa kubibazo bishya hamwe n'iterambere ry'umushinga?",
-  "faq3_desc":" Ushobora gukurikira imiyoboro ku mbuga nkoranyambaga aho dutangira buri gihe amatangazo, n'amakuru y'ingenzi.",
-  "faq4":"Haba hari amafaranga ajyanye no gutangiraho ibibazo?",
-  "faq4_desc":"Oya, gutanga ibibazo ku rubuga rwacu ni ubuntu rwose. Dutanga umwanya ufunguye kandi woroshye kubantu kugirango batange ibitekerezo nibisubizo byabo nta mbogamizi zamafaranga.",
-  "faq5":"Nigute nshobora gutanga ibitekerezo ku bibazo hamwe na platform ubwayo?",
-  "faq5_desc":"Niba ushaka gusangira ibitekerezo kubibazo cyangwa urubuga, twandikire kuri rangurura@gmail.com. Twishimiye ubushishozi bwawe kandi dushishikajwe no gutera imbere dushingiye kubitekerezo byanyu",
-  "faq6":"Nshobora gutanga ibibazo byinshi icyarimwe?",
-  "faq6_desc":"Yego, ushobora gutanga ibibazo byinshi icyarimwe. Turashishikariza abantu gushakisha ibibazo bitandukanye no gutanga ubumenyi bwabo mubice bitandukanye."
-},
+  "faq_section": {
+    "faq": "Ibibazo bikunze kubazwa",
+    "faq_desc": "Fungura ubushishozi kuri Rangurura hamwe nibibazo byacu - ubuyobozi bwihuse bwo gutanga ibisubizo, gukomeza kuvugururwa, no kwemeza ubuzima bwite.",
+    "faq1": "Ni ubuhe bwoko bw'ibibazo bugaragara ku rubuga?",
+    "faq1_desc": "Urubuga rigaragaza ibibazo bitandukanye bitandukanye mu nzego zitandukanye nk'ubuzima, kumenyekanisha, ubumwe, n'ibindi. Tugamije gukemura ibibazo abaturage bahura nabyo mu buzima bwabo bwa buri munsi.",
+    "faq2": "Nigute mubasha kwita ku mutekano w'imyirondoro y'utanga ikibazo?",
+    "faq2_desc": "Dufatana uburemere ibanga n'umutekano. Amakuru yose asangiwe mugihe cyo gutanga yatanzwe hamwe nibanga ryinshi. Amakuru yihariye abikwa neza, kandi urubuga rwacu rukoresha ingamba zikomeye z'umutekano kugirango turinde ubusugire bwamakuru utanga. .",
+    "faq3": "Nigute nshobora kuguma menyeshwa kubibazo bishya hamwe n'iterambere ry'umushinga?",
+    "faq3_desc": " Ushobora gukurikira imiyoboro ku mbuga nkoranyambaga aho dutangira buri gihe amatangazo, n'amakuru y'ingenzi.",
+    "faq4": "Haba hari amafaranga ajyanye no gutangiraho ibibazo?",
+    "faq4_desc": "Oya, gutanga ibibazo ku rubuga rwacu ni ubuntu rwose. Dutanga umwanya ufunguye kandi woroshye kubantu kugirango batange ibitekerezo nibisubizo byabo nta mbogamizi zamafaranga.",
+    "faq5": "Nigute nshobora gutanga ibitekerezo ku bibazo hamwe na platform ubwayo?",
+    "faq5_desc": "Niba ushaka gusangira ibitekerezo kubibazo cyangwa urubuga, twandikire kuri rangurura@gmail.com. Twishimiye ubushishozi bwawe kandi dushishikajwe no gutera imbere dushingiye kubitekerezo byanyu",
+    "faq6": "Nshobora gutanga ibibazo byinshi icyarimwe?",
+    "faq6_desc": "Yego, ushobora gutanga ibibazo byinshi icyarimwe. Turashishikariza abantu gushakisha ibibazo bitandukanye no gutanga ubumenyi bwabo mubice bitandukanye."
+  },
 
-  "footer":{
-    "title_desc":"Rangurura ni umuyoboro wawe utaziguye kugira ngo ijwi ryawe ryumvikane. Twizera ko ibibazo bya buri muturage bifite akamaro. Ihuriro ryacu riguha imbaraga zo gutanga ibibazo, gusangira ibitekerezo, no gusaba ubufasha byoroshye.",
+  "footer": {
+    "title_desc": "Rangurura ni umuyoboro wawe utaziguye kugira ngo ijwi ryawe ryumvikane. Twizera ko ibibazo bya buri muturage bifite akamaro. Ihuriro ryacu riguha imbaraga zo gutanga ibibazo, gusangira ibitekerezo, no gusaba ubufasha byoroshye.",
     "home": "Ahabanza",
     "problems": "Ibibazo",
     "contacts": "Contacts",
     "signin": "Injira",
     "signup": "Iyandikishe",
-    "all_rights":"Uburenganzira bwa Rangurura burubahirizwa "
+    "all_rights": "Uburenganzira bwa Rangurura burubahirizwa "
   }
 }

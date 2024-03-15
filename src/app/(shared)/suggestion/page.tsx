@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { ApiEndpoint, baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
-import axios from "axios"
+import axios from "axios";
 
 const ReportProblemModel = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -26,51 +26,53 @@ const ReportProblemModel = () => {
   const [suggestion, setSuggestion] = useState("");
   const [nationalId, setNationalId] = useState("");
 
-
   const onChangeCategory = (e: any) => {
     setOrganisationCategory(e.target.value);
   };
   const submitSuggestion = (e: any) => {
     e.preventDefault();
-    if(!category || !level  || !nationalId || !phoneNumber) {
-      console.log(level, category, suggestion, nationalId, phoneNumber)
+    if (!category || !level || !nationalId || !phoneNumber) {
+      console.log(level, category, suggestion, nationalId, phoneNumber);
       toast.error("Fill All Fields!");
       return;
     }
     setLoading(true);
     const formData = {
-      "category": category,
-      "igitekerezo": suggestion,
-      "urwego": organisationLevel.toUpperCase(),
-      "phoneNumber": phoneNumber,
-      "upperLevel": organisationLevel.toUpperCase(),
-      "location": level,
-      "nationalId": nationalId,
-      "target":level
-    }
-    axios.post(`${baseURL}/suggestions/send_idea`, formData)
-    .then((response)=>{
-      setLoading(false);
-      toast.success("Suggestion Reported Successfully! Consider Tracking the Progress by Creating your Account.")
-      setOrganisationLevel("");
-      setOrganisationCategory("");
-      setLevel("");
-      setSuggestion("");
-      close();
-      
-      console.log(response.data);
-    })
-    .catch((err: any) => {
-      toast.error(err.response?.data.error, {
-        duration: 5000
-      });
-      console.log("Send suggestions error ",err);
-      setLoading(false);
+      category: category,
+      igitekerezo: suggestion,
+      urwego: organisationLevel.toUpperCase(),
+      phoneNumber: phoneNumber,
+      upperLevel: organisationLevel.toUpperCase(),
+      location: level,
+      nationalId: nationalId,
+      target: level,
+    };
+    axios
+      .post(`${baseURL}/suggestions/send_idea`, formData)
+      .then((response) => {
+        setLoading(false);
+        toast.success(
+          "Suggestion Reported Successfully! Consider Tracking the Progress by Creating your Account.",
+        );
+        setOrganisationLevel("");
+        setOrganisationCategory("");
+        setLevel("");
+        setSuggestion("");
+        close();
+
+        console.log(response.data);
+      })
+      .catch((err: any) => {
+        toast.error(err.response?.data.error, {
+          duration: 5000,
+        });
+        console.log("Send suggestions error ", err);
+        setLoading(false);
       });
   };
   return (
     <section className="flex justify-center items-center w-screen h-screen bg-[#EEF3F9]">
-            <Modal
+      <Modal
         opened={opened}
         onClose={close}
         withCloseButton
@@ -105,7 +107,7 @@ const ReportProblemModel = () => {
             </label>
             <input
               value={nationalId}
-              onChange={(e)=> setNationalId(e.target.value)}
+              onChange={(e) => setNationalId(e.target.value)}
               placeholder="Nimero y'Indangamuntu"
               className="border-[#C3C3C3] border-2 rounded-md p-2"
               disabled={loading}
@@ -117,7 +119,7 @@ const ReportProblemModel = () => {
             </label>
             <input
               value={phoneNumber}
-              onChange={(e)=> setPhoneNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="Nimero ya telephone"
               className="border-[#C3C3C3] border-2 rounded-md p-2"
               disabled={loading}
@@ -142,9 +144,13 @@ const ReportProblemModel = () => {
               className="btn_primary text-white p-2 px-10 rounded-md"
               disabled={loading}
             >
-              {loading ? <div className="w-full h-full flex justify-center items-center">
-                <ClipLoader size={18} color="white" />
-              </div> : "Tanga Igitekerezo"}
+              {loading ? (
+                <div className="w-full h-full flex justify-center items-center">
+                  <ClipLoader size={18} color="white" />
+                </div>
+              ) : (
+                "Tanga Igitekerezo"
+              )}
             </button>
           </div>
         </form>
@@ -158,9 +164,7 @@ const ReportProblemModel = () => {
             Tanga Igitekerezo
           </h3>
         </div>
-        <div
-          className="w-full flex flex-col justify-center gap-2"
-        >
+        <div className="w-full flex flex-col justify-center gap-2">
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
               Hitamo aho ushaka kugeza Igitekerezo{" "}
@@ -231,11 +235,15 @@ const ReportProblemModel = () => {
               className="min-h-[8rem] border-[#C3C3C3] border-2 rounded-md p-2"
               style={{ resize: "none" }}
               value={suggestion}
-              onChange={(event)=> setSuggestion(event.target.value)}
+              onChange={(event) => setSuggestion(event.target.value)}
             ></textarea>
           </div>
           <div className="flex items-center justify-center pt-3">
-            <button disabled={loading} onClick={open} className="btn_primary text-white p-2 px-10 rounded-md">
+            <button
+              disabled={loading}
+              onClick={open}
+              className="btn_primary text-white p-2 px-10 rounded-md"
+            >
               Komeza
             </button>
           </div>

@@ -20,10 +20,10 @@ import LocationTracker from "../../Modals/LocationTracker";
 import TableSkeleton from "../../data-table/TableSkeleton";
 
 const ProblemsTable = () => {
-
   const [isOpened, { open, close }] = useDisclosure(false);
   const [problemsData, setProblemsData] = useState([]);
   const [loading, setLoading] = useState(false);
+  
   const columns: ColumnDef<any>[] = [
     {
       accessorKey: "Description",
@@ -71,20 +71,19 @@ const ProblemsTable = () => {
     },
   ];
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true);
     ApiEndpoint.get("/problems/my/asked")
-      .then((res)=>{
-         console.log(res.data);
-         setProblemsData(res.data.data);
-         setLoading(false);
-        })
-        .catch(err=>{
-          console.log(err)
-          setLoading(false);
-       })
-
-  },[])
+      .then((res) => {
+        console.log(res.data);
+        setProblemsData(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="w-full h-full px-2 bg-white mt-8">
@@ -92,12 +91,16 @@ const ProblemsTable = () => {
         <LocationTracker username={"David"} location="Kicukiro" />
       </Modal>
       <div className="w-full h-[80%]">
-        {loading ? <TableSkeleton columns={columns}/> :         <DataTable
-          allowPagination={true}
-          data={problemsData}
-          columns={columns}
-          tableClass=""
-        />}
+        {loading ? (
+          <TableSkeleton columns={columns} />
+        ) : (
+          <DataTable
+            allowPagination={true}
+            data={problemsData}
+            columns={columns}
+            tableClass=""
+          />
+        )}
       </div>
     </div>
   );

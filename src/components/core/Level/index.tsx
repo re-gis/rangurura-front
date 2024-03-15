@@ -25,7 +25,7 @@ const SelectLevel = ({
                 data={Provinces()}
                 size="md"
                 searchable
-                onChange={(e)=> setLevel(e)}
+                onChange={(e) => setLevel(e)}
               />
             </>
           )}
@@ -39,7 +39,7 @@ const SelectLevel = ({
                 data={Districts()}
                 size="md"
                 searchable
-                onChange={(e)=> setLevel(e)}
+                onChange={(e) => setLevel(e)}
               />
             </>
           )}
@@ -53,7 +53,7 @@ const SelectLevel = ({
                 data={[...new Set(Sectors() as string[])]}
                 size="md"
                 searchable
-                onChange={(e)=> setLevel(e)}
+                onChange={(e) => setLevel(e)}
               />
             </>
           )}
@@ -67,7 +67,7 @@ const SelectLevel = ({
                 data={[...new Set(Cells() as string[])]}
                 size="md"
                 searchable
-                onChange={(e)=> setLevel(e)}
+                onChange={(e) => setLevel(e)}
               />
             </>
           )}
