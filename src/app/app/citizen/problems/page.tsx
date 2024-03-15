@@ -6,10 +6,30 @@ import ProblemsTable from "@/components/core/Tables/Problems";
 import { Modal, Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IoClose } from "react-icons/io5";
-
+import {useEffect, useState} from "react"
+import {ApiEndpoint} from "@/constants"
+import no_data from "@/assets/images/no_data.gif"
 const Page = () => {
   const [opened, { open, close }] = useDisclosure(false);
-
+  const [loading, setLoading] = useState(false);
+  const [problemsData, setProblemsData] = useState([])
+  useEffect(() => {
+    setLoading(true);
+    ApiEndpoint.get("/problems/my/asked")
+      .then((res) => {
+        console.log(res.data?.data);
+        if(res.data?.data?.message){
+          setProblemsData([]);
+        }else{
+          setProblemsData(res.data.data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="w-full h-[90%] flex items-center justify-between mt-4">
       <div className="w-full h-full">
@@ -24,7 +44,7 @@ const Page = () => {
         </button>
         </div>
         <div className="w-full h-[85%]">
-          <ProblemsTable />
+          <ProblemsTable data={problemsData} loading={loading}/>
         </div>
         <Modal
         opened={opened}

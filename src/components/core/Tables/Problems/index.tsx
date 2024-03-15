@@ -18,11 +18,12 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import LocationTracker from "../../Modals/LocationTracker";
 import TableSkeleton from "../../data-table/TableSkeleton";
+import no_data from "@/assets/images/no_data_gif.gif"
+import Image from "next/image";
 
-const ProblemsTable = () => {
+
+const ProblemsTable = ({data, loading}:{data: any[], loading: boolean}) => {
   const [isOpened, { open, close }] = useDisclosure(false);
-  const [problemsData, setProblemsData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const columns: ColumnDef<any>[] = [
     {
@@ -71,24 +72,6 @@ const ProblemsTable = () => {
     },
   ];
 
-  useEffect(() => {
-    setLoading(true);
-    ApiEndpoint.get("/problems/my/asked")
-      .then((res) => {
-        console.log(res.data?.data);
-        if(res.data?.data?.message){
-          setProblemsData([]);
-        }else{
-          setProblemsData(res.data.data);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
-
   return (
     <div className="w-full h-full px-2 mt-8">
       <Modal opened={isOpened} onClose={close} size={"auto"}>
@@ -98,16 +81,17 @@ const ProblemsTable = () => {
         {loading ? (
           <TableSkeleton columns={columns} />
         ) : 
-          problemsData?.length === 0 ? 
-          <div>
-            <h3>No Data Found!</h3>
+          data?.length === 0 ? 
+          <div className="flex flex-col items-center">
+            <Image src={no_data} alt="No Data GIF"/>
+            <h3 className="mt-[1rem] font-bold">No Reported Problems So Far!</h3>
           </div>
           :
           (
-            <div className="w-full h-[90%] bg-white">
+            <div className="w-full h-fit bg-white">
               <DataTable
               allowPagination={true}
-              data={problemsData}
+              data={data}
               columns={columns}
               tableClass=""
               />

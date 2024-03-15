@@ -8,6 +8,8 @@ import { FaRegCheckSquare } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
 import { HiClock } from "react-icons/hi2";
 import TableSkeleton from "../../data-table/TableSkeleton";
+import no_data from "@/assets/images/no_data_gif.gif"
+import Image from "next/image";
 
 const columns: ColumnDef<Suggestion>[] = [
   {
@@ -38,24 +40,7 @@ const columns: ColumnDef<Suggestion>[] = [
   },
 ];
 
-const SuggestionsTable = () => {
-  const [suggestionsData, setSuggestionsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    ApiEndpoint.get("/suggestions/mine")
-      .then((res) => {
-        console.log(res.data);
-        setSuggestionsData(res.data.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+const SuggestionsTable = ({data, loading}: {data: any[], loading: boolean}) => {
 
   return (
     <div className="w-full h-full flex justify-center  px-2  mt-8">
@@ -63,15 +48,16 @@ const SuggestionsTable = () => {
         <div className="w-full h-[80%] bg-white p-2">
           <TableSkeleton columns={columns} />
         </div>
-      ) : suggestionsData.length == 0 ? (
+      ) : data?.length == 0 ? (
         <div>
-          <h1 className="mt-[5rem]">No Data Found!</h1>
+            <Image src={no_data} alt="No Data GIF"/>
+          <h1 className="mt-[1rem] font-bold">No Suggestions So Far!</h1>
         </div>
       ) : (
         <div className="w-full h-max bg-white">
           <DataTable
             allowPagination={true}
-            data={suggestionsData}
+            data={data}
             columns={columns}
             tableClass=""
           />

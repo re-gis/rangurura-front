@@ -245,7 +245,7 @@ export function DataTable({
                   {table?.getFilteredRowModel().rows.length} row(s) selected.
                 </div>
               </div> */}
-              <div className="flex w-full justify-center mt-4">
+              <div className="flex w-full justify-center mt-6 ">
                 <Pagination
                   total={
                     isPaginated
