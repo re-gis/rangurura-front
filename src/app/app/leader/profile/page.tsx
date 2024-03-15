@@ -14,7 +14,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-white w-[90%] h-[90%] mt-5 rounded-2xl pb-20 float-center">
+    <div className="bg-white w-[90%] h-[80%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
         <h2 className="text-2xl font-bold py-4 text-center">
           Hindura Umwirondoro

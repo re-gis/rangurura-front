@@ -12,7 +12,7 @@ import TableSkeleton from "../../data-table/TableSkeleton";
 const columns: ColumnDef<Suggestion>[] = [
   {
     accessorKey: "Description",
-    header: ({ column }) => <h4>Suggestion</h4>,
+    header: ({ column }) => <div className="w-4/5"><h4>Suggestion</h4></div>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
         {row.original.igitekerezo.toString().length < 30
@@ -33,7 +33,7 @@ const columns: ColumnDef<Suggestion>[] = [
   },
   {
     accessorKey: "Actions",
-    header: ({ column }) => <></>,
+    header: ({ column }) => <h3>Actions</h3>,
     cell: ({ row }) => <HiDotsVertical />,
   },
 ];
@@ -60,7 +60,7 @@ const SuggestionsTable = () => {
   return (
     <div className="w-full h-full flex justify-center  px-2  mt-8">
       {loading ? (
-        <div className="w-full h-[80%] bg-white">
+        <div className="w-full h-[80%] bg-white p-2">
           <TableSkeleton columns={columns} />
         </div>
       ) : suggestionsData.length == 0 ? (

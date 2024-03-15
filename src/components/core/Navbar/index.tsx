@@ -27,7 +27,8 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import toast from "react-hot-toast";
+import {setCookie} from "cookies-next"
 interface Props {
   type: "citizen" | "leader" | "organisation";
 }
@@ -64,10 +65,38 @@ const actions: SpotlightActionData[] = [
 
 const Navbar = ({ type }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [openedLogout, { openL, closeL }] = useDisclosure(false);
   const navigate = useRouter();
+  const logout = () => {
+    setCookie("token", undefined);
+    toast.success("Logged out successfully", {
+      position: "top-right",
+      duration: 4000,
+    });
+    navigate.push("/");
+  };
   return (
     <>
       <div className="w-full h-[15vh] md:h-[10vh] flex flex-col md:flex-row items-center justify-between mt-[10vh] md:mt-0">
+      <Modal opened={openedLogout} onClose={closeL} size={"sm"}>
+            <h5 className="w-full text-center">
+              Are you sure you want to logout ?
+            </h5>
+            <div className="flex w-full items-center justify-between px-4 mt-10">
+              <button
+                onClick={closeL}
+                className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#ccc] text-black"
+              >
+                cancel
+              </button>
+              <button
+                onClick={logout}
+                className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
+              >
+                Logout
+              </button>
+            </div>
+          </Modal>
         <div className="w-full md:w-[49%] h-4/5 flex items-center gap-1">
           <div className="w-[95%] h-[85%] relative">
             <input
@@ -151,7 +180,7 @@ const Navbar = ({ type }: Props) => {
                 key="logout"
                 color="danger"
                 className="hover:bg-[#FF0000] hover:text-white"
-                onClick={() => navigate.push("/login")}
+                onClick={openL}
               >
                 Log Out
               </DropdownItem>
