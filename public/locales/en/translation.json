@@ -1,0 +1,162 @@
+{
+  "website": {
+    "navbar": {
+      "home": "Home",
+      "problems": "Problems",
+      "contacts": "Contacts",
+      "faq": "FAQ",
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "report_problem": "Report Problem"
+    }
+
+  },
+  "sidebar": {
+    "home": "Home",
+    "leaders": "Leaders",
+    "problems": "Problems",
+    "calendar": "Calendar",
+    "suggestions": "Suggestions",
+    "chat": "Chat",
+    "events": "Announcements",
+    "settings": "Settings",
+    "my_account": "My Account",
+    "logout": "Logout"
+  },
+  "login": {
+    "login": "Login",
+    "id": "National Id",
+    "password": "Password",
+    "forgot_password": "Forgot Password ?",
+    "first_time": "Don't have an account?",
+    "create_account": "Create account"
+  },
+  "signup": {
+    "signup": "Signup",
+    "info": "Info",
+    "confirmation": "Confirmation",
+    "name": "Name",
+    "id": "National Id",
+    "phone": "Phone Number",
+    "province": "Province",
+    "district": "District",
+    "sector": "Sector",
+    "cell": "Cell",
+    "village": "Village",
+    "password": "password",
+    "cpassword": "Confirm Password",
+    "agree": "I confirm that the information I have provided is correct",
+    "submit": "create",
+    "ask": "Already have account ?"
+  },
+  "verify": {
+    "verify": "Verify account",
+    "tell": "Enter six digits sent to your phone number",
+    "didntget": "Didn't get the code ?",
+    "ask": "Send another",
+    "verifyaccount": "Verify"
+  },
+  "forgot": {
+    "number": "Phone Number",
+    "continue": "Continue",
+    "recover": "Reset Password"
+  },
+  "suggestions":{
+      "suggestions":"Suggestions",
+      "no_data":"No Data Found!"
+  },
+
+  "landing":{
+    "search":"Search",
+    "welcome":"Welcome to Rangurura",
+    "desc":"“Rangurura” is your direct channel to make your voice heard. We believe that every citizen's concerns andissues matter. Our platform empowers you to report problems, share feedback, and request assistance with ease.",
+    "welc_btn":"Sign up"
+  },
+  
+  "working_section":{
+   "working":"How we work",
+    "work_desc":"Make a difference in your community today. Report your concerns, and let us help you build a better tomorrow with Rangurura",
+    "fast":"Faster",
+    "fast_desc":"Problem reach to the destination safe and faster",
+    "privacy":"Privacy",
+    "privacy_desc":"We ensure privacy by hiding the reporter’s information",
+    "report_prob":"Report problems",
+    "report_prob_desc":"you can easily report it to your local government through our platform.",
+    "transparency":"Transparency process",
+    "transparency_desc":"We ensure transparency by tracking the progress of your reports.",
+    "community_eng":"Community Engagement ",
+    "communtiy_eng_desc":"Join hands with fellow citizens by reporting your concern"
+  },
+
+ 
+   "problem_section":{
+    "feat_prob":"Featured Problem",
+    "prob_desc":"Enhancing Citizen-Leader Communication for a Stronger Society — Dive into solutions that bridge the gap and empower citizens to connect more effectively with their leaders.",
+     "test1":"Sometimes, it's hard for people like me to get healthcare that's just right for us. The way things work now doesn't give us personalized help, and I think we need new ideas. Using innovative solutions can make healthcare better, so we get the right care and our health information is kept safe.",
+     "case_test1":"Health",
+     "test2":"Getting my identity card has been a real challenge. The current process is complicated and often requires a lot of time. I believe we need better ways to make this easier for everyone, with innovative solutions that simplify the journey .",
+     "case_test2":"Identification",
+     "test3":"Living in an area affected by wars is tough. It's not just about the danger; it's also the daily struggles like finding basic necessities and staying connected with loved ones. We urgently need practical solutions to make life safer and more manageable in conflict zones,",
+     "case_test3":"Unity"
+   },
+ 
+    "tips_section":{
+      "prob_sugg":"Problem and Suggestion",
+      "prob_sugg_desc":"Rangurura a virtual assistant which will help you to report your problem and give your suggestion ",
+      "prob_tip_title":"Problem reporting tips",
+      "prob_tip1":"Describe the problem precisely",
+      "prob_tip1_desc":"Start by providing a clear and concise description of the problem. Avoid unnecessary details or jargon. State the problem in a single sentence if possible. Avoid using accusatory or aggressive language. Instead, focus on describing the problem objectively. Be respectful in your communication, even if you're frustrated with the issue",
+      "prob_tip2":"Explain the impact",
+      "prob_tip2_desc":"Describe how the problem is affecting you or others. Explain the consequences or negative outcomes of the issue. If it's a recurring problem, mention how frequently it occurs. If applicable, attach screenshots, photos, or documents that illustrate the problem. Provide any supporting evidence that can help those addressing the issue understand it better",
+      "prob_tip3":"Identify any attempts to resolve",
+      "prob_tip3_desc":"Mention if you've tried any troubleshooting steps or solutions on your own. Explain the results of these attempts, whether they were successful or unsuccessful.",
+      "prob_tip4":"Specify your Expectations",
+      "prob_tip4_desc":"Clearly state what you expect as a resolution to the problem. Be realistic in your expectations. If you're uncertain about the solution, express your desire for guidance or assistance in resolving the issue. ",
+      "sugg_tip_title":"Suggestion reporting tip",
+      "sugg_tip1":"Describe your suggestion concisely:",
+      "sugg_tip1_desc":"Start by providing a clear and concise description of the suggestion. Avoid unnecessary details or jargon.State the suggestion in a single sentence if possible.Avoid using accusatory or aggressive language. Instead, focus on describing the suggestion objectively.",
+      "sugg_tip2":"Emphasize the Value",
+      "sugg_tip2_desc":"In addition to clarity and conciseness, highlight the value of your suggestion. Clearly articulate the positive impact or benefits it brings without resorting to unnecessary details or aggressive language. A brief, value-focused statement enhances the appeal and consideration of your suggestion",
+      "sugg_btn":"Give suggestion",
+      "prob_btn":"Report problem"
+    },
+   
+     "contact_section":{
+     "contact":"Contact our friendly team",
+     "email":"Email",
+     "email_desc":"Chat with our friendly team and get updates via Email",
+     "socio_meds":"Social Links",
+     "meds_desc":"Follow us on facebook or instagram to receive daily update",
+     "call":"Call us",
+     "call_desc":"Call our support team"
+     }, 
+
+     "faq_section":{
+      "faq":"Frequently asked questions",
+      "faq_desc":"Unlock insights about Rangurura with our FAQs – your quick guide to submitting solutions, staying updated, and ensuring privacy.",
+      "faq1":"What types of problems are featured on the platform?",
+      "faq1_desc":"The platform features a diverse range of problems spanning various domains such as health, identification, unity, and more. We aim to address pressing issues that citizens encounter in their daily lives.",
+      "faq2":"How is data privacy and security addressed in the submission process?",
+      "faq2_desc":"We take data privacy and security seriously. All information shared during the submission process is treated with the utmost confidentiality. Personal details are kept secure, and our platform employs robust security measures to safeguard the integrity of the data you provide.",
+      "faq3":"How can I stay updated on new challenges and project developments?",
+      "faq3_desc":" you can follow our official social media channels where we regularly share announcements, highlights, and important information. By staying connected through these channels, you'll be among the first to know about exciting opportunities and the latest developments on our platform.",
+      "faq4":"Are there any fees associated with participating in the challenges?",
+      "faq4_desc":"No, participation in challenges on our platform is entirely free. We believe in providing an open and accessible space for individuals to contribute their ideas and solutions without any financial barriers.",
+      "faq5":"How can I provide feedback on the challenges and the platform itself?",
+      "faq5_desc":"If you'd like to share feedback on challenges or the platform, please email us at rangurura@gmail.com. We appreciate your insights and are keen on improving based on user input.",
+      "faq6":"Can I submit solutions to multiple challenges simultaneously?",
+      "faq6_desc":"Yes, participants can submit solutions to multiple challenges simultaneously. We encourage individuals to explore various problem domains and contribute their expertise across different areas."
+   },
+
+  "footer":{
+    "title_desc":"Rangurura is your direct channel to make your voice heard. We believe that every citizen's concerns and issues matter. Our platform empowers you to report problems, share feedback, and request assistance with ease.",
+    "home": "Home",
+    "problems": "Problems",
+    "contacts": "Contacts",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "all_rights":"Rangurura. All right reserved"
+  }
+
+
+}

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2300:3000"
+    volumes:
+      - .:/app

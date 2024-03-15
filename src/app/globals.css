@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,300&family=Roboto:wght@100&display=swap");
+* {
+  font-family: poppins;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.App {
+  @apply box-border;
+}
+
+.btn_primary {
+  @apply bg-[#001833] font-semibold hover:bg-[#133955];
+}
+
+.main_input {
+  @apply flex md:flex-row flex-col justify-between md:gap-7 gap-3;
+}
+
+.sub_input {
+  @apply w-full border-[2px] border-gray-300 rounded-lg py-2 px-2 pr-9;
+}
+
+.form {
+  @apply flex flex-col justify-center items-center;
+}
+
+.password {
+  @apply w-full p-3 py-4 rounded-sm active:border-[#001833];
+}
+
+.confirmButton {
+  @apply w-[59px] h-[72px] border-2 border-[#001833] rounded-[7px] text-[#001833] text-center text-base font-semibold;
+}
+
+.buttons {
+  @apply gap-3 flex flex-row items-center justify-center;
+}
+
+.homeButton {
+  @apply w-[86px] p-2 rounded font-bold;
+}
+
+.header {
+  @apply flex flex-row justify-between items-center;
+}
+.main_input > div > label {
+  font-size: 11px;
+}
+.mantine-Select-input {
+  border: 2px solid #c3c3c3 !important;
+  height: 3rem !important;
+  padding: 10px 10px !important;
+  font-size: 13px !important;
+  font-family: poppins !important;
+}
+.mantine-Select-input::placeholder {
+  color: #000 !important;
+}
+
+body {
+  width: 100vw !important;
+  font-size: 12px;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+
+  overflow-x: hidden !important;
+}
+
+.footer-section {
+  background: url("../assets/images/footer.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.carousel-item {
+  width: 900px !important;
+  /* transform: translateX(1000px); */
+}
+ion-icon {
+  cursor: pointer !important;
+}
+
+.contact-badge > ion-icon {
+  color: #0075ff !important;
+}
+.active {
+  background: #20603d;
+}
+
+body::-webkit-scrollbar {
+  width: 5px !important;
+}
+body::-webkit-scrollbar-thumb {
+  background: #20603d !important;
+}
+body::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.progressBar-custom {
+  gap: 0 !important;
+}
+
+.datatablecontainer {
+  height: 103%;
+}
+.datatablecontainer::-webkit-scrollbar {
+  /* height: 3px !important; */
+  width: 9px !important;
+  /* margin: 3px 0 !important; */
+}
+.datatablecontainer::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+.MuiDateCalendar-root {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.problems-container::-webkit-scrollbar-thumb {
+  background: #001833 !important;
+  border-radius: 5px;
+}
+.MuiDateCalendar-root > div {
+  width: 100%;
+  height: 50%;
+  /* background: #000; */
+}
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root {
+  width: 36px !important;
+  height: 29px !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+}
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  height: 20px !important;
+}
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  font-weight: bolder !important;
+  color: #000 !important;
+}
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background: #20603d93 !important;
+}
+
+.disable-scroll {
+  overflow: hidden;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.mantine-Calendar-levelsGroup {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex;
+  justify-content: center !important;
+  padding-top: 5%;
+}
+.mantine-Calendar-levelsGroup > div[data-month-level="true"] > .m-730a79ed {
+  width: 100%;
+}
+.m-396ce5cb[data-selected] {
+  background: #20603d !important;
+  color: #fff !important;
+}
+
+.m-9df02822 {
+  height: 0vh !important;
+}
+
+.banner {
+  width: 99%;
+  position: fixed;
+  top: 1%;
+  left: 0.5%;
+  z-index: 50;
+  background-color: #5b9ae1;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: opacity 0.3s ease-in-out;
+  visibility: hidden;
+}
+
+.banner-show {
+  visibility: visible;
+}
+
+.banner-hide {
+  visibility: hidden;
+}
