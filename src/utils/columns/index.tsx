@@ -105,9 +105,20 @@ export const eventsColumns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Event name</h4>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
-        {row.original.eventName.toString().length < 30
+        {row.original.eventName?.toString()?.length < 30
           ? row.original.eventName
-          : `${row.original.eventName.slice(0, 58)} . . .`}
+          : `${row.original.eventName?.slice(0, 58)} . . .`}
+      </h6>
+    ),
+  },
+  {
+    accessorKey: "Event Description",
+    header: ({ column }) => <h4>Event Description</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">
+        {row.original.descriptions?.toString()?.length < 30
+          ? row.original.descriptions
+          : `${row.original.descriptions?.slice(0, 58)} . . .`}
       </h6>
     ),
   },

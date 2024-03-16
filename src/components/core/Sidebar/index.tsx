@@ -13,11 +13,15 @@ import { Route } from "@/typings";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { setCookie } from "cookies-next";
+import { ClipLoader } from "react-spinners";
+import {useState} from "react";
 interface SidebarProps {
   routes: Route[];
+  type: string
 }
-const Sidebar: FC<SidebarProps> = ({ routes }) => {
+const Sidebar: FC<SidebarProps> = ({ routes, type }) => {
   const navigate = useRouter();
+  const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const { t } = useTranslation();
   const path = usePathname();
@@ -27,6 +31,7 @@ const Sidebar: FC<SidebarProps> = ({ routes }) => {
   };
 
   const logout = () => {
+    setLoading(true);
     setCookie("token", undefined);
     toast.success("Logged out successfully", {
       position: "top-right",
@@ -76,7 +81,7 @@ const Sidebar: FC<SidebarProps> = ({ routes }) => {
 
           {/* <div className="w-full mt-[5rem] flex flex-col "> */}
           <Link
-            href={"/app/leader/profile"}
+            href={type == "leader" ? "/app/leader/profile" : "/app/citizen/profile"}
             className={`w-full py-5 flex items-center  text-white gap-7 mt-[5rem] hover:bg-[#5dc58c6e] ${
               isActive("/app/leader/profile")
                 ? "border-l-[3px] border-l-[#FFF] bg-[#20603D] px-9"
@@ -109,7 +114,9 @@ const Sidebar: FC<SidebarProps> = ({ routes }) => {
                 onClick={logout}
                 className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
               >
-                Logout
+                {loading ? <div className="w-full h-full flex justify-center items-center px-5">
+                  <ClipLoader size={24} color="white"/>
+                </div> : "Logout"}
               </button>
             </div>
           </Modal>

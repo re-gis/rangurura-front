@@ -23,13 +23,11 @@ export default function middleware(
 
   if (
     req.nextUrl.pathname.startsWith("/locales/") ||
-    req.nextUrl.pathname === "/" ||
     req.nextUrl.pathname === "/problem" ||
     req.nextUrl.pathname === "/suggestion"
   ) {
     return NextResponse.next();
   }
-
   if (
     !token &&
     req.nextUrl.pathname !== "/login" &&
@@ -38,7 +36,7 @@ export default function middleware(
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (token && req.nextUrl.pathname === "/login") {
+  if (token && (req.nextUrl.pathname === "/login" ||req.nextUrl.pathname === "/")) {
     const decoded = jwtDecode(token ?? "") as { role: string };
     if (decoded.role === "ADMIN") {
       return NextResponse.redirect(new URL("/app/leader", req.url));
@@ -46,7 +44,6 @@ export default function middleware(
       return NextResponse.redirect(new URL("/app/citizen", req.url));
     } else {
       toast.error("Invalid Token!");
-      return NextResponse.redirect(new URL("/login", req.url));
     }
   }
 

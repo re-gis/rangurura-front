@@ -48,11 +48,9 @@ const Login = () => {
         } else {
           toast.error("Role Not valid!");
         }
-        setLoading(false);
         setCookie("token", res?.data?.data);
       })
       .catch((err: any) => {
-        setLoading(false);
         console.log("Error occured: ", err.message);
         if (err?.response?.data?.success) {
           if (

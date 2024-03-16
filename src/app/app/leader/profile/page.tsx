@@ -14,18 +14,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-white w-[90%] h-[80%] mt-5 rounded-2xl pb-20 float-center">
+    <div className="bg-white w-[90%] h-[90%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
         <h2 className="text-2xl font-bold py-4 text-center">
           Hindura Umwirondoro
         </h2>
       </div>
-      <div className="pic lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
+      <div className=" lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
         {selectedImage ? (
           <Image
             src={selectedImage}
             alt="upload"
-            className=" w-4/12 h-72 rounded-2xl bg-contain"
+            className=" w-4/12 h-36 rounded-2xl bg-contain"
             width="270"
             height="100"
           />
@@ -52,7 +52,7 @@ const Profile = () => {
       </div>
 
       <form
-        className=" w-[90%] flex flex-col gap-y-4 justify-center ml-6 md:px-10 px-10 pt-6"
+        className="w-[90%] flex flex-col gap-y- justify-center ml-6 md:px-10 px-10 pt-6"
         // onSubmit={handleSubmit}
       >
         <div className="main_input">
