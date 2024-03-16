@@ -52,7 +52,7 @@ const Activity = () => {
   return (
     <>
       <Header header="Activity Overview" />
-      <div className="w-full md:h-[80%] grid grid-cols-2 gap-y-4 gap-x-4">
+      <div className="w-full md:h-[75%] grid grid-cols-2 gap-y-4 gap-x-4">
         <div className="w-full h-full bg-[#00D56040] border-b-[3px] rounded-t-lg border-b-[#00D560] flex flex-col items-center justify-center">
           <FaRegCheckSquare size={18} />
           <h5 className="text-[#000] font-semibold mt-1">Solved problems</h5>

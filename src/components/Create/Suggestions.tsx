@@ -15,7 +15,7 @@ import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { getMyProfile } from "@/utils/funcs/funcs";
 
-const CreateSuggestionModal = ({closeL}:{closeL: Function}) => {
+const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, setLoading] = useState(false);
   const navigate = useRouter();
@@ -27,11 +27,10 @@ const CreateSuggestionModal = ({closeL}:{closeL: Function}) => {
   const [suggestion, setSuggestion] = useState("");
   const [nationalId, setNationalId] = useState("");
 
-  getMyProfile()
-    .then((data)=>{
-        setNationalId(data?.data?.nationalId);
-        setPhoneNumber(data?.data?.phoneNumber);
-    })
+  getMyProfile().then((data) => {
+    setNationalId(data?.data?.nationalId);
+    setPhoneNumber(data?.data?.phoneNumber);
+  });
   const onChangeCategory = (e: any) => {
     setOrganisationCategory(e.target.value);
   };
@@ -57,9 +56,7 @@ const CreateSuggestionModal = ({closeL}:{closeL: Function}) => {
       .post(`${baseURL}/suggestions/send_idea`, formData)
       .then((response) => {
         setLoading(false);
-        toast.success(
-          "Suggestion Reported Successfully!",
-        );
+        toast.success("Suggestion Reported Successfully!");
         setOrganisationLevel("");
         setOrganisationCategory("");
         setLevel("");

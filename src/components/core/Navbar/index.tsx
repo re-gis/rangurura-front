@@ -28,7 +28,9 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import {setCookie} from "cookies-next"
+import { setCookie } from "cookies-next";
+import { useEffect, useState } from "react";
+import { getMyProfile } from "@/utils/funcs/funcs";
 interface Props {
   type: "citizen" | "leader" | "organisation";
 }
@@ -65,6 +67,18 @@ const actions: SpotlightActionData[] = [
 
 const Navbar = ({ type }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [profile, setProfile] = useState({
+    cell: "",
+    district: "",
+    name: "",
+    nationalId: "",
+    phoneNumber: "",
+    province: "",
+    role: "",
+    sector: "",
+    verified: true,
+    village: "",
+  });
   const [openedLogout, { openL, closeL }] = useDisclosure(false);
   const navigate = useRouter();
   const logout = () => {
@@ -75,28 +89,38 @@ const Navbar = ({ type }: Props) => {
     });
     navigate.push("/");
   };
+  useEffect(() => {
+    getMyProfile()
+      .then((data: any) => {
+        console.log("User Profile in Navbar -->", data);
+        setProfile(data.data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <div className="w-full h-[15vh] md:h-[10vh] flex flex-col md:flex-row items-center justify-between mt-[10vh] md:mt-0">
-      <Modal opened={openedLogout} onClose={closeL} size={"sm"}>
-            <h5 className="w-full text-center">
-              Are you sure you want to logout ?
-            </h5>
-            <div className="flex w-full items-center justify-between px-4 mt-10">
-              <button
-                onClick={closeL}
-                className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#ccc] text-black"
-              >
-                cancel
-              </button>
-              <button
-                onClick={logout}
-                className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
-              >
-                Logout
-              </button>
-            </div>
-          </Modal>
+        <Modal opened={openedLogout} onClose={closeL} size={"sm"}>
+          <h5 className="w-full text-center">
+            Are you sure you want to logout ?
+          </h5>
+          <div className="flex w-full items-center justify-between px-4 mt-10">
+            <button
+              onClick={closeL}
+              className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#ccc] text-black"
+            >
+              cancel
+            </button>
+            <button
+              onClick={logout}
+              className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
+            >
+              Logout
+            </button>
+          </div>
+        </Modal>
         <div className="w-full md:w-[49%] h-4/5 flex items-center gap-1">
           <div className="w-[95%] h-[85%] relative">
             <input
@@ -148,9 +172,9 @@ const Navbar = ({ type }: Props) => {
                 />
 
                 <div className="flex-col hidden lg:flex">
-                  <h6 className="text-[11.4px] font-bold">Isamaza sylvain</h6>
+                  <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
                   {(type == "leader" || type == "organisation") && (
-                    <p className="text-[11.4px] font-bold">Kicukiro District</p>
+                    <p className="text-[11.4px] font-bold">{profile?.district} District</p>
                   )}
                 </div>
                 <RiArrowDownSLine size={15} />

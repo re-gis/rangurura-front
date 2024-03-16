@@ -8,24 +8,24 @@ export const changeLanguage = (language: string) => {
   setCookie("lang", language);
 };
 
-export const fetchCitizenProblems = async ()=>{
-  const data = await ApiEndpoint.get("/problems/my/asked")
+export const fetchCitizenProblems = async () => {
+  const data = await ApiEndpoint.get("/problems/my/asked");
   console.log(data);
-  return data
-}
+  return data;
+};
 
-export const getMyProfile = async ()=>{
-  const data = await ApiEndpoint.get("/users/me")
-  return data.data
-}
+export const getMyProfile = async () => {
+  const data = await ApiEndpoint.get("/users/me");
+  return data.data;
+};
 
-export const getAllLeaders = async() =>{
-  const data = await ApiEndpoint.get("/leaders/leaders")
-  return data.data
-}
+export const getAllLeaders = async () => {
+  const data = await ApiEndpoint.get("/leaders/leaders");
+  return data.data;
+};
 
-export const getRoleFromLevel = (level: string):string =>{
-  switch(level?.toLowerCase()){
+export const getRoleFromLevel = (level: string): string => {
+  switch (level?.toLowerCase()) {
     case "district":
       return "Mayor";
     case "intara":
@@ -35,6 +35,6 @@ export const getRoleFromLevel = (level: string):string =>{
     case "akagari":
       return "Executive Secretary of Cell";
     default:
-      return "No Role Set"
+      return "No Role Set";
   }
-}
+};

@@ -54,24 +54,24 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
       phoneNumber: phoneNumber,
       nationalId: nationalId,
     };
-    console.log(formData)
-    
+    console.log(formData);
+
     const formResponse = new FormData();
     getMyProfile()
-    .then(data => {
-        console.log("Profile User", data?.data?.nationalId)
+      .then((data) => {
+        console.log("Profile User", data?.data?.nationalId);
         setNationalId(data?.data?.nationalId);
         setPhoneNumber(data?.data?.phoneNumber);
-        formData.nationalId = data?.data?.nationalId
-        formData.phoneNumber = data?.data?.phoneNumber
+        formData.nationalId = data?.data?.nationalId;
+        formData.phoneNumber = data?.data?.phoneNumber;
         if (selectedFile) {
-            formResponse.append("proof", selectedFile);
+          formResponse.append("proof", selectedFile);
         }
         formResponse.append("record", "");
         formResponse.append("details", JSON.stringify(formData));
       })
       .then(() => {
-        console.log(formData)
+        console.log(formData);
         axios
           .post(`${baseURL}/problems/create`, formResponse)
           .then((response) => {
@@ -88,7 +88,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             } else {
               toast.error(
                 err.response?.data?.error ??
-                "An Error Occured! If it persists contact the support at support@rangurura.com",
+                  "An Error Occured! If it persists contact the support at support@rangurura.com",
                 {
                   duration: 5000,
                 },
@@ -105,7 +105,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             } else {
               toast.error(
                 err.response?.data?.error ??
-                "An Error Occured! If it persists contact the support at support@rangurura.com",
+                  "An Error Occured! If it persists contact the support at support@rangurura.com",
                 {
                   duration: 5000,
                 },

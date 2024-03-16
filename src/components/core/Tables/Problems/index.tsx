@@ -18,11 +18,16 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import LocationTracker from "../../Modals/LocationTracker";
 import TableSkeleton from "../../data-table/TableSkeleton";
-import no_data from "@/assets/images/no_data_gif.gif"
+import no_data from "@/assets/images/no_data_gif.gif";
 import Image from "next/image";
 
-
-const ProblemsTable = ({data, loading}:{data: any[], loading: boolean}) => {
+const ProblemsTable = ({
+  data,
+  loading,
+}: {
+  data: any[];
+  loading: boolean;
+}) => {
   const [isOpened, { open, close }] = useDisclosure(false);
 
   const columns: ColumnDef<any>[] = [
@@ -80,24 +85,23 @@ const ProblemsTable = ({data, loading}:{data: any[], loading: boolean}) => {
       <div className="w-full h-[80%] flex flex-col items-center">
         {loading ? (
           <TableSkeleton columns={columns} />
-        ) : 
-          data?.length === 0 ? 
+        ) : data?.length === 0 ? (
           <div className="flex flex-col items-center">
-            <Image src={no_data} alt="No Data GIF"/>
-            <h3 className="mt-[1rem] font-bold">No Reported Problems So Far!</h3>
+            <Image src={no_data} alt="No Data GIF" />
+            <h3 className="mt-[1rem] font-bold">
+              No Reported Problems So Far!
+            </h3>
           </div>
-          :
-          (
-            <div className="w-full h-fit bg-white">
-              <DataTable
+        ) : (
+          <div className="w-full h-fit bg-white">
+            <DataTable
               allowPagination={true}
               data={data}
               columns={columns}
               tableClass=""
-              />
-            </div>
-          )
-        }
+            />
+          </div>
+        )}
       </div>
     </div>
   );
