@@ -174,7 +174,9 @@ const Navbar = ({ type }: Props) => {
                 <div className="flex-col hidden lg:flex">
                   <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
                   {(type == "leader" || type == "organisation") && (
-                    <p className="text-[11.4px] font-bold">{profile?.district} District</p>
+                    <p className="text-[11.4px] font-bold">
+                      {profile?.district} District
+                    </p>
                   )}
                 </div>
                 <RiArrowDownSLine size={15} />
@@ -186,7 +188,7 @@ const Navbar = ({ type }: Props) => {
               className={"bg-white px-3 py-5"}
             >
               <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-bold">Signed in as Isamaza sylvain</p>
+                <p className="font-bold">Signed in as {profile?.name}</p>
               </DropdownItem>
               <DropdownItem key="settings" className="hover:bg-[#ccc]">
                 My Report

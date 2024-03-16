@@ -1,5 +1,5 @@
 import ProblemActions from "@/components/core/actions/Problems";
-import { Event, Problem } from "@/typings";
+import { Event, Problem, Suggestion } from "@/typings";
 import { Tooltip } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
 import { FaRegCheckSquare } from "react-icons/fa";
@@ -11,9 +11,9 @@ export const problemColumns: ColumnDef<Problem>[] = [
     header: ({ column }) => <h4>Description</h4>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
-        {row.original.description.toString().length < 30
-          ? row.original.description
-          : `${row.original.description.slice(0, 38)} . . .`}
+        {row.original.ikibazo.toString().length < 30
+          ? row.original.ikibazo
+          : `${row.original.ikibazo.slice(0, 38)} . . .`}
       </h6>
     ),
   },
@@ -29,7 +29,7 @@ export const problemColumns: ColumnDef<Problem>[] = [
   {
     accessorKey: "Level",
     header: ({ column }) => <h4>Level</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.level}</h6>,
+    cell: ({ row }) => <h6 className="text-[80%]">{row.original.urwego}</h6>,
   },
 ];
 export const citizenProblemColumns: ColumnDef<Problem>[] = [
@@ -60,15 +60,15 @@ export const citizenProblemColumns: ColumnDef<Problem>[] = [
   },
 ];
 
-export const suggestionColumns: ColumnDef<Problem>[] = [
+export const suggestionColumns: ColumnDef<Suggestion>[] = [
   {
     accessorKey: "Description",
     header: ({ column }) => <h4>Suggestion</h4>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
-        {row.original.description.toString().length < 30
-          ? row.original.description
-          : `${row.original.description.slice(0, 58)} . . .`}
+        {row.original.igitekerezo.toString().length < 30
+          ? row.original.igitekerezo
+          : `${row.original.igitekerezo.slice(0, 58)} . . .`}
       </h6>
     ),
   },
@@ -76,7 +76,7 @@ export const suggestionColumns: ColumnDef<Problem>[] = [
     accessorKey: "completed",
     header: ({ column }) => <FaRegCheckSquare color={"#ccc"} />,
     cell: ({ row }) =>
-      row.original.completed ? (
+      row.original.status ? (
         <FaRegCheckSquare color="#00D560" />
       ) : (
         <HiClock color="#FA8701" />
@@ -94,7 +94,7 @@ export const eventsColumns: ColumnDef<Event>[] = [
     accessorKey: "Completed",
     header: ({ column }) => <FaRegCheckSquare color={"#ccc"} />,
     cell: ({ row }) =>
-      row.original.completed ? (
+      row.original?.completed ? (
         <FaRegCheckSquare color="#00D560" />
       ) : (
         <HiClock color="#FA8701" />
@@ -105,9 +105,9 @@ export const eventsColumns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Event name</h4>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
-        {row.original.name.toString().length < 30
-          ? row.original.name
-          : `${row.original.name.slice(0, 58)} . . .`}
+        {row.original.eventName.toString().length < 30
+          ? row.original.eventName
+          : `${row.original.eventName.slice(0, 58)} . . .`}
       </h6>
     ),
   },
@@ -126,11 +126,11 @@ export const eventsColumns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Location</h4>,
     cell: ({ row }) => <h6 className="text-[80%]">{row.original.location}</h6>,
   },
-  {
-    accessorKey: "Duration",
-    header: ({ column }) => <h4>Duration</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.duration}</h6>,
-  },
+  // {
+  //   accessorKey: "Duration",
+  //   header: ({ column }) => <h4>Duration</h4>,
+  //   cell: ({ row }) => <h6 className="text-[80%]">{row.original.duration}</h6>,
+  // },
   {
     accessorKey: "Actions",
     header: ({ column }) => <></>,

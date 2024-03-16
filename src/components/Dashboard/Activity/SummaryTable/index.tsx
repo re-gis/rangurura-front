@@ -1,15 +1,16 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import SortButton from "@/components/core/data-table/sort-button";
 import { Problem } from "@/typings";
-import { problems as data } from "@/constants";
+import { ApiEndpoint, problems as data } from "@/constants";
 import { problemColumns, suggestionColumns } from "@/utils/columns";
 import { DataTable } from "@/components/core/data-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tooltip, Button } from "@nextui-org/react";
 import { FaRegCheckSquare } from "react-icons/fa";
-import { MdOutlineTaskAlt } from "react-icons/md";
+import { ClipLoader } from "react-spinners";
+import Image from "next/image";
+import no_data from "@/assets/images/no_leader.gif";
 
 const columns: ColumnDef<Problem>[] = [
   {
@@ -39,7 +40,9 @@ const columns: ColumnDef<Problem>[] = [
   },
 ];
 
-const CustomTable = () => {
+const CustomTable = ({problemsData, suggestionsData, loading}:{
+  problemsData: any[], suggestionsData: any[], loading: boolean
+}) => {
   const [activeButton, setActiveButton] = useState("problems");
   return (
     <div className="w-full h-full px-2">
@@ -70,17 +73,33 @@ const CustomTable = () => {
           </button>
         </div>
       </div>
-      {activeButton == "suggestions" ? (
-        <DataTable
-          allowPagination={false}
-          data={data.slice(0, 5)}
-          columns={suggestionColumns}
-          tableClass=""
-        />
+      {loading ? (
+        <div className="w-full h-full flex justify-center pt-[3rem]">
+          <ClipLoader size={24} color="black" />
+        </div>
+      ) : activeButton == "suggestions" ? (
+        suggestionsData.length == 0 ? (
+          <div className="w-full flex flex-col items-center">
+            <Image src={no_data} alt="No Data GIF" />
+            <h1 className="mt-[1rem] font-bold">No Suggestions So Far!</h1>
+          </div>
+        ) : (
+          <DataTable
+            allowPagination={false}
+            data={suggestionsData.slice(0, 5)}
+            columns={suggestionColumns}
+            tableClass=""
+          />
+        )
+      ) : problemsData.length == 0 ? (
+        <div className="w-full flex flex-col items-center">
+          <Image src={no_data} alt="No Data GIF" />
+          <h1 className="mt-[1rem] font-bold">No Problems So Far!</h1>
+        </div>
       ) : (
         <DataTable
           allowPagination={false}
-          data={data.slice(0, 5)}
+          data={problemsData.slice(0, 5)}
           columns={problemColumns}
           tableClass=""
         />

@@ -19,11 +19,14 @@ export type Problem = {
   description: string;
   level: string;
   completed: boolean;
+  ikibazo: string;
+  urwego: string;
 };
 export type Suggestion = {
   igitekerezo: string;
   level: string;
   status: string;
+  urwego: string;
 };
 
 export type Chat = {
@@ -36,12 +39,13 @@ export type Chat = {
 };
 
 export type Event = {
-  name: string;
+  eventName: string;
   startDate: string;
   endDate: string;
   location: string;
-  duration: string;
   completed: boolean;
+  descriptions: string;
+  owner: string;
 };
 
 export interface Route {

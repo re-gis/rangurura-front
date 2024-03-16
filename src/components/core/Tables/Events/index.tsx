@@ -31,9 +31,9 @@ const columns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Event name</h4>,
     cell: ({ row }) => (
       <h6 className="text-[80%]">
-        {row.original.name.toString().length < 30
-          ? row.original.name
-          : `${row.original.name.slice(0, 58)} . . .`}
+        {row.original.eventName.toString().length < 30
+          ? row.original.eventName
+          : `${row.original.eventName.slice(0, 58)} . . .`}
       </h6>
     ),
   },
@@ -52,11 +52,11 @@ const columns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Location</h4>,
     cell: ({ row }) => <h6 className="text-[80%]">{row.original.location}</h6>,
   },
-  {
-    accessorKey: "Duration",
-    header: ({ column }) => <h4>Duration</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.duration}</h6>,
-  },
+  // {
+  //   accessorKey: "Duration",
+  //   header: ({ column }) => <h4>Duration</h4>,
+  //   cell: ({ row }) => <h6 className="text-[80%]">{row.original.duration}</h6>,
+  // },
   {
     accessorKey: "Actions",
     header: ({ column }) => <></>,

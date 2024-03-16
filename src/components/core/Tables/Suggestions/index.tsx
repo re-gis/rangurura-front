@@ -10,39 +10,7 @@ import { HiClock } from "react-icons/hi2";
 import TableSkeleton from "../../data-table/TableSkeleton";
 import no_data from "@/assets/images/no_data_gif.gif";
 import Image from "next/image";
-
-const columns: ColumnDef<Suggestion>[] = [
-  {
-    accessorKey: "Description",
-    header: ({ column }) => (
-      <div className="w-4/5">
-        <h4>Suggestion</h4>
-      </div>
-    ),
-    cell: ({ row }) => (
-      <h6 className="text-[80%]">
-        {row.original.igitekerezo.toString().length < 30
-          ? row.original.igitekerezo
-          : `${row.original.igitekerezo.slice(0, 58)} . . .`}
-      </h6>
-    ),
-  },
-  {
-    accessorKey: "Completed",
-    header: ({ column }) => <FaRegCheckSquare color={"#ccc"} />,
-    cell: ({ row }) =>
-      row.original.status == "PENDING" ? (
-        <HiClock color="#FA8701" />
-      ) : (
-        <FaRegCheckSquare color="#00D560" />
-      ),
-  },
-  {
-    accessorKey: "Actions",
-    header: ({ column }) => <h3>Actions</h3>,
-    cell: ({ row }) => <HiDotsVertical />,
-  },
-];
+import SuggestionsActions from "../../actions/Suggestions";
 
 const SuggestionsTable = ({
   data,
@@ -51,6 +19,38 @@ const SuggestionsTable = ({
   data: any[];
   loading: boolean;
 }) => {
+  const columns: ColumnDef<Suggestion>[] = [
+    {
+      accessorKey: "Description",
+      header: ({ column }) => (
+        <div className="w-4/5">
+          <h4>Suggestion</h4>
+        </div>
+      ),
+      cell: ({ row }) => (
+        <h6 className="text-[80%]">
+          {row.original.igitekerezo.toString().length < 30
+            ? row.original.igitekerezo
+            : `${row.original.igitekerezo.slice(0, 58)} . . .`}
+        </h6>
+      ),
+    },
+    {
+      accessorKey: "Completed",
+      header: ({ column }) => <FaRegCheckSquare color={"#ccc"} />,
+      cell: ({ row }) =>
+        row.original.status == "PENDING" ? (
+          <HiClock color="#FA8701" />
+        ) : (
+          <FaRegCheckSquare color="#00D560" />
+        ),
+    },
+    {
+      accessorKey: "Actions",
+      header: ({ column }) => <h3>Actions</h3>,
+      cell: ({ row }) => <SuggestionsActions data={row.original} />,
+    },
+  ];
   return (
     <div className="w-full h-full flex justify-center  px-2  mt-8">
       {loading ? (
