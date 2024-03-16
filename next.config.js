@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        "domains" : [
+            "icon-library.com"
+        ]
+    }
+};
 
 module.exports = nextConfig;
 

@@ -18,3 +18,23 @@ export const getMyProfile = async ()=>{
   const data = await ApiEndpoint.get("/users/me")
   return data.data
 }
+
+export const getAllLeaders = async() =>{
+  const data = await ApiEndpoint.get("/leaders/leaders")
+  return data.data
+}
+
+export const getRoleFromLevel = (level: string):string =>{
+  switch(level?.toLowerCase()){
+    case "district":
+      return "Mayor";
+    case "intara":
+      return "Governor";
+    case "umurenge":
+      return "Executive Secretary of Sector";
+    case "akagari":
+      return "Executive Secretary of Cell";
+    default:
+      return "No Role Set"
+  }
+}
