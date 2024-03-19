@@ -68,6 +68,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
           formResponse.append("proof", selectedFile);
         }
         formResponse.append("record", "");
+        // formResponse.append("details", JSON.stringify(formData));
         formResponse.append("details", JSON.stringify(formData));
       })
       .then(() => {

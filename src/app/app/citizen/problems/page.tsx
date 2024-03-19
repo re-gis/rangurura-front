@@ -23,12 +23,11 @@ const Page = () => {
         } else {
           setProblemsData(res.data.data);
         }
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
-      });
+      })
+      .finally(()=> setLoading(false));
   }, []);
   return (
     <div className="w-full h-[90%] flex items-center justify-between mt-4">

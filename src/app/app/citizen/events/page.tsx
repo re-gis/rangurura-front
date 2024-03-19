@@ -50,7 +50,7 @@ const Page = () => {
           </h1>
         </div>
       ) : (
-        <div className="w-full h-[85%] bg-white">
+        <div className="w-full h-max bg-white">
           <EventsTable dataProps={events} />
         </div>
       )}

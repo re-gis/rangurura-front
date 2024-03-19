@@ -42,18 +42,32 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
       return;
     }
     setLoading(true);
+    // const formData = {
+    //   "urwego": organisationLevel.toUpperCase(),
+    //   "igitekerezo":suggestion,
+    //   "category":"UBUZIMA",
+    //   "target":"mukamira",
+    //   "location":"nyabihu",
+    //   "nationalId":" 12345678901",
+    //   "upperLevel":"Nyabihu",
+    //   "phoneNumber":"456"
+    // };
     const formData = {
-      category: category,
-      igitekerezo: suggestion,
-      urwego: organisationLevel.toUpperCase(),
-      phoneNumber: phoneNumber,
-      upperLevel: organisationLevel.toUpperCase(),
-      location: level,
-      nationalId: nationalId,
-      target: level,
+      "category": category,
+      "igitekerezo": suggestion,
+      "urwego": organisationLevel.toUpperCase(),
+      "phoneNumber": phoneNumber,
+      "upperLevel": level,
+      "location": level,
+      "nationalId": nationalId,
+      "target": level,
     };
     axios
-      .post(`${baseURL}/suggestions/send_idea`, formData)
+      .post(`${baseURL}/suggestions/send_idea`, JSON.stringify(formData),{
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
       .then((response) => {
         setLoading(false);
         toast.success("Suggestion Reported Successfully!");

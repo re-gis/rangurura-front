@@ -74,7 +74,7 @@ const EventsTable = ({
   styles?: string;
 }) => {
   return (
-    <div className="w-full h-full px-2 bg-white mt-8">
+    <div className="w-full h-max px-2 bg-white mt-8">
       <div className={`${styles} w-full h-[80%]`}>
         <DataTable
           allowPagination={showPagination ?? true}

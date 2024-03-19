@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import SortButton from "@/components/core/data-table/sort-button";
-import { Problem } from "@/typings";
 import { ApiEndpoint, problems as data } from "@/constants";
 import { DataTable } from "@/components/core/data-table";
 import { useState, useEffect } from "react";
@@ -20,7 +19,20 @@ import LocationTracker from "../../Modals/LocationTracker";
 import TableSkeleton from "../../data-table/TableSkeleton";
 import no_data from "@/assets/images/no_data_gif.gif";
 import Image from "next/image";
+import { FaRegEye } from "react-icons/fa";
 
+type Problem = {
+  level: string;
+  completed: boolean;
+  ikibazo: string;
+  urwego: string;
+  owner: string;
+  proofUrl: string,
+  recordUrl: string,
+  status: string;
+  category: string;
+  phoneNumber: string;
+}
 const ProblemsTable = ({
   data,
   loading,
@@ -29,8 +41,20 @@ const ProblemsTable = ({
   loading: boolean;
 }) => {
   const [isOpened, { open, close }] = useDisclosure(false);
+  // const [openView, { openV, closeV }] = useDisclosure(false);
+  const [openedProblem, setOpenedProblem] = useState<Problem>();
+  const [openV, setOpenV] = useState(false);
 
   const columns: ColumnDef<any>[] = [
+    {
+      accessorKey: "ID",
+      header: ({ column }) => <h4>#</h4>,
+      cell: ({ row }) => (
+        <h6 className="text-[80%]">
+          {row.original.id}
+        </h6>
+      ),
+    },
     {
       accessorKey: "Description",
       header: ({ column }) => <h4>Problem Description</h4>,
@@ -43,14 +67,27 @@ const ProblemsTable = ({
       ),
     },
     {
+      accessorKey: "View",
+      header: ({ column }) => (
+        <div className="cursor-pointer w-full flex justify-end">
+          <h5>View</h5>
+        </div>
+      ),
+      cell: ({ row }) => (
+        <div className="pr-4 w-full flex justify-end cursor-pointer" onClick={()=>{setOpenedProblem(row.original); setOpenV(true)}}>
+          <FaRegEye />
+        </div>
+      ),
+    },
+    {
       accessorKey: "Location",
       header: ({ column }) => (
-        <div className="px-6 cursor-pointer">
+        <div className="px-6 cursor-pointer w-full flex justify-end">
           <SlLocationPin color={"#000"} style={{ fontWeight: "800" }} />
         </div>
       ),
       cell: ({ row }) => (
-        <div className="px-6 cursor-pointer" onClick={open}>
+        <div className="px-6 cursor-pointer w-full flex justify-end" onClick={open}>
           <RiUserLocationFill />
         </div>
       ),
@@ -82,7 +119,14 @@ const ProblemsTable = ({
       <Modal opened={isOpened} onClose={close} size={"auto"}>
         <LocationTracker username={"David"} location="Kicukiro" />
       </Modal>
-      <div className="w-full h-[80%] flex flex-col items-center">
+      <Modal opened={openV} onClose={()=>setOpenV(false)} size={"lg"}>
+        <div className="w-full h-full flex flex-col gap-4">
+          <h6>Reported By: {openedProblem?.owner}</h6>
+          <h6 className="mt-[-10px]">Phone Number: {openedProblem?.phoneNumber}</h6>
+          <p>"<span className="font-bold font-italic text-justify">{openedProblem?.ikibazo}</span>"</p>
+        </div>
+      </Modal>
+      <div className="w-full h-full flex flex-col items-center">
         {loading ? (
           <TableSkeleton columns={columns} />
         ) : data?.length === 0 ? (
@@ -93,7 +137,7 @@ const ProblemsTable = ({
             </h3>
           </div>
         ) : (
-          <div className="w-full h-fit bg-white">
+          <div className="w-full h-max bg-white">
             <DataTable
               allowPagination={true}
               data={data}

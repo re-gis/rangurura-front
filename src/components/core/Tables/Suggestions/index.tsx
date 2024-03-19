@@ -52,7 +52,7 @@ const SuggestionsTable = ({
     },
   ];
   return (
-    <div className="w-full h-full flex justify-center  px-2  mt-8">
+    <div className="w-full h-full flex justify-center  px-2 mt-8">
       {loading ? (
         <div className="w-full h-[80%] bg-white p-2">
           <TableSkeleton columns={columns} />
