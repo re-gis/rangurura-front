@@ -19,8 +19,9 @@ export const notifications = [
     title: "Verification completion",
     date: "12/02/2024",
     time: "12:24 PM",
-    description: "Complete your registration by verifying your email address. Check your inbox for the verification link.",
-    read: false
+    description:
+      "Complete your registration by verifying your email address. Check your inbox for the verification link.",
+    read: false,
   },
   {
     id: 2,
@@ -28,72 +29,80 @@ export const notifications = [
     date: "12/05/2024",
     time: "10:00 AM",
     description: "Explore our latest updates and enjoy an enhanced experience.",
-    read: true
+    read: true,
   },
   {
     id: 3,
     title: "System maintenance",
     date: "12/10/2024",
     time: "01:30 AM",
-    description: "Scheduled maintenance is planned for our systems. Apologies for any inconvenience caused.",
-    read: false
+    description:
+      "Scheduled maintenance is planned for our systems. Apologies for any inconvenience caused.",
+    read: false,
   },
   {
     id: 4,
     title: "Feedback survey",
     date: "12/15/2024",
     time: "03:00 PM",
-    description: "Share your feedback with us! Take our short survey and help us improve our services.",
-    read: true
+    description:
+      "Share your feedback with us! Take our short survey and help us improve our services.",
+    read: true,
   },
   {
     id: 5,
     title: "Bug fix released",
     date: "12/20/2024",
     time: "09:45 AM",
-    description: "We've fixed several bugs reported by users. Enjoy a smoother experience!",
-    read: false
+    description:
+      "We've fixed several bugs reported by users. Enjoy a smoother experience!",
+    read: false,
   },
   {
     id: 6,
     title: "Upcoming event reminder",
     date: "12/25/2024",
     time: "02:00 PM",
-    description: "Don't forget about our upcoming event! Join us for an exciting time.",
-    read: true
+    description:
+      "Don't forget about our upcoming event! Join us for an exciting time.",
+    read: true,
   },
   {
     id: 7,
     title: "Holiday schedule",
     date: "12/30/2024",
     time: "All day",
-    description: "Please note that our office will be closed for the holidays. Happy holidays!",
-    read: true
+    description:
+      "Please note that our office will be closed for the holidays. Happy holidays!",
+    read: true,
   },
   {
     id: 8,
     title: "Account security update",
     date: "01/05/2025",
     time: "11:30 AM",
-    description: "Enhance your account security by updating your password. Keep your account safe!",
-    read: false
+    description:
+      "Enhance your account security by updating your password. Keep your account safe!",
+    read: false,
   },
   {
     id: 9,
     title: "Survey results",
     date: "01/10/2025",
     time: "04:00 PM",
-    description: "Thank you for participating in our survey! View the results and see what users think.",
-    read: true
+    description:
+      "Thank you for participating in our survey! View the results and see what users think.",
+    read: true,
   },
   {
     id: 10,
     title: "New tutorial available",
     date: "01/15/2025",
     time: "08:00 AM",
-    description: "Learn how to use our latest features with our new tutorial. Get started now!",
-    read: true
-  }
+    description:
+      "Learn how to use our latest features with our new tutorial. Get started now!",
+    read: true,
+  },
 ];
 
 export const districts = [

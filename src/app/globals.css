@@ -12,14 +12,12 @@
   user-select: none !important;
 }
 
-.nofications-container::-webkit-scrollbar-thumb{
+.nofications-container::-webkit-scrollbar-thumb {
   width: 4px !important;
   background: #000;
-  
 }
-.nofications-container::-webkit-scrollbar-track{
+.nofications-container::-webkit-scrollbar-track {
   width: 4px !important;
-
 }
 img {
   pointer-events: none;

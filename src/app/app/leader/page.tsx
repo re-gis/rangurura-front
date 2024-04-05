@@ -69,7 +69,11 @@ const Page = () => {
           <Activity />
         </div>
         <div className="md:w-[66%] md:h-full bg-white rounded-lg">
-          <CustomTable problemsData={problemsData} suggestionsData={suggestionsData} loading={loading} />
+          <CustomTable
+            problemsData={problemsData}
+            suggestionsData={suggestionsData}
+            loading={loading}
+          />
         </div>
       </div>
       <div className="w-full md:h-[47%] flex flex-col md:flex-row justify-between">

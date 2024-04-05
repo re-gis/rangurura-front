@@ -141,7 +141,10 @@ const Navbar = ({ type }: Props) => {
           </button>
         </div>
         <div className="w-full md:w-[35%] h-4/5 flex items-center justify-center md:justify-end gap-5 mt-4 md:mt-0">
-          <Link href={`/app/${type}/notifications`} className="w-[2.5rem] h-[2.5rem] rounded-lg flex items-center justify-center bg-[#001833]">
+          <Link
+            href={`/app/${type}/notifications`}
+            className="w-[2.5rem] h-[2.5rem] rounded-lg flex items-center justify-center bg-[#001833]"
+          >
             <IoNotifications
               color="white"
               size={18}
@@ -173,11 +176,10 @@ const Navbar = ({ type }: Props) => {
 
                 <div className="flex-col hidden lg:flex">
                   <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
-                    <p className="text-[11.4px] font-bold">
-                  {(type == "leader" || type == "organisation") && (
-                      profile?.district + " District"
-                      )}
-                    </p>
+                  <p className="text-[11.4px] font-bold">
+                    {(type == "leader" || type == "organisation") &&
+                      profile?.district + " District"}
+                  </p>
                 </div>
                 <RiArrowDownSLine size={15} />
               </div>
