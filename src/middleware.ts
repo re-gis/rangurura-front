@@ -36,7 +36,10 @@ export default function middleware(
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (token && (req.nextUrl.pathname === "/login" ||req.nextUrl.pathname === "/")) {
+  if (
+    token &&
+    (req.nextUrl.pathname === "/login" || req.nextUrl.pathname === "/")
+  ) {
     const decoded = jwtDecode(token ?? "") as { role: string };
     if (decoded.role === "ADMIN") {
       return NextResponse.redirect(new URL("/app/leader", req.url));

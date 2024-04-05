@@ -53,20 +53,20 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
     //   "phoneNumber":"456"
     // };
     const formData = {
-      "category": category,
-      "igitekerezo": suggestion,
-      "urwego": organisationLevel.toUpperCase(),
-      "phoneNumber": phoneNumber,
-      "upperLevel": level,
-      "location": level,
-      "nationalId": nationalId,
-      "target": level,
+      category: category,
+      igitekerezo: suggestion,
+      urwego: organisationLevel.toUpperCase(),
+      phoneNumber: phoneNumber,
+      upperLevel: level,
+      location: level,
+      nationalId: nationalId,
+      target: level,
     };
     axios
-      .post(`${baseURL}/suggestions/send_idea`, JSON.stringify(formData),{
-        headers:{
-          "Content-Type":"application/json"
-        }
+      .post(`${baseURL}/suggestions/send_idea`, JSON.stringify(formData), {
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
       .then((response) => {
         setLoading(false);

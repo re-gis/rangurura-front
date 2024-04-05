@@ -42,7 +42,8 @@
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
     "redux": "^5.0.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@mantine/hooks": "^7.4.0",

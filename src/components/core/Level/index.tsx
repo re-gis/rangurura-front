@@ -5,10 +5,12 @@ const SelectLevel = ({
   organisationCategory,
   organisationLevel,
   setLevel,
+  show,
 }: {
   organisationCategory: string;
   organisationLevel: string;
   setLevel: Function;
+  show?: boolean;
 }) => {
   const uniqueSectors = [...new Set(Sectors())];
   return (
@@ -17,9 +19,11 @@ const SelectLevel = ({
         <>
           {organisationLevel === "Intara" && (
             <>
-              <label className="font-semibold text-black">
-                Hitamo {organisationLevel} ushaka kugezaho ikibazo
-              </label>
+              {(show === true || show === undefined) && (
+                <label className="font-semibold text-black">
+                  Hitamo {organisationLevel} ushaka kugezaho ikibazo
+                </label>
+              )}
               <Select
                 placeholder={`Hitamo ${organisationLevel}`}
                 data={Provinces()}

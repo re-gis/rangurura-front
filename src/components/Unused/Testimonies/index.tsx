@@ -1,63 +1,64 @@
-"use client";
-import { useState } from "react";
-import { testimonies } from "./data";
+// Import necessary dependencies
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import "swiper/swiper-bundle.css"; // Import Swiper styles
 import Image from "next/image";
-import arrowLeft from "@/assets/images/arrow-left.svg";
-import arrowRight from "@/assets/images/arrow-right.svg";
-import toast from "react-hot-toast";
+import { testimonies } from "./data"; // Assuming you have a valid data source
 
 const Testimonies = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const updateIndex = (index: number) => {
-    toast.success(`active index ${activeIndex}`);
-    if (index < 0) {
-      index = 0;
-    } else if (index >= testimonies.length) {
-      index = testimonies.length - 1;
-    }
-
-    setActiveIndex(index);
-  };
+  const swiper = useSwiper();
   return (
-    <div className="w-full flex flex-col items-center py-[2rem] h-[90vh] bg-[#F4F4F4]">
-      <h3 className="max-[420px]:text-[30px] font-bold text-[2.4rem] text-[#000000]">
-        Testimonials
-      </h3>
+    <div className="w-full flex flex-col items-center py-8 md:pb-[5rem] gap-y-3 bg-gray-200">
+      <h3 className="text-3xl font-bold text-black mb-4">Testimonials</h3>
       <p className="text-center">
-        Testimonials from people who gave their problems and suggestions and
-        they were solved and suggestions.
+        Testimonials from people who shared their problems and suggestions.
       </p>
 
-      {/* <div className="relative"> */}
-      <div className=" flex mt-10 h-[95%] overflow-x-auto gap-[5rem] relative">
-        {testimonies.map((testimony, i) => {
-          return (
-            <div
-              className={`carousel-item h-[90%] rounded-lg bg-white flex flex-col items-center justify-center`}
-              style={{ transform: `translate(-${activeIndex * 100}%)` }}
+      <div className="w-full md:h-[90%] relative flex items-center justify-center">
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          autoplay={{ delay: 3000 }}
+          loop={true}
+          freeMode={true}
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          className="w-[60%] flex justify-center bg-white rounded-lg"
+        >
+          {testimonies.map((testimony, i) => (
+            <SwiperSlide
+              key={i}
+              className="md:w-[35%] h-[60vh] p-8 md:py-[6rem] md:px-[8rem] flex flex-col items-center justify-center gap-4"
             >
-              <Image alt={testimony.name} src={testimony.image} />
-              <p>{testimony.review}</p>
-              <h5>{testimony.name}</h5>
-              <h5>{testimony.location}</h5>
-            </div>
-          );
-        })}
+              <Image
+                alt={testimony.name}
+                src={testimony.image}
+                width={60}
+                height={60}
+                layout="fixed"
+                className="rounded-full justify-self-center items-center mb-4"
+              />
+              <p className="w-full text-center mb-4">{testimony.review}</p>
+              <h5 className="text-lg font-semibold text-center">
+                {testimony.name}
+              </h5>
+              <h5 className="text-gray-600 text-center">
+                {testimony.location}
+              </h5>
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <div
-          className="fixed left-0 w-[3rem]"
-          onClick={() => updateIndex(activeIndex - 1)}
-        >
-          <Image src={arrowLeft} alt="Previous" />
-        </div>
-        <div
-          className="absolute right-0 w-[3rem]"
-          onClick={() => updateIndex(activeIndex + 1)}
-        >
-          <Image src={arrowLeft} alt="Next" />
-        </div>
+          className="swiper-button-prev"
+          onClick={() => swiper.slidePrev()}
+        ></div>
+        <div className="swiper-button-next"></div>
       </div>
-      {/* </div> */}
     </div>
   );
 };
+
 export default Testimonies;

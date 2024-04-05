@@ -24,7 +24,7 @@ const Page = () => {
         if (res.data?.data?.message) {
           setProblemsData([]);
         } else {
-          setProblemsData(res.data.data);
+          setProblemsData(res.data?.data?.reverse());
         }
       })
       .catch((err) => {
@@ -38,7 +38,7 @@ const Page = () => {
         if (res.data?.data?.message) {
           setSuggestionsData([]);
         } else {
-          setSuggestionsData(res.data.data);
+          setSuggestionsData(res.data?.data?.reverse());
         }
       })
       .catch((err) => {
@@ -55,7 +55,7 @@ const Page = () => {
         if (res.data?.data?.message) {
           setEvents([]);
         } else {
-          setEvents(res.data.data);
+          setEvents(res.data?.data?.reverse());
         }
         setLoading(false);
       })
@@ -68,7 +68,11 @@ const Page = () => {
     <section className="w-full md:h-[90%] flex flex-col justify-between md:gap-0 mt-4">
       <div className="w-full h-[47%] flex flex-col md:flex-row justify-between gap-5 md:gap-0">
         <div className="md:w-[66%] md:h-full bg-white rounded-lg">
-          <CustomTable problemsData={problemsData.slice(0,5)} suggestionsData={suggestionsData.slice(0,5)} loading={loading2}/>
+          <CustomTable
+            problemsData={problemsData.slice(0, 5)}
+            suggestionsData={suggestionsData.slice(0, 5)}
+            loading={loading2}
+          />
         </div>
         <div className="md:w-[32%] bg-white rounded-lg py-3 px-3 md:py-0 mt-3 md:mt-0">
           <Activity />

@@ -40,8 +40,14 @@ const columns: ColumnDef<Problem>[] = [
   },
 ];
 
-const CustomTable = ({problemsData, suggestionsData, loading}:{
-  problemsData: any[], suggestionsData: any[], loading: boolean
+const CustomTable = ({
+  problemsData,
+  suggestionsData,
+  loading,
+}: {
+  problemsData: any[];
+  suggestionsData: any[];
+  loading: boolean;
 }) => {
   const [activeButton, setActiveButton] = useState("problems");
   return (

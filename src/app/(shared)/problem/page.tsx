@@ -63,6 +63,13 @@ const ReportProblemModel = () => {
         setLoading(false);
         toast.success(response.data?.data?.message);
         console.log(response.data);
+        setOrganisationLevel("");
+        setOrganisationCategory("");
+        setLevel("");
+        setProblem("");
+        setShowUpload(false);
+        setSelectedFile("");
+        close();
       })
       .catch((err: any) => {
         if (err.message === "Network Error") {

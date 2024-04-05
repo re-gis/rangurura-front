@@ -38,8 +38,6 @@ export default function RootLayout({
       setCookie("lang", "ki");
     }
   }, []);
-
-  const { fontSize } = ChatState();
   return (
     <html lang="en">
       <head>
@@ -69,10 +67,9 @@ export default function RootLayout({
         ></script>
         <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
       </head>
-      <body className={poppins.className + ` text-[${13}px] relative`}>
+      <body className={poppins.className + `text-[${13}px] relative`}>
         <NextUIProvider>
           <MantineProvider>
-            {/* <Provider store={store}> */}
             <Next13ProgressBar height={"4px"} color="#20603D" />
             <ChatProvider>
               <Suspense
@@ -96,7 +93,6 @@ export default function RootLayout({
                 <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
               </Suspense>
             </ChatProvider>
-            {/* </Provider> */}
           </MantineProvider>
         </NextUIProvider>
         <Toaster />

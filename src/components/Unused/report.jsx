@@ -9,8 +9,11 @@ import problemSugge from "../../assets/images/leftSide.png";
 import chatbox from "../../assets/vector/chat-box 2.png";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const Report = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <section
       className="flex flex-col justify-center items-center gap-6"
@@ -19,16 +22,15 @@ const Report = () => {
       <div className="flex flex-col w-full bg-[#20603D] pb-[10vh]">
         <div className="flex flex-col gap-4 items-center justify-center p-6">
           <h3 className="max-[575px]:text-[20px] max-[420px]:text-[15px] font-bold text-[2.4rem] text-[#ffffff]">
-            Problem and Suggestion
+            {t("tips_section.prob_sugg")}
           </h3>
           <p className="font-light text-white">
-            Rangurura a virtual assistant which will help you to report your
-            problem and give your suggestion{" "}
+            {t("tips_section.prob_sugg_desc")}
           </p>
         </div>
 
         <h5 className="ml-6 md:ml-[14vw] text-white font-bold text-xl mt-4">
-          Problem reporting tips
+          {t("tips_section.prob_tip_title")}
         </h5>
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 px-[10vw]">
@@ -43,16 +45,9 @@ const Report = () => {
                 <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center  ">
                   1.
                 </span>{" "}
-                Describe the problem precisely
+                {t("tips_section.prob_tip1")}
               </h3>
-              <p className="text-sm">
-                Start by providing a clear and concise description of the
-                problem. Avoid unnecessary details or jargon. State the problem
-                in a single sentence if possible. Avoid using accusatory or
-                aggressive language. Instead, focus on describing the problem
-                objectively. Be respectful in your communication, even if you're
-                frustrated with the issue
-              </p>
+              <p className="text-sm">{t("tips_section.prob_tip1_desc")}</p>
             </div>
             <div className="flex flex-col gap-2 w-full">
               <h3 className="font-bold flex w-full gap-6 items-center">
@@ -60,16 +55,9 @@ const Report = () => {
                 <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center  ">
                   2.
                 </span>{" "}
-                Explain the impact
+                {t("tips_section.prob_tip2")}
               </h3>
-              <p className="text-sm">
-                Describe how the problem is affecting you or others. Explain the
-                consequences or negative outcomes of the issue. If it's a
-                recurring problem, mention how frequently it occurs. If
-                applicable, attach screenshots, photos, or documents that
-                illustrate the problem. Provide any supporting evidence that can
-                help those addressing the issue understand it better
-              </p>
+              <p className="text-sm">{t("tips_section.prob_tip2_desc")}</p>
             </div>
             <div className="flex flex-col gap-2 w-full">
               <h3 className="font-bold flex w-full gap-6 items-center">
@@ -77,13 +65,9 @@ const Report = () => {
                 <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center  ">
                   3.
                 </span>{" "}
-                Identify any attempts to resolve
+                {t("tips_section.prob_tip3")}
               </h3>
-              <p className="text-sm">
-                Mention if you've tried any troubleshooting steps or solutions
-                on your own. Explain the results of these attempts, whether they
-                were successful or unsuccessful.
-              </p>
+              <p className="text-sm">{t("tips_section.prob_tip3_desc")}</p>
             </div>
             <div className="flex flex-col gap-2 w-full md:ml-[-8rem]">
               <h3 className="font-bold flex w-full gap-6 items-center">
@@ -91,19 +75,14 @@ const Report = () => {
                 <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center ">
                   4.
                 </span>{" "}
-                Specify your Expectations
+                {t("tips_section.prob_tip4")}
               </h3>
-              <p className="text-sm">
-                Clearly state what you expect as a resolution to the problem. Be
-                realistic in your expectations. If you're uncertain about the
-                solution, express your desire for guidance or assistance in
-                resolving the issue.
-              </p>
+              <p className="text-sm">{t("tips_section.prob_tip4_desc")}</p>
             </div>
           </div>
         </div>
         <h5 className="ml-6 md:ml-[14vw] text-white font-bold text-xl mt-4 my-4">
-          Suggestion reporting tips
+          {t("tips_section.sugg_tip_title")}
         </h5>
         <div className="flex flex-col gap-4 px-4 ml-[6rem] md:ml-[18vw] text-white">
           <div className="flex flex-col gap-2 w-full">
@@ -112,15 +91,11 @@ const Report = () => {
               <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center  ">
                 1.
               </span>{" "}
-              Describe your suggestion concisely:
+              {t("tips_section.sugg_tip1")}
             </h3>
             <p className="text-sm md:w-1/2 w-[90%]">
               {" "}
-              Start by providing a clear and concise description of the
-              suggestion. Avoid unnecessary details or jargon.State the
-              suggestion in a single sentence if possible.Avoid using accusatory
-              or aggressive language. Instead, focus on describing the
-              suggestion objectively.
+              {t("tips_section.sugg_tip1_desc")}
             </p>
           </div>
           <div className="flex flex-col gap-2 w-full">
@@ -129,15 +104,11 @@ const Report = () => {
               <span className="ml-[-4rem] w-[30px] h-[30px] bg-white rounded-[100%] text-black flex items-center justify-center  ">
                 2.
               </span>{" "}
-              Emphasize the Value:
+              {t("tips_section.sugg_tip2")}
             </h3>
             <p className="text-sm md:w-1/2 w-[90%]">
               {" "}
-              In addition to clarity and conciseness, highlight the value of
-              your suggestion. Clearly articulate the positive impact or
-              benefits it brings without resorting to unnecessary details or
-              aggressive language. A brief, value-focused statement enhances the
-              appeal and consideration of your suggestion
+              {t("tips_section.sugg_tip2_desc")}
             </p>
           </div>
         </div>
@@ -147,13 +118,13 @@ const Report = () => {
             href={"/suggestion"}
             className="w-[17rem] py-3 border-2 border-[#2A94F4] flex items-center justify-center text-white font-semibold  rounded-lg bg-[#2A94F4] hover:bg-transparent"
           >
-            Give Suggestion
+            {t("tips_section.sugg_btn")}
           </Link>
           <Link
             href={"/problem"}
             className="w-[17rem] py-3 border-2 border-white hover:border-[#2A94F4] flex items-center justify-center text-white font-semibold  rounded-lg hover:bg-[#2A94F4]"
           >
-            Report Problem
+            {t("tips_section.prob_btn")}
           </Link>
         </div>
       </div>

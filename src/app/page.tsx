@@ -16,7 +16,7 @@ const Homepage = () => {
       <Work />
       <Problem />
       <Report />
-      {/* <Testimonies/> */}
+      <Testimonies />
       <Contact />
       <Questions />
       <Footer />

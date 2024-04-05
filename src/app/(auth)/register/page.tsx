@@ -23,17 +23,19 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    role: "UMUTURAGE",
+    cell: "",
+    district: "",
     nationalId: "",
     password: "",
-    cpassword: "",
     phoneNumber: "",
     province: "",
-    district: "",
     sector: "",
-    cell: "",
+    name: "",
     village: "",
+    cpassword: "",
   });
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -54,22 +56,25 @@ const Register = () => {
       setError(false);
     }
 
-    ApiEndpoint.post("/users/register", formData)
+    ApiEndpoint.post("/users/register", JSON.stringify(formData))
       .then((res) => {
         setLoading(false);
         if (res.data.success) {
-          toast.success(res.data.data.data);
+          toast.success(res.data.data.data ?? "Created account successfully!");
           setLoading(false);
           navigate.push("/verify");
           setCookie("phone", formData.phoneNumber);
         }
         if (!res.data.success) {
-          toast.error(res.data.data.data);
+          toast.error(res.data.data.data ?? "Error while creating account");
           setError(true);
           setLoading(false);
         }
       })
       .catch((err: any) => {
+        toast.error(
+          err?.response?.data?.error ?? "Error while creating account",
+        );
         setLoading(false);
         console.log("error occured: ", err);
       });

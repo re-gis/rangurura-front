@@ -2,12 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,300&family=Roboto:wght@100&display=swap");
+
 * {
   font-family: poppins;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 13px;
+  user-select: none !important;
+}
+
+.nofications-container::-webkit-scrollbar-thumb{
+  width: 4px !important;
+  background: #000;
+  
+}
+.nofications-container::-webkit-scrollbar-track{
+  width: 4px !important;
+
+}
+img {
+  pointer-events: none;
 }
 
 .App {
@@ -200,4 +215,58 @@ html {
 
 .banner-hide {
   visibility: hidden;
+}
+
+.swiper-button-next {
+  background: #ccc;
+  right: 15% !important;
+  top: 39% !important;
+  padding: 10px !important;
+  width: 10rem !important;
+  height: 10rem !important;
+  border-radius: 0.5rem;
+}
+.swiper-button-prev {
+  background: #ccc;
+  left: 15% !important;
+  top: 39% !important;
+  padding: 10px !important;
+  width: 10rem !important;
+  height: 10rem !important;
+  border-radius: 0.5rem;
+}
+.swiper-button-prev::after {
+  content: url("../assets/images/next.svg") !important;
+}
+.swiper-button-next::after {
+  content: url("../assets/images/prev.svg") !important;
+}
+
+@media (max-width: 769px) {
+  .swiper-button-next,
+  .swiper-button-next::after .swiper-button-prev,
+  .swiper-button-prev::after {
+    width: 4rem !important;
+    height: 4rem !important;
+    /* top: 49% !important; */
+  }
+}
+@media (max-width: 500px) {
+  .swiper-button-next,
+  .swiper-button-next::after,
+  .swiper-button-prev,
+  .swiper-button-prev::after {
+    visibility: hidden !important;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.navbar-smallscr {
+  animation: fadeIn 0.5s ease; /* Use fadeIn animation */
 }

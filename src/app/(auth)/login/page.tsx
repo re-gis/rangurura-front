@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useRouter();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [displayText, setDisplayText] = useState<string>(t("login.login"));
   const [formData, setFormData] = useState({
     nationalId: "",
     password: "",
@@ -34,17 +35,17 @@ const Login = () => {
     axios
       .post("http://194.163.167.131:7400/api/v1/auth/login", formData)
       .then((res) => {
-        console.log(res.data.data);
         setCookie("token", res.data.data);
         const decoded = jwtDecode(res.data.data) as { role: string };
-        console.log(decoded);
         if (decoded.role == "UMUYOBOZI" || decoded.role == "ADMIN") {
           navigate.push("/app/leader");
           toast.success(t("Leader Logged in successfully!"));
         } else if (decoded.role == "UMUTURAGE") {
           navigate.push("/app/citizen");
           toast.success(t("Citizen Logged in successfully!"));
+          setLoading(false);
           navigate.push("/app/citizen");
+          setDisplayText("Redirecting ...");
         } else {
           toast.error("Role Not valid!");
         }
@@ -130,14 +131,14 @@ const Login = () => {
           <div className="flex flex-col items-center justify-center gap-3 py-2 font-semibold text-base">
             <button
               type="submit"
-              className="btn_primary text-white py-3 px-4 w-28 rounded-lg"
+              className="btn_primary text-white py-3 px-10 rounded-lg"
             >
               {loading ? (
                 <div className="w-full flex items-center justify-center">
                   <ClipLoader size={18} color="white" />
                 </div>
               ) : (
-                t("login.login")
+                displayText
               )}
             </button>
             <p className="text-[#717070] font-medium">

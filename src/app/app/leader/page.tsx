@@ -5,8 +5,63 @@ import CustomTable from "@/components/Dashboard/Activity/SummaryTable";
 import DistrictOverview from "@/components/Dashboard/DistrictsOverview";
 import ProblemsCategories from "@/components/Dashboard/ProblemCategories";
 import ReportProblems from "@/components/Dashboard/Reports";
+import { ApiEndpoint } from "@/constants";
+import { useEffect, useState } from "react";
 
 const Page = () => {
+  const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [problemsData, setProblemsData] = useState([]);
+  const [suggestionsData, setSuggestionsData] = useState([]);
+  const [loading2, setLoading2] = useState(true);
+  useEffect(() => {
+    setLoading2(true);
+    ApiEndpoint.get("/problems/local")
+      .then((res) => {
+        console.log(res.data?.data);
+        if (res.data?.data?.message) {
+          setProblemsData([]);
+        } else {
+          setProblemsData(res.data?.data?.reverse());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setLoading2(false));
+
+    ApiEndpoint.get("/suggestions/local")
+      .then((res) => {
+        console.log(res.data?.data);
+        if (res.data?.data?.message) {
+          setSuggestionsData([]);
+        } else {
+          setSuggestionsData(res.data?.data?.reverse());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setLoading2(false));
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    ApiEndpoint.get("/events/my_events")
+      .then((res) => {
+        console.log(res.data?.data);
+        if (res.data?.data?.message) {
+          setEvents([]);
+        } else {
+          setEvents(res.data?.data?.reverse());
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
   return (
     <section className="w-full md:h-[90%] flex flex-col justify-between md:gap-0 mt-4">
       <div className="w-full h-[47%] flex flex-col md:flex-row justify-between gap-5 md:gap-0">
@@ -14,7 +69,7 @@ const Page = () => {
           <Activity />
         </div>
         <div className="md:w-[66%] md:h-full bg-white rounded-lg">
-          <CustomTable problemsData={[]} suggestionsData={[]} loading={false}/>
+          <CustomTable problemsData={problemsData} suggestionsData={suggestionsData} loading={loading} />
         </div>
       </div>
       <div className="w-full md:h-[47%] flex flex-col md:flex-row justify-between">

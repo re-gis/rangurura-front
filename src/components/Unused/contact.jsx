@@ -8,30 +8,33 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t, i18n } = useTranslation();
+
   const contact = [
     {
       icon: FaRegEnvelope,
       name: "mail",
-      head: "Email",
-      text1: "Chat with our friendly team and get updates via Email",
+      head: t("contact_section.email"),
+      text1: t("contact_section.email_desc"),
       text2: "rangurura@gmail.com",
       type: "email",
     },
     {
       icon: LuMessageCircle,
       name: "chatbubble",
-      head: "Social links",
-      text1: "Follow us on facebook or instagram to receive daily update",
+      head: t("contact_section.socio_meds"),
+      text1: t("contact_section.meds_desc"),
       text2: "",
       type: "media",
     },
     {
       icon: LuPhone,
       name: "call",
-      head: "Call us",
-      text1: "Call our support team",
+      head: t("contact_section.call"),
+      text1: t("contact_section.call_desc"),
       text2: "+25078787878",
       type: "call",
     },
@@ -43,13 +46,13 @@ const Contact = () => {
     >
       <Image src={logo} alt="" width={40} />
       <h3 className="max-[420px]:text-[25px] font-bold text-[30px] mb-6">
-        Contact our friendly team
+        {t("contact_section.contact")}
       </h3>
       <div className="w-full flex md:flex-row flex-col justify-evenly items-center gap-5 px-3">
         {contact.map((contact, i) => (
           <div
             key={i}
-            className="flex flex-col justify-center items-start rounded-md border-[#D7D7D7] border-[2px] p-4 pl-6 pt-8 gap-4 w-[80vw] md:w-[20vw] h-[30vh] relative"
+            className="flex flex-col justify-center items-start rounded-md border-[#D7D7D7] border-[2px] p-4 pl-6 pt-8 gap-4 w-[80vw] md:w-[20vw] h-[32vh] relative"
           >
             <div className="flex justify-center items-center p-2 rounded border-[#D7D7D7] border-[1px] absolute left-3 top-3 contact-badge">
               <contact.icon color="black" />
@@ -72,13 +75,13 @@ const Contact = () => {
               </div>
             ) : contact.type === "media" ? (
               <div className="w-full flex flex-row items-center justify-left gap-1">
-                <span className="border border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
+                <span className="border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
                   <FaFacebook />
                 </span>
-                <span className="border border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
+                <span className="border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
                   <FaInstagram />
                 </span>
-                <span className="border border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
+                <span className="border-[1px] border-[#ccc] rounded-lg w-8 h-8 mr-3 flex items-center justify-center">
                   <FaTwitter />
                 </span>
               </div>

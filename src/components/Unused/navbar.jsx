@@ -40,7 +40,7 @@ const NavBar = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <nav className="w-full bg-[#001833] flex flex-col" id="home">
+    <nav className="w-full bg-[#001833] flex flex-col pb-8 md:pb-0" id="home">
       <div className="header bg-inherit w-full px-6">
         <a href="#home" className="flex items-center gap-5">
           <Image src={logo} alt="" className={` cursor-pointer`} />
@@ -69,10 +69,14 @@ const NavBar = () => {
             open ? "text-gray-700" : "text-gray-100 cursor-pointer"
           } text-3xl md:hidden m-5`}
         >
-          <Image src={menu} className="w-8 h-8" alt="" />
+          <Image
+            src={open ? closeImg : menu}
+            className={open ? "w-5 h-5" : "w-8 h-8"}
+            alt=""
+          />
         </div>
         <div
-          className={`md:hidden flex flex-col gap-6 p-3 bg-white top-0 duration-100 absolute top-6 right-1 w-2/3 ${
+          className={`md:hidden flex flex-col gap-6 p-3 bg-white duration-100 absolute navbar-smallscr top-10 right-1 w-2/3 ${
             open ? "flex flex-col" : "hidden"
           }`}
         >
@@ -81,15 +85,11 @@ const NavBar = () => {
               key={i}
               className="w-[86px] h-[26px] p-2 rounded font-bold text-[#001833] hover:text-[#36587e]"
             >
-              <Link href={menu?.link}>{t(`website.navbar.${menu.name}`)}</Link>
+              <Link href={menu?.link} className="w-full text-start">
+                {t(`website.navbar.${menu.name}`)}
+              </Link>
             </button>
           ))}
-          <button
-            onClick={() => setOpen(false)}
-            className="absolute top-2 left-[-30px]"
-          >
-            <Image src={closeImg} className="w-5 h-5" alt="" />
-          </button>
           <Link
             href={"/problem"}
             className="p-2 rounded font-bold bg-[#D9D9D9] text-[#001833] hover:bg-[#36587e]"
@@ -105,28 +105,25 @@ const NavBar = () => {
         </div>
         <input
           type="text"
-          placeholder="Search here..."
+          placeholder={t("landing.search")}
           className={`block py-3 px-9 rounded w-[538px] h-[45px] border-none focus:border-[#001833]`}
         />
       </div>
       <div className="flex flex-row justify-between px-[10%] md:pt-20 pt-1 gap-40">
         <div className="flex flex-col gap-5">
           <h3 className="text-white font-bold text-4xl">
-            Welcome to Rangurura
+            {t("landing.welcome")}
           </h3>
           <div className="flex flex-col">
             <p className="text-white text-xl leading-[2rem] my-2">
-              “Rangurura” is your direct channel to make your voice heard. We
-              believe that every citizen's concerns andissues matter. Our
-              platform empowers you to report problems, share feedback, and
-              request assistance with ease.
+              {t("landing.desc")}
             </p>
           </div>
           <Link
             href={"/register"}
             className=" flex items-center justify-center font-semibold bg-[#FAD201] text-[#001833] p-3 rounded-md w-[125px]"
           >
-            Sign up
+            {t("website.navbar.signup")}
           </Link>
         </div>
         <div className="md:flex hidden md:w-[20%] w-30 min-w-[240px]">

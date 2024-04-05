@@ -141,13 +141,13 @@ const Navbar = ({ type }: Props) => {
           </button>
         </div>
         <div className="w-full md:w-[35%] h-4/5 flex items-center justify-center md:justify-end gap-5 mt-4 md:mt-0">
-          <button className="w-[2.5rem] h-[2.5rem] rounded-lg flex items-center justify-center bg-[#001833]">
+          <Link href={`/app/${type}/notifications`} className="w-[2.5rem] h-[2.5rem] rounded-lg flex items-center justify-center bg-[#001833]">
             <IoNotifications
               color="white"
               size={18}
               className="font-extrabold"
             />
-          </button>
+          </Link>
           {(type == "leader" || type == "organisation") && (
             <button
               onClick={open}
@@ -164,20 +164,20 @@ const Navbar = ({ type }: Props) => {
           </Link>
           <Dropdown placement="bottom-start">
             <DropdownTrigger>
-              <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly px-[0.2rem] md:py-2 py-[0.2rem] md:px-2 gap-4 rounded-lg cursor-pointer">
+              <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer">
                 <Image
                   src={personImg}
                   alt=""
-                  className="w-10 h-10 rounded-[100%]"
+                  className="w-14 h-14 rounded-[100%]"
                 />
 
                 <div className="flex-col hidden lg:flex">
                   <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
-                  {(type == "leader" || type == "organisation") && (
                     <p className="text-[11.4px] font-bold">
-                      {profile?.district} District
+                  {(type == "leader" || type == "organisation") && (
+                      profile?.district + " District"
+                      )}
                     </p>
-                  )}
                 </div>
                 <RiArrowDownSLine size={15} />
               </div>

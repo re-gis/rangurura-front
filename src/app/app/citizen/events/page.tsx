@@ -9,12 +9,27 @@ import { ApiEndpoint } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import Image from "next/image";
 import no_data from "@/assets/images/no_leader.gif";
+import { TfiReload } from "react-icons/tfi";
 
 const Page = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState([]);
-
+  const refetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await ApiEndpoint.get("/events/receive_event");
+      if (response.data?.data?.message) {
+        setEvents([]);
+      } else {
+        setEvents(response?.data?.data?.reverse());
+      }
+    } catch (err) {
+      console.error("Error fetching events:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     setLoading(true);
     ApiEndpoint.get("/events/receive_event")
@@ -35,7 +50,15 @@ const Page = () => {
   return (
     <div className="w-full h-[90%] mt-4">
       <div className="w-full flex items-center justify-between">
-        <h1 className="text-[1.6rem] font-extrabold">Events</h1>
+        <h1 className="text-[1.6rem] font-extrabold">Announcements</h1>
+        <button
+          type="button"
+          className="bg-[#20603D] flex items-center gap-2 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-md"
+          onClick={refetchData}
+        >
+          <TfiReload />
+          Refresh
+        </button>
       </div>
 
       {loading ? (
@@ -46,7 +69,7 @@ const Page = () => {
         <div className="w-full flex flex-col items-center">
           <Image src={no_data} alt="No Data GIF" />
           <h1 className="mt-[1rem] font-bold">
-            No events found in your system!
+            No Announcements found in your system!
           </h1>
         </div>
       ) : (
@@ -54,16 +77,6 @@ const Page = () => {
           <EventsTable dataProps={events} />
         </div>
       )}
-      <Modal
-        opened={opened}
-        onClose={close}
-        h={"100vh"}
-        closeOnClickOutside={false}
-        className="overflow-y-hidden"
-        size={"xl"}
-      >
-        <NewEvent />
-      </Modal>
     </div>
   );
 };

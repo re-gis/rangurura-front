@@ -29,9 +29,9 @@ const SuggestionsTable = ({
       ),
       cell: ({ row }) => (
         <h6 className="text-[80%]">
-          {row.original.igitekerezo.toString().length < 30
-            ? row.original.igitekerezo
-            : `${row.original.igitekerezo.slice(0, 58)} . . .`}
+          {row.original?.igitekerezo?.toString().length < 30
+            ? row.original?.igitekerezo
+            : `${row.original?.igitekerezo?.slice(0, 58)} . . .`}
         </h6>
       ),
     },
@@ -66,7 +66,7 @@ const SuggestionsTable = ({
         <div className="w-full h-max bg-white">
           <DataTable
             allowPagination={true}
-            data={data}
+            data={data.reverse()}
             columns={columns}
             tableClass=""
           />

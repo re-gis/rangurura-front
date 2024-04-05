@@ -89,9 +89,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-left px-[3rem] text-white mt-10">
+      <div className="flex items-center justify-left px-[3rem] text-white font-bold mt-10">
         {" "}
-        &copy; 2023 Rangurura. All rights reserved
+        <span className="text-2xl mr-2"> &copy;</span> 2023 Rangurura. All
+        rights reserved
       </div>
     </section>
   );

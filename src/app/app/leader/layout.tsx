@@ -14,7 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`w-screen md:h-[140vh] flex items-center bg-[#EEF3F9] md:bg-[#021428] md:pr-8 text-[${fontSize}]`}
     >
-      <Sidebar routes={leaderRoutes} type={"leader"}/>
+      <Sidebar routes={leaderRoutes} type={"leader"} />
       <div className="w-full md:w-[81%] md:h-[95%] rounded-[1.3rem] p-2 md:bg-[#EEF3F9] mb-10 pt-6 md:px-10 px-2 py-8">
         <Navbar type="leader" />
         {children}
