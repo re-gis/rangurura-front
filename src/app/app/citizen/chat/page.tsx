@@ -11,8 +11,8 @@ const Page = () => {
         </h5>
       </header>
       <div className="w-full h-[90%] flex justify-between">
-        <ChatsContainer />
-        <MessagesArea />
+        {/* <ChatsContainer />
+        <MessagesArea /> */}
       </div>
     </div>
   );
