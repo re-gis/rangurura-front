@@ -53,6 +53,7 @@ const Login = () => {
       })
       .catch((err: any) => {
         console.log("Error occured: ", err.message);
+        setLoading(false)
         if (err?.response?.data?.success) {
           if (
             String(err?.response?.data?.error) ==

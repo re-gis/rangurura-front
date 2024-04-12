@@ -2,8 +2,35 @@ import React, { useState } from "react";
 import logo from "@/assets/images/logo-dark (1).png";
 import Link from "next/link";
 import Image from "next/image";
-
+import { ApiEndpoint } from "@/constants";
+import {Select} from "@mantine/core"
+import { leaders, categories, organisationLevels } from "@/constants/Enums";
 const NewLeader = () => {
+
+  const [formData, setFormData] = useState({
+      "category": "UBUZIMA",
+      "cell": "string",
+      "district": "string",
+      "location": "string",
+      "name": "string",
+      "nationalId": "string",
+      "organizationLevel": "UMUDUGUDU",
+      "phoneNumber": "string",
+      "province": "string",
+      "sector": "string",
+      "village": "string"
+  })
+  const handleChange = (e: any) =>{
+    const {name,value} = e.target;
+    setFormData((prevState)=>({
+      ...prevState,
+      [name]: value
+    }))
+  }
+  const submit = async (e: any)=>{
+    ApiEndpoint.post("/leader/addLeader", formData)
+      .then()
+  }
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">
       <div className="flex justify-center cursor-pointer">
@@ -25,15 +52,9 @@ const NewLeader = () => {
           <div className="main_input">
             <div className="flex-col flex-1">
               <label htmlFor="id" className="font-bold">
-                ID
+                Leader
               </label>
-              <input
-                type="number"
-                className="sub_input"
-                placeholder="19842389734859"
-                id="id"
-                name="id"
-              />
+              <Select data={leaders}/>
             </div>
           </div>
           <div className="main_input">
@@ -41,7 +62,7 @@ const NewLeader = () => {
               <label htmlFor="intara" className="font-bold">
                 Organisation level
               </label>
-              <select name="intara" id="intara" className="sub_input"></select>
+              <Select data={organisationLevels}/>
             </div>
           </div>
           <div className="main_input">
@@ -49,23 +70,7 @@ const NewLeader = () => {
               <label htmlFor="akarere" className="font-bold">
                 Categories
               </label>
-              <select
-                name="akarere"
-                id="akarere"
-                className="sub_input"
-              ></select>
-            </div>
-          </div>
-          <div className="main_input">
-            <div className="flex-col flex-1 ">
-              <label htmlFor="akagari" className="font-bold">
-                Role
-              </label>
-              <select
-                name="akagari"
-                id="akagari"
-                className="sub_input"
-              ></select>
+              <Select data={categories}/>
             </div>
           </div>
           <div className="main_input">
@@ -73,11 +78,7 @@ const NewLeader = () => {
               <label htmlFor="umudugudu" className="font-bold">
                 Location
               </label>
-              <select
-                name="umudugudu"
-                id="umudugudu"
-                className="sub_input"
-              ></select>
+              <Select data={organisationLevels}/>
             </div>
           </div>
           <div className="flex items-center justify-center">
