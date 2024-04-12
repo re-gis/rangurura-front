@@ -12,12 +12,13 @@ const SelectLevel = ({
   setLevel: Function;
   show?: boolean;
 }) => {
+  console.log(organisationCategory, organisationLevel)
   const uniqueSectors = [...new Set(Sectors())];
   return (
     <>
       {organisationCategory === "Urwego Rw'Ibanze" && (
         <>
-          {organisationLevel === "Intara" && (
+          {organisationLevel === "INTARA" && (
             <>
               {(show === true || show === undefined) && (
                 <label className="font-semibold text-black">
@@ -29,11 +30,11 @@ const SelectLevel = ({
                 data={Provinces()}
                 size="md"
                 searchable
-                onChange={(e) => setLevel(e)}
+                onChange={(e: any) => setLevel(e)}
               />
             </>
           )}
-          {organisationLevel === "Akarere" && (
+          {organisationLevel === "AKARERE" && (
             <>
               <label className="font-semibold text-black">
                 Hitamo {organisationLevel} ushaka kugezaho ikibazo
@@ -43,11 +44,11 @@ const SelectLevel = ({
                 data={Districts()}
                 size="md"
                 searchable
-                onChange={(e) => setLevel(e)}
+                onChange={(e: any) => setLevel(e)}
               />
             </>
           )}
-          {organisationLevel === "Umurenge" && (
+          {organisationLevel === "UMURENGE" && (
             <>
               <label className="font-semibold text-black">
                 Hitamo {organisationLevel} ushaka kugezaho ikibazo
@@ -57,11 +58,11 @@ const SelectLevel = ({
                 data={[...new Set(Sectors() as string[])]}
                 size="md"
                 searchable
-                onChange={(e) => setLevel(e)}
+                onChange={(e: any) => setLevel(e)}
               />
             </>
           )}
-          {organisationLevel === "Akagari" && (
+          {organisationLevel === "AKAGARI" && (
             <>
               <label className="font-semibold text-black">
                 Hitamo {organisationLevel} ushaka kugezaho ikibazo
@@ -71,7 +72,7 @@ const SelectLevel = ({
                 data={[...new Set(Cells() as string[])]}
                 size="md"
                 searchable
-                onChange={(e) => setLevel(e)}
+                onChange={(e: any) => setLevel(e)}
               />
             </>
           )}

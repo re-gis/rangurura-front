@@ -8,7 +8,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { ApiEndpoint } from "@/constants";
-import no_data from "@/assets/images/no_data.gif";
 import { TfiReload } from "react-icons/tfi";
 const Page = () => {
   const [opened, { open, close }] = useDisclosure(false);

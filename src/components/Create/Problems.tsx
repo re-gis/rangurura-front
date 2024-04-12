@@ -15,7 +15,7 @@ import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { getMyProfile } from "@/utils/funcs/funcs";
-import { categories } from "@/constants/Enums";
+import { categories, governmentOrgs, organisationCategories, organisationLevels } from "@/constants/Enums";
 
 const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
   const navigate = useRouter();
@@ -54,6 +54,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
       urwego: organisationLevel.toUpperCase(),
       phoneNumber: phoneNumber,
       nationalId: nationalId,
+      target: level
     };
     console.log(formData);
 
@@ -137,7 +138,8 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             <Select
               value={category}
               data={categories}
-              onChange={(e: any) => setCategory(e.target.value)}
+              onChange={(e: any) => setCategory(e)}
+              
             />
           </div>
           <div className="flex items-center justify-center pt-3">
@@ -175,19 +177,8 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             </label>
             <Select
               value={organisationCategory}
-              onChange={(e: any) => {
-                console.log("changed");
-              }}
-              data={[
-                {
-                  label: "Urwego Rw'Ibanze",
-                  value: "Urwego Rw'Ibanze",
-                },
-                {
-                  label: "Ikigo cya Leta",
-                  value: "Ikigo cya Leta",
-                },
-              ]}
+              onChange={(value: any) => setOrganisationCategory(value)}
+              data={organisationCategories}
             />
             {organisationCategory === "Ikigo cya Leta" && (
               <div className="flex flex-col gap-1">
@@ -196,24 +187,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
                   <span className="text-red-600">*</span>
                 </label>
                 <Select
-                  data={[
-                    {
-                      label: "POLICE",
-                      value: "POLICE",
-                    },
-                    {
-                      label: "RIB",
-                      value: "RIB",
-                    },
-                    {
-                      label: "RGB",
-                      value: "RGB",
-                    },
-                    {
-                      label: "MINISANTE",
-                      value: "MINISANTE",
-                    },
-                  ]}
+                  data={governmentOrgs}
                 />
               </div>
             )}
@@ -223,17 +197,11 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
                   Hitamo {organisationCategory} ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
-                  onChange={(e) => setOrganisationLevel(e.target.value)}
-                >
-                  <option value="">Hitamo</option>
-                  <option value="Akagari">Akagari</option>
-                  <option value="Umurenge">Umurenge</option>
-                  <option value="Akarere">Akarere</option>
-                  <option value="Intara">Intara</option>
-                </select>
+                <Select
+                  value={organisationLevel}
+                  onChange={(value: any) => setOrganisationLevel(value)}
+                  data={organisationLevels}
+                />
               </div>
             )}
             <SelectLevel
@@ -274,7 +242,6 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
               <input
                 type="file"
                 id="proof"
-                // ref={fileInput}
                 className="hidden"
                 onChange={handleSelectedFile}
               />

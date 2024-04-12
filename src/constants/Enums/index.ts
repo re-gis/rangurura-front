@@ -66,3 +66,32 @@ export const leaders = [
     }),
   },
 ];
+
+export const organisationCategories = [
+  {
+    label: "Urwego Rw'Ibanze",
+    value: "Urwego Rw'Ibanze",
+  },
+  {
+    label: "Ikigo cya Leta",
+    value: "Ikigo cya Leta",
+  },
+]
+export const governmentOrgs = [
+  {
+    label: "POLICE",
+    value: "POLICE",
+  },
+  {
+    label: "RIB",
+    value: "RIB",
+  },
+  {
+    label: "RGB",
+    value: "RGB",
+  },
+  {
+    label: "MINISANTE",
+    value: "MINISANTE",
+  },
+]

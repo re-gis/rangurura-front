@@ -49,11 +49,6 @@ const ProblemsTable = ({
 
   const columns: ColumnDef<any>[] = [
     {
-      accessorKey: "ID",
-      header: ({ column }) => <h4>#</h4>,
-      cell: ({ row }) => <h6 className="text-[80%]">{row.original.id}</h6>,
-    },
-    {
       accessorKey: "Description",
       header: ({ column }) => <h4>Problem Description</h4>,
       cell: ({ row }) => (

@@ -148,7 +148,7 @@ export function DataTable({
               type="text"
               placeholder={`Search ...`}
               value={table.getState().globalFilter ?? ""}
-              onChange={(event) => table.setGlobalFilter(event.target.value)}
+              onChange={(event: any) => table.setGlobalFilter(event.target.value)}
               className="lg:max-w-xs max-w-[16em] w-full rounded-md duration-300"
             />
           </div>
@@ -171,6 +171,13 @@ export function DataTable({
               <thead className="sticky top-0 text-mainPurple bg-white rounded-none">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr className="border-b-[1px] mb-2" key={headerGroup.id}>
+                    <td
+                      className={clsx(
+                        "p-2 font-semibold py-3 whitespace-nowrap pl-4"
+                      )}
+                    >
+                      #
+                    </td>
                     {headerGroup.headers.map((header, i) => {
                       return (
                         <td
@@ -203,6 +210,13 @@ export function DataTable({
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
                     >
+                      <td
+                        className={clsx(
+                          `p-2 py-3 my-1 font-semibold rounded-l-xl pl-4`,
+                        )}
+                      >
+                        {i+1}
+                      </td>
                       {row.getVisibleCells().map((cell, i) => (
                         <td
                           className={clsx(
@@ -210,7 +224,6 @@ export function DataTable({
                             row.getIsSelected()
                               ? "bg-mainPurple text-white font-semibold"
                               : "",
-                            i === 0 && "rounded-l-xl pl-4",
                             i === row.getVisibleCells().length - 1 &&
                               "rounded-r-xl pr-4",
                           )}
@@ -228,9 +241,9 @@ export function DataTable({
                   <tr>
                     <td
                       colSpan={columns.length + 2}
-                      className="h-24 text-center text-gray-700 text-lg"
+                      className="h-24 text-center text-neutral-700 text-lg"
                     >
-                      {noDataMessage ?? "No Data So far ..."}
+                      {noDataMessage ?? "No Data Found ..."}
                     </td>
                   </tr>
                 )}
@@ -277,8 +290,7 @@ export function DataTable({
                     }
                     table?.previousPage();
                   }}
-                  onChange={(page) => {
-                    console.log(page);
+                  onChange={(page: number) => {
                     onPaginate(page - 1);
                   }}
                 />
@@ -320,7 +332,7 @@ export function DataTable({
                         ? String(paginationProps?.paginateOpts?.limit ?? 0)
                         : table?.getState().pagination.pageSize.toString()
                     }
-                    onChange={(value) => {
+                    onChange={(value: any) => {
                       const newValue = value?.replace("", "");
                       if (!newValue) return;
                       if (isPaginated) {

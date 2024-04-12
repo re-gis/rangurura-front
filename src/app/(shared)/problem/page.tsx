@@ -14,6 +14,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
+import { categories, governmentOrgs, organisationCategories, organisationLevels } from "@/constants/Enums";
 
 const ReportProblemModel = () => {
   const navigate = useRouter();
@@ -50,6 +51,7 @@ const ReportProblemModel = () => {
       urwego: organisationLevel.toUpperCase(),
       phoneNumber: phoneNumber,
       nationalId: nationalId,
+      target: level
     };
     const formResponse = new FormData();
     formResponse.append("proof", selectedFile);
@@ -110,18 +112,12 @@ const ReportProblemModel = () => {
               Hitamo Ubwoko bw'ikibazo cyawe{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            <Select
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">Select Value</option>
-              <option value="UBUZIMA">Ubuzima</option>
-              <option value="UBUREZI">Uburezi</option>
-              <option value="IMIYOBORERE">Imiyoborere</option>
-              <option value="IMYIDAGADURO">Imyidagaduro</option>
-            </select>
+              data={categories}
+              onChange={(e: any) => setCategory(e)}
+              
+            />
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
@@ -179,33 +175,20 @@ const ReportProblemModel = () => {
               Hitamo aho ushaka kugeza Ikibazo{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            <Select
               value={organisationCategory}
-              onChange={(e) => onChangeCategory(e)}
-            >
-              <option value="">Select Value</option>
-              <option value="Urwego Rw'Ibanze">Urwego rw'Ibanze</option>
-              <option value="Ikigo cya Leta">Ikigo cya Leta</option>
-            </select>
+              onChange={(value: any) => setOrganisationCategory(value)}
+              data={organisationCategories}
+            />
             {organisationCategory === "Ikigo cya Leta" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
                   Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
-                >
-                  <option value="">Hitamo</option>
-                  <option value="">MINALOC</option>
-                  <option value="">MINISANTE</option>
-                  <option value="">RIB</option>
-                  <option value="">RDB</option>
-                  <option value="">RGB</option>
-                </select>
+                <Select
+                  data={governmentOrgs}
+                />
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
@@ -214,17 +197,11 @@ const ReportProblemModel = () => {
                   Hitamo {organisationCategory} ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
-                  onChange={(e) => setOrganisationLevel(e.target.value)}
-                >
-                  <option value="">Hitamo</option>
-                  <option value="Akagari">Akagari</option>
-                  <option value="Umurenge">Umurenge</option>
-                  <option value="Akarere">Akarere</option>
-                  <option value="Intara">Intara</option>
-                </select>
+                <Select
+                  value={organisationLevel}
+                  onChange={(value: any) => setOrganisationLevel(value)}
+                  data={organisationLevels}
+                />
               </div>
             )}
             <SelectLevel
