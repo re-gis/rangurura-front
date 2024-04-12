@@ -134,7 +134,11 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
               Hitamo Ubwoko bw'ikibazo cyawe{" "}
               <span className="text-red-600">*</span>
             </label>
-            <Select value={category} data={categories} onChange={(e: any) => setCategory(e.target.value)}/>
+            <Select
+              value={category}
+              data={categories}
+              onChange={(e: any) => setCategory(e.target.value)}
+            />
           </div>
           <div className="flex items-center justify-center pt-3">
             <button
@@ -171,15 +175,17 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             </label>
             <Select
               value={organisationCategory}
-              onChange={(e: any) => {console.log("changed")}}
+              onChange={(e: any) => {
+                console.log("changed");
+              }}
               data={[
                 {
                   label: "Urwego Rw'Ibanze",
-                  value:"Urwego Rw'Ibanze"
+                  value: "Urwego Rw'Ibanze",
                 },
                 {
                   label: "Ikigo cya Leta",
-                  value:"Ikigo cya Leta"
+                  value: "Ikigo cya Leta",
                 },
               ]}
             />
@@ -189,24 +195,26 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
                   Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <Select data={[
-                  {
-                    label: "POLICE",
-                    value:"POLICE"
-                  },
-                  {
-                    label: "RIB",
-                    value:"RIB"
-                  },
-                  {
-                    label: "RGB",
-                    value:"RGB"
-                  },
-                  {
-                    label: "MINISANTE",
-                    value:"MINISANTE"
-                  },
-                ]}/>
+                <Select
+                  data={[
+                    {
+                      label: "POLICE",
+                      value: "POLICE",
+                    },
+                    {
+                      label: "RIB",
+                      value: "RIB",
+                    },
+                    {
+                      label: "RGB",
+                      value: "RGB",
+                    },
+                    {
+                      label: "MINISANTE",
+                      value: "MINISANTE",
+                    },
+                  ]}
+                />
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
