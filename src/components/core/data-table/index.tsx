@@ -148,7 +148,9 @@ export function DataTable({
               type="text"
               placeholder={`Search ...`}
               value={table.getState().globalFilter ?? ""}
-              onChange={(event: any) => table.setGlobalFilter(event.target.value)}
+              onChange={(event: any) =>
+                table.setGlobalFilter(event.target.value)
+              }
               className="lg:max-w-xs max-w-[16em] w-full rounded-md duration-300"
             />
           </div>
@@ -173,7 +175,7 @@ export function DataTable({
                   <tr className="border-b-[1px] mb-2" key={headerGroup.id}>
                     <td
                       className={clsx(
-                        "p-2 font-semibold py-3 whitespace-nowrap pl-4"
+                        "p-2 font-semibold py-3 whitespace-nowrap pl-4",
                       )}
                     >
                       #
@@ -215,7 +217,7 @@ export function DataTable({
                           `p-2 py-3 my-1 font-semibold rounded-l-xl pl-4`,
                         )}
                       >
-                        {i+1}
+                        {i + 1}
                       </td>
                       {row.getVisibleCells().map((cell, i) => (
                         <td

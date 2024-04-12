@@ -14,7 +14,12 @@ import { useDisclosure } from "@mantine/hooks";
 import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
-import { categories, governmentOrgs, organisationCategories, organisationLevels } from "@/constants/Enums";
+import {
+  categories,
+  governmentOrgs,
+  organisationCategories,
+  organisationLevels,
+} from "@/constants/Enums";
 
 const ReportProblemModel = () => {
   const navigate = useRouter();
@@ -51,7 +56,7 @@ const ReportProblemModel = () => {
       urwego: organisationLevel.toUpperCase(),
       phoneNumber: phoneNumber,
       nationalId: nationalId,
-      target: level
+      target: level,
     };
     const formResponse = new FormData();
     formResponse.append("proof", selectedFile);
@@ -116,7 +121,6 @@ const ReportProblemModel = () => {
               value={category}
               data={categories}
               onChange={(e: any) => setCategory(e)}
-              
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -186,9 +190,7 @@ const ReportProblemModel = () => {
                   Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <Select
-                  data={governmentOrgs}
-                />
+                <Select data={governmentOrgs} />
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (

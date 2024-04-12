@@ -76,7 +76,7 @@ export const organisationCategories = [
     label: "Ikigo cya Leta",
     value: "Ikigo cya Leta",
   },
-]
+];
 export const governmentOrgs = [
   {
     label: "POLICE",
@@ -94,4 +94,4 @@ export const governmentOrgs = [
     label: "MINISANTE",
     value: "MINISANTE",
   },
-]
+];
