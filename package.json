@@ -2,6 +2,7 @@
   "name": "rangurura-next",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
   "scripts": {
     "dev": "next dev -p 5200",
     "build": "next build",
