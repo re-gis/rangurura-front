@@ -3,34 +3,32 @@ import logo from "@/assets/images/logo-dark (1).png";
 import Link from "next/link";
 import Image from "next/image";
 import { ApiEndpoint } from "@/constants";
-import {Select} from "@mantine/core"
+import { Select } from "@mantine/core";
 import { leaders, categories, organisationLevels } from "@/constants/Enums";
 const NewLeader = () => {
-
   const [formData, setFormData] = useState({
-      "category": "UBUZIMA",
-      "cell": "string",
-      "district": "string",
-      "location": "string",
-      "name": "string",
-      "nationalId": "string",
-      "organizationLevel": "UMUDUGUDU",
-      "phoneNumber": "string",
-      "province": "string",
-      "sector": "string",
-      "village": "string"
-  })
-  const handleChange = (e: any) =>{
-    const {name,value} = e.target;
-    setFormData((prevState)=>({
+    category: "UBUZIMA",
+    cell: "string",
+    district: "string",
+    location: "string",
+    name: "string",
+    nationalId: "string",
+    organizationLevel: "UMUDUGUDU",
+    phoneNumber: "string",
+    province: "string",
+    sector: "string",
+    village: "string",
+  });
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
-    }))
-  }
-  const submit = async (e: any)=>{
-    ApiEndpoint.post("/leader/addLeader", formData)
-      .then()
-  }
+      [name]: value,
+    }));
+  };
+  const submit = async (e: any) => {
+    ApiEndpoint.post("/leader/addLeader", formData).then();
+  };
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">
       <div className="flex justify-center cursor-pointer">
@@ -54,7 +52,7 @@ const NewLeader = () => {
               <label htmlFor="id" className="font-bold">
                 Leader
               </label>
-              <Select data={leaders}/>
+              <Select data={leaders} />
             </div>
           </div>
           <div className="main_input">
@@ -62,7 +60,7 @@ const NewLeader = () => {
               <label htmlFor="intara" className="font-bold">
                 Organisation level
               </label>
-              <Select data={organisationLevels}/>
+              <Select data={organisationLevels} />
             </div>
           </div>
           <div className="main_input">
@@ -70,7 +68,7 @@ const NewLeader = () => {
               <label htmlFor="akarere" className="font-bold">
                 Categories
               </label>
-              <Select data={categories}/>
+              <Select data={categories} />
             </div>
           </div>
           <div className="main_input">
@@ -78,7 +76,7 @@ const NewLeader = () => {
               <label htmlFor="umudugudu" className="font-bold">
                 Location
               </label>
-              <Select data={organisationLevels}/>
+              <Select data={organisationLevels} />
             </div>
           </div>
           <div className="flex items-center justify-center">

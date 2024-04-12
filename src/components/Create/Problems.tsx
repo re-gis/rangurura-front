@@ -15,6 +15,7 @@ import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { getMyProfile } from "@/utils/funcs/funcs";
+import { categories } from "@/constants/Enums";
 
 const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
   const navigate = useRouter();
@@ -133,18 +134,7 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
               Hitamo Ubwoko bw'ikibazo cyawe{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">Select Value</option>
-              <option value="UBUZIMA">Ubuzima</option>
-              <option value="UBUREZI">Uburezi</option>
-              <option value="IMIYOBORERE">Imiyoborere</option>
-              <option value="IMYIDAGADURO">Imyidagaduro</option>
-            </select>
+            <Select value={category} data={categories} onChange={(e: any) => setCategory(e.target.value)}/>
           </div>
           <div className="flex items-center justify-center pt-3">
             <button
@@ -179,33 +169,44 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
               Hitamo aho ushaka kugeza Ikibazo{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            <Select
               value={organisationCategory}
-              onChange={(e) => onChangeCategory(e)}
-            >
-              <option value="">Select Value</option>
-              <option value="Urwego Rw'Ibanze">Urwego rw'Ibanze</option>
-              <option value="Ikigo cya Leta">Ikigo cya Leta</option>
-            </select>
+              onChange={(e: any) => {console.log("changed")}}
+              data={[
+                {
+                  label: "Urwego Rw'Ibanze",
+                  value:"Urwego Rw'Ibanze"
+                },
+                {
+                  label: "Ikigo cya Leta",
+                  value:"Ikigo cya Leta"
+                },
+              ]}
+            />
             {organisationCategory === "Ikigo cya Leta" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
                   Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
-                >
-                  <option value="">Hitamo</option>
-                  <option value="">MINALOC</option>
-                  <option value="">MINISANTE</option>
-                  <option value="">RIB</option>
-                  <option value="">RDB</option>
-                  <option value="">RGB</option>
-                </select>
+                <Select data={[
+                  {
+                    label: "POLICE",
+                    value:"POLICE"
+                  },
+                  {
+                    label: "RIB",
+                    value:"RIB"
+                  },
+                  {
+                    label: "RGB",
+                    value:"RGB"
+                  },
+                  {
+                    label: "MINISANTE",
+                    value:"MINISANTE"
+                  },
+                ]}/>
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
