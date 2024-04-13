@@ -1,19 +1,18 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import logo from "@/assets/images/logo-dark (1).png";
 import Link from "next/link";
 import Image from "next/image";
-import upload from "@/assets/images/upload.svg";
-import { Provinces, Sectors, Cells, Districts, Villages } from "rwanda";
 import { Modal, Select } from "@mantine/core";
 import SelectLevel from "@/components/core/Level";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
-import { ApiEndpoint, baseURL } from "@/constants";
+import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { getMyProfile } from "@/utils/funcs/funcs";
+import { organisationLevels,governmentOrgs, categories, organisationCategories } from "@/constants/Enums";
 
 const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -42,16 +41,6 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
       return;
     }
     setLoading(true);
-    // const formData = {
-    //   "urwego": organisationLevel.toUpperCase(),
-    //   "igitekerezo":suggestion,
-    //   "category":"UBUZIMA",
-    //   "target":"mukamira",
-    //   "location":"nyabihu",
-    //   "nationalId":" 12345678901",
-    //   "upperLevel":"Nyabihu",
-    //   "phoneNumber":"456"
-    // };
     const formData = {
       category: category,
       igitekerezo: suggestion,
@@ -60,7 +49,6 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
       upperLevel: level,
       location: level,
       nationalId: nationalId,
-      target: level,
     };
     axios
       .post(`${baseURL}/suggestions/send_idea`, JSON.stringify(formData), {
@@ -104,19 +92,11 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
               Hitamo Ubwoko bw'ikibazo cyawe{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            <Select
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              disabled={loading}
-            >
-              <option value="">Select Value</option>
-              <option value="UBUZIMA">Ubuzima</option>
-              <option value="UBUREZI">Uburezi</option>
-              <option value="IMIYOBORERE">Imiyoborere</option>
-              <option value="IMYIDAGADURO">Imyidagaduro</option>
-            </select>
+              data={categories}
+              onChange={(e: any) => setCategory(e)}
+            />
           </div>
           <div className="flex items-center justify-center pt-3">
             <button
@@ -150,53 +130,31 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
               Hitamo aho ushaka kugeza Igitekerezo{" "}
               <span className="text-red-600">*</span>
             </label>
-            <select
-              required
-              className="border-[#C3C3C3] border-2 rounded-md p-2"
+            <Select
               value={organisationCategory}
-              onChange={(e) => onChangeCategory(e)}
-            >
-              <option value="">Select Value</option>
-              <option value="Urwego Rw'Ibanze">Urwego rw'Ibanze</option>
-              <option value="Ikigo cya Leta">Ikigo cya Leta</option>
-            </select>
+              onChange={(value: any) => setOrganisationCategory(value)}
+              data={organisationCategories}
+            />
             {organisationCategory === "Ikigo cya Leta" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
-                  Hitamo aho ushaka kugeza Ikibazo{" "}
+                  Hitamo aho ushaka kugeza Igitekerezo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
-                >
-                  <option value="">Hitamo</option>
-                  <option value="">MINALOC</option>
-                  <option value="">MINISANTE</option>
-                  <option value="">RIB</option>
-                  <option value="">RDB</option>
-                  <option value="">RGB</option>
-                </select>
+                <Select data={governmentOrgs}/>
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
               <div className="flex flex-col gap-1">
                 <label className="font-semibold text-black">
-                  Hitamo {organisationCategory} ushaka kugeza Ikibazo{" "}
+                  Hitamo {organisationCategory} ushaka kugeza Igitekerezo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <select
-                  required
-                  className="border-[#C3C3C3] border-2 rounded-md p-2"
+                <Select
                   value={organisationLevel}
-                  onChange={(e) => setOrganisationLevel(e.target.value)}
-                >
-                  <option value="">Hitamo</option>
-                  <option value="Akagari">Akagari</option>
-                  <option value="Umurenge">Umurenge</option>
-                  <option value="Akarere">Akarere</option>
-                  <option value="Intara">Intara</option>
-                </select>
+                  onChange={(value: any) => setOrganisationLevel(value)}
+                  data={organisationLevels}
+                />
               </div>
             )}
             <SelectLevel
@@ -207,9 +165,10 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
-              Igitekerezo <span className="text-red-600">*</span>
+              Igitekerezo <span className="text-red-600 text-sm">* (Maximum Characters: 255)</span>
             </label>
             <textarea
+              maxLength={254}
               rows={2}
               placeholder="Igitekerezo"
               className="min-h-[8rem] border-[#C3C3C3] border-2 rounded-md p-2"

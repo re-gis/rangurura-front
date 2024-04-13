@@ -214,10 +214,11 @@ const ReportProblemModel = () => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
-              Ikibazo <span className="text-red-600">*</span>
+              Ikibazo <span className="text-red-600 text-sm">* (Maximum Characters: 255)</span>
             </label>
             <textarea
               rows={2}
+              maxLength={255}
               value={problem}
               onChange={(e) => setProblem(e.target.value)}
               placeholder="Ikibazo"
