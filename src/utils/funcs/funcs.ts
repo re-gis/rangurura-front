@@ -20,7 +20,7 @@ export const getMyProfile = async () => {
 };
 
 export const getAllLeaders = async () => {
-  const data = await ApiEndpoint.get("/leaders/leaders");
+  const data = await ApiEndpoint.get("/leaders/all");
   return data.data;
 };
 

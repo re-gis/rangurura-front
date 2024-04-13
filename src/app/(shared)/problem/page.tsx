@@ -95,9 +95,6 @@ const ReportProblemModel = () => {
         console.log(err);
         setLoading(false);
       });
-    // console.log(formData);
-    // toast.success("Problem reported successfully");
-    // navigate.push("/");
   };
 
   return (

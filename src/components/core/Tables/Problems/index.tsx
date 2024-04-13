@@ -53,9 +53,9 @@ const ProblemsTable = ({
       header: ({ column }) => <h4>Problem Description</h4>,
       cell: ({ row }) => (
         <h6 className="text-[80%]">
-          {row.original.ikibazo.toString().length < 30
+          {row.original.ikibazo.toString().length < 45
             ? row.original.ikibazo
-            : `${row.original.ikibazo.slice(0, 58)} . . .`}
+            : `${row.original.ikibazo.slice(0, 45)} . . .`}
         </h6>
       ),
     },
