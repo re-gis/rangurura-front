@@ -230,7 +230,7 @@ const Navbar = ({ type }: Props) => {
           }}
         />
         <Modal opened={opened} onClose={close} size={"lg"}>
-          <NewLeader close={close}/>
+          <NewLeader close={close} />
         </Modal>
       </div>
     </>

@@ -7,8 +7,10 @@ import { useGet } from "@/utils/funcs/useGet";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const {data, loading}: {data: any, loading: boolean} = useGet({src:"/users/me"})
-  const {profile}: any = data;
+  const { data, loading }: { data: any; loading: boolean } = useGet({
+    src: "/users/me",
+  });
+  const { profile }: any = data;
   const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -79,8 +81,8 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               placeholder="2345678"
               id="numbero_indangamuntu"
-                value={data?.data?.nationalId}
-                disabled
+              value={data?.data?.nationalId}
+              disabled
             />
           </div>
         </div>
@@ -105,9 +107,7 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               value={data?.data?.province}
               disabled
-            >
-            
-            </input>
+            ></input>
           </div>
         </div>
         <div className="main_input">
@@ -119,8 +119,7 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               value={data?.data?.district}
               disabled
-            >
-            </input>
+            ></input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umurenge">Umurenge</label>
@@ -130,8 +129,7 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               value={data?.data?.sector}
               disabled
-            >
-            </input>
+            ></input>
           </div>
         </div>
         <div className="main_input">
@@ -143,8 +141,7 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               value={data?.data?.cell}
               disabled
-            >
-            </input>
+            ></input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umudugudu">Umudugudu</label>
@@ -154,12 +151,14 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               value={data?.data?.village}
               disabled
-            >
-            </input>
+            ></input>
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <button type="button" className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white">
+          <button
+            type="button"
+            className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white"
+          >
             Update profile
           </button>
         </div>

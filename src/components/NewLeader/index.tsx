@@ -10,7 +10,7 @@ import { Cells, Sectors, Districts, Provinces } from "rwanda";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 
-const NewLeader = ({close}:{close: Function}) => {
+const NewLeader = ({ close }: { close: Function }) => {
   const [localLevels, setLocalLevels] = useState([]);
   const [organisationLevel, setOrganisationLevel] = useState("");
   const [category, setCategory] = useState("");
@@ -21,7 +21,7 @@ const NewLeader = ({close}:{close: Function}) => {
   const submit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    const leader = JSON.parse(selected ?? "{}"); 
+    const leader = JSON.parse(selected ?? "{}");
     const formData = {
       category: category,
       cell: leader?.cell,
@@ -39,7 +39,7 @@ const NewLeader = ({close}:{close: Function}) => {
     ApiEndpoint.post("/leaders/addLeader", formData)
       .then((res: any) => {
         toast.success("Leader Assigned successfully!");
-        setOrganisationLevel("")
+        setOrganisationLevel("");
         setCategory("");
         setLocation("");
         // setSelected([{}]);
@@ -49,7 +49,7 @@ const NewLeader = ({close}:{close: Function}) => {
         toast.error(err.message);
         console.log(err);
       })
-      .finally(()=> setLoading(false));
+      .finally(() => setLoading(false));
   };
   React.useEffect(() => {
     const levels =
@@ -137,9 +137,13 @@ const NewLeader = ({close}:{close: Function}) => {
               type="submit"
               className="btn_primary py-2 rounded-md px-10 text-white"
             >
-              {loading ? <div className="w-full h-full flex items-center justify-center">
-                <ClipLoader size={20} color="white"/>
-              </div>: "Grant"}
+              {loading ? (
+                <div className="w-full h-full flex items-center justify-center">
+                  <ClipLoader size={20} color="white" />
+                </div>
+              ) : (
+                "Grant"
+              )}
             </button>
           </div>
         </form>

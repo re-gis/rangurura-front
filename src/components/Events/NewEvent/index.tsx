@@ -104,13 +104,15 @@ const NewEvent = ({ close }: { close: Function }) => {
                 Organisation Level
               </label>
               <Select
-                  value={formData.organizationLevel}
-                  onChange={(value: any) => setFormData((prevState) => ({
+                value={formData.organizationLevel}
+                onChange={(value: any) =>
+                  setFormData((prevState) => ({
                     ...prevState,
-                    organizationLevel: value
-                  }))}
-                  data={organisationLevels}
-                />
+                    organizationLevel: value,
+                  }))
+                }
+                data={organisationLevels}
+              />
             </div>
           </div>
           <div className="main_input">
@@ -163,10 +165,12 @@ const NewEvent = ({ close }: { close: Function }) => {
               <Select
                 data={categories}
                 value={formData.category}
-                onChange={(value: any) => setFormData((prevState) => ({
-                  ...prevState,
-                  category: value
-                }))}
+                onChange={(value: any) =>
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    category: value,
+                  }))
+                }
               />
             </div>
           </div>
