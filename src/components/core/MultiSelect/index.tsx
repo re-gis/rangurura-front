@@ -19,7 +19,6 @@ const CustomMultiSelect: React.FC<Props> = ({
   selected,
   setSelected,
 }) => {
-  //   const [selected, setSelected] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState([]);
 

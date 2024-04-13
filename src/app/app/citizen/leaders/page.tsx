@@ -56,9 +56,6 @@ const Page = () => {
           </div>
         )}
       </div>
-      <Modal opened={opened} onClose={close} size={"lg"}>
-        <NewLeader />
-      </Modal>
     </div>
   );
 };

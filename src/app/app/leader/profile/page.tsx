@@ -1,11 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { MdOutlineFileUpload } from "react-icons/md";
 import upload from "../../../../assets/images/upload.png";
+import { useGet } from "@/utils/funcs/useGet";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const {data, loading}: {data: any, loading: boolean} = useGet({src:"/users/me"})
+  const {profile}: any = data;
   const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -14,13 +17,13 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-white w-[90%] h-[90%] mt-5 rounded-2xl pb-20 float-center">
+    <div className="bg-white w-full h-[90%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
         <h2 className="text-2xl font-bold py-4 text-center">
           Hindura Umwirondoro
         </h2>
       </div>
-      <div className=" lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
+      <div className="lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
         {selectedImage ? (
           <Image
             src={selectedImage}
@@ -39,7 +42,7 @@ const Profile = () => {
             className=" flex bg-[#20603D] py-2 rounded-md px-10 text-white"
           >
             <MdOutlineFileUpload className="w-4 m-1" />
-            Upload photo
+            Change photo
           </label>
           <input
             type="file"
@@ -47,12 +50,13 @@ const Profile = () => {
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageUpload}
+            disabled={true}
           />
         </div>
       </div>
 
       <form
-        className="w-[90%] flex flex-col gap-y- justify-center ml-6 md:px-10 px-10 pt-6"
+        className="w-full flex flex-col gap-y- justify-center ml-6 md:px-10 px-10 pt-6"
         // onSubmit={handleSubmit}
       >
         <div className="main_input">
@@ -60,23 +64,23 @@ const Profile = () => {
             <label htmlFor="amazina">Amazina</label>
             <input
               type="text"
-              className="sub_input"
+              className="sub_input cursor-not-allowed"
               placeholder="Isamaza sylvain"
               id="amazina"
               name="name"
-              //   value={name}
-              //   onChange={(e) => setName(e.target.value)}
+              value={data?.data?.name}
+              disabled
             />
           </div>
           <div className="flex-col flex-1">
             <label htmlFor="numero_indangamuntu">Numero y'indangamuntu</label>
             <input
               type="text"
-              className="sub_input"
+              className="sub_input cursor-not-allowed"
               placeholder="2345678"
               id="numbero_indangamuntu"
-              //   value={id}
-              //   onChange={(e) => setId(e.target.value)}
+                value={data?.data?.nationalId}
+                disabled
             />
           </div>
         </div>
@@ -85,78 +89,77 @@ const Profile = () => {
             <label htmlFor="numero_telefone">Numero ya telefone</label>
             <input
               type="text"
-              className="sub_input"
+              className="sub_input cursor-not-allowed"
               placeholder="Isamaza sylvain"
               id="numero_telefone"
               name="numero_telefone"
-              //   value={phoneNumber}
-              //   onChange={(e) => setPhoneNumber(e.target.value)}
+              value={data?.data?.phoneNumber}
+              disabled
             />
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="intara">Intara</label>
-            <select
+            <input
               name="intara"
               id="intara"
-              className="sub_input"
-              //   onChange={(e) => setSelectedProvince(e.target.value)}
+              className="sub_input cursor-not-allowed"
+              value={data?.data?.province}
+              disabled
             >
-              {/* {address.items.map((province,i) => 
-                    <option key={i} value={province.name}>{province.name}</option>
-                  )} */}
-            </select>
+            
+            </input>
           </div>
         </div>
         <div className="main_input">
           <div className="flex-col flex-1 ">
             <label htmlFor="akarere">Akarere</label>
-            <select
+            <input
               name="akarere"
               id="akarere"
-              className="sub_input"
-              //   onChange={(e) => setSelectedDistrict(e.target.value)}
+              className="sub_input cursor-not-allowed"
+              value={data?.data?.district}
+              disabled
             >
-              {/* {districts.map((district) => <option value={district}>{district}</option>)} */}
-            </select>
+            </input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umurenge">Umurenge</label>
-            <select
+            <input
               name="umurenge"
               id="umurenge"
-              className="sub_input"
-              //   onChange={(e) => setSelectedSector(e.target.value)}
+              className="sub_input cursor-not-allowed"
+              value={data?.data?.sector}
+              disabled
             >
-              {/* {sectors.map((sector) => <option value={sector}>{sector}</option>)} */}
-            </select>
+            </input>
           </div>
         </div>
         <div className="main_input">
           <div className="flex-col flex-1 ">
             <label htmlFor="akagari">Akagari</label>
-            <select
+            <input
               name="akagari"
               id="akagari"
-              className="sub_input"
-              //   onChange={(e)=>setSelectedCell(e.target.value)}
+              className="sub_input cursor-not-allowed"
+              value={data?.data?.cell}
+              disabled
             >
-              {/* {cells.map((cell) => <option value={cell}>{cell}</option>)} */}
-            </select>
+            </input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umudugudu">Umudugudu</label>
-            <select
+            <input
               name="umudugudu"
               id="umudugudu"
-              className="sub_input"
-              //   onChange={(e) => setSelectedVillage(e.target.value)}
+              className="sub_input cursor-not-allowed"
+              value={data?.data?.village}
+              disabled
             >
-              {/* {villages.map((village) => <option value={village}>{village}</option>)}  */}
-            </select>
+            </input>
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <button className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white">
+          <button type="button" className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white">
             Update profile
           </button>
         </div>

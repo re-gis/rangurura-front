@@ -7,6 +7,8 @@ import { ApiEndpoint } from "@/constants";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import { select } from "@nextui-org/theme";
+import { categories, organisationLevels } from "@/constants/Enums";
+import { Select } from "@mantine/core";
 
 const NewEvent = ({ close }: { close: Function }) => {
   const [loading, setLoading] = useState(false);
@@ -101,24 +103,14 @@ const NewEvent = ({ close }: { close: Function }) => {
               <label htmlFor="organisationLevel" className="font-bold">
                 Organisation Level
               </label>
-              <select
-                required
-                className="border-[#C3C3C3] border-2 rounded-md p-2"
-                value={formData.organizationLevel}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
+              <Select
+                  value={formData.organizationLevel}
+                  onChange={(value: any) => setFormData((prevState) => ({
                     ...prevState,
-                    organizationLevel: e.target.value,
-                  }))
-                }
-                name="organizationLevel"
-              >
-                <option value="">Select Value</option>
-                <option value="AKAGARI">Akagari</option>
-                <option value="UMURENGE">Umurenge</option>
-                <option value="AKARERE">Akarere</option>
-                <option value="INTARA">Intara</option>
-              </select>
+                    organizationLevel: value
+                  }))}
+                  data={organisationLevels}
+                />
             </div>
           </div>
           <div className="main_input">
@@ -168,19 +160,14 @@ const NewEvent = ({ close }: { close: Function }) => {
               <label htmlFor="category" className="font-bold">
                 Categories
               </label>
-              <select
-                name="category"
-                id="category"
-                className="sub_input"
+              <Select
+                data={categories}
                 value={formData.category}
-                onChange={handleChange}
-              >
-                <option value="">Select Value</option>
-                <option value="UBUZIMA">Ubuzima</option>
-                <option value="UBUREZI">Uburezi</option>
-                <option value="IMIYOBORERE">Imiyoborere</option>
-                <option value="IMYIDAGADURO">Imyidagaduro</option>
-              </select>
+                onChange={(value: any) => setFormData((prevState) => ({
+                  ...prevState,
+                  category: value
+                }))}
+              />
             </div>
           </div>
           <div className="main_input">

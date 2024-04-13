@@ -8,17 +8,20 @@ import { leaders, categories, organisationLevels } from "@/constants/Enums";
 import CustomMultiSelect from "../core/MultiSelect";
 import { Cells, Sectors, Districts, Provinces } from "rwanda";
 import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
-const NewLeader = () => {
+const NewLeader = ({close}:{close: Function}) => {
   const [localLevels, setLocalLevels] = useState([]);
   const [organisationLevel, setOrganisationLevel] = useState("");
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [selected, setSelected] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const submit = async (e: any) => {
     e.preventDefault();
-    const leader = JSON.parse(selected ?? "{}");
+    setLoading(true);
+    const leader = JSON.parse(selected ?? "{}"); 
     const formData = {
       category: category,
       cell: leader?.cell,
@@ -36,24 +39,29 @@ const NewLeader = () => {
     ApiEndpoint.post("/leaders/addLeader", formData)
       .then((res: any) => {
         toast.success("Leader Assigned successfully!");
+        setOrganisationLevel("")
+        setCategory("");
+        setLocation("");
+        // setSelected([{}]);
+        close();
       })
       .catch((err: any) => {
         toast.error(err.message);
         console.log(err);
-      });
+      })
+      .finally(()=> setLoading(false));
   };
   React.useEffect(() => {
-    const levels = 
-    organisationLevel === "AKAGARI"
-      ? [...new Set(Cells())]
-      : organisationLevel === "UMURENGE"
-        ? [...new Set(Sectors())]
-        : organisationLevel === "AKARERE"
-          ? [...new Set(Districts())]
-          : [...new Set(Provinces()  as string[])];
+    const levels =
+      organisationLevel === "AKAGARI"
+        ? [...new Set(Cells())]
+        : organisationLevel === "UMURENGE"
+          ? [...new Set(Sectors())]
+          : organisationLevel === "AKARERE"
+            ? [...new Set(Districts())]
+            : [...new Set(Provinces() as string[])];
 
-          setLocalLevels(levels as string[]);
-
+    setLocalLevels(levels as string[]);
   }, [organisationLevel]);
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">
@@ -129,7 +137,9 @@ const NewLeader = () => {
               type="submit"
               className="btn_primary py-2 rounded-md px-10 text-white"
             >
-              Grant
+              {loading ? <div className="w-full h-full flex items-center justify-center">
+                <ClipLoader size={20} color="white"/>
+              </div>: "Grant"}
             </button>
           </div>
         </form>

@@ -85,18 +85,17 @@ const Page = () => {
       ) : (
         <div className="w-full bg-white">
           <EventsTable dataProps={events} />
+          <Modal
+            opened={opened}
+            onClose={close}
+            closeOnClickOutside={false}
+            className="overflow-y-hidden"
+            size={"xl"}
+          >
+            <NewEvent close={close} />
+          </Modal>
         </div>
       )}
-      <Modal
-        opened={opened}
-        onClose={close}
-        h={"100vh"}
-        closeOnClickOutside={false}
-        className="overflow-y-hidden"
-        size={"xl"}
-      >
-        <NewEvent close={close} />
-      </Modal>
     </div>
   );
 };
