@@ -12,7 +12,12 @@ import { baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import { getMyProfile } from "@/utils/funcs/funcs";
-import { organisationLevels,governmentOrgs, categories, organisationCategories } from "@/constants/Enums";
+import {
+  organisationLevels,
+  governmentOrgs,
+  categories,
+  organisationCategories,
+} from "@/constants/Enums";
 
 const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -141,7 +146,7 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
                   Hitamo aho ushaka kugeza Igitekerezo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <Select data={governmentOrgs}/>
+                <Select data={governmentOrgs} />
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
@@ -165,7 +170,10 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
-              Igitekerezo <span className="text-red-600 text-sm">* (Maximum Characters: 255)</span>
+              Igitekerezo{" "}
+              <span className="text-red-600 text-sm">
+                * (Maximum Characters: 255)
+              </span>
             </label>
             <textarea
               maxLength={254}

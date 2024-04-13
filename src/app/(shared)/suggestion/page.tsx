@@ -13,7 +13,12 @@ import { useDisclosure } from "@mantine/hooks";
 import { ApiEndpoint, baseURL } from "@/constants";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
-import { categories,governmentOrgs,organisationCategories, organisationLevels } from "@/constants/Enums";
+import {
+  categories,
+  governmentOrgs,
+  organisationCategories,
+  organisationLevels,
+} from "@/constants/Enums";
 
 const ReportProblemModel = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -161,7 +166,7 @@ const ReportProblemModel = () => {
                   Hitamo aho ushaka kugeza Ikibazo{" "}
                   <span className="text-red-600">*</span>
                 </label>
-                <Select data={governmentOrgs}/>
+                <Select data={governmentOrgs} />
               </div>
             )}
             {organisationCategory === "Urwego Rw'Ibanze" && (
@@ -185,7 +190,10 @@ const ReportProblemModel = () => {
           </div>
           <div className="flex flex-col gap-1">
             <label className="font-semibold text-black">
-              Igitekerezo <span className="text-red-600 text-sm">* (Maximum Characters: 255)</span>
+              Igitekerezo{" "}
+              <span className="text-red-600 text-sm">
+                * (Maximum Characters: 255)
+              </span>
             </label>
             <textarea
               rows={2}
