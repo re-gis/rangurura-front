@@ -65,14 +65,16 @@ img {
 .main_input > div > label {
   font-size: 11px;
 }
-.mantine-Select-input, .mantine-MultiSelect-input {
+.mantine-Select-input,
+.mantine-MultiSelect-input {
   border: 2px solid #c3c3c3 !important;
   height: 3rem !important;
   padding: 10px 10px !important;
   font-size: 13px !important;
   font-family: poppins !important;
 }
-.mantine-Select-input::placeholder, .mantine-MultiSelect-input::placeholder {
+.mantine-Select-input::placeholder,
+.mantine-MultiSelect-input::placeholder {
   color: #000 !important;
 }
 

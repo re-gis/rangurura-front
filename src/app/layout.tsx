@@ -7,7 +7,7 @@ import { Next13ProgressBar } from "next13-progressbar";
 import { Suspense, useEffect } from "react";
 import { BarLoader, ClipLoader } from "react-spinners";
 import { MantineProvider } from "@mantine/core";
-import { Notifications } from '@mantine/notifications';
+import { Notifications } from "@mantine/notifications";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Toaster } from "react-hot-toast";
@@ -94,7 +94,7 @@ export default function RootLayout({
                 <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
               </Suspense>
             </ChatProvider>
-            <Notifications/>
+            <Notifications />
           </MantineProvider>
         </NextUIProvider>
         <Toaster />

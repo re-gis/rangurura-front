@@ -29,6 +29,5 @@ export const useGet = ({ src }: Props) => {
     setLoading,
     error,
     setError,
-    
   };
 };

@@ -20,41 +20,41 @@ const NewLeader = () => {
     e.preventDefault();
     const leader = JSON.parse(selected ?? "{}");
     const formData = {
-      "category": category,
-      "cell": leader?.cell,
-      "district": leader?.district,
-      "location": location,
-      "name": leader?.name,
-      "nationalId": leader?.nationalId,
-      "organizationLevel": organisationLevel,
-      "phoneNumber": leader?.phoneNumber,
-      "province": leader?.province,
-      "sector": leader?.sector,
-      "village": leader?.village
-    }
-    console.log(formData, selected)
+      category: category,
+      cell: leader?.cell,
+      district: leader?.district,
+      location: location,
+      name: leader?.name,
+      nationalId: leader?.nationalId,
+      organizationLevel: organisationLevel,
+      phoneNumber: leader?.phoneNumber,
+      province: leader?.province,
+      sector: leader?.sector,
+      village: leader?.village,
+    };
+    console.log(formData, selected);
     ApiEndpoint.post("/leaders/addLeader", formData)
-    .then(
-      (res: any) => {
+      .then((res: any) => {
         toast.success("Leader Assigned successfully!");
-      }
-    )
-    .catch(
-      (err: any) => {
+      })
+      .catch((err: any) => {
         toast.error(err.message);
-        console.log(err)
-      }
-    )
+        console.log(err);
+      });
   };
-  React.useEffect(()=>{
-    organisationLevel === "AKAGARI" ? 
-    setLocalLevels([...new Set(Cells())]) :
-    organisationLevel === "UMURENGE" ? 
-    setLocalLevels([...new Set(Sectors())]) :
-    organisationLevel === "AKARERE" ? 
-    setLocalLevels([...new Set(Districts())]):
-    setLocalLevels([...new Set(Provinces())])
-  },[organisationLevel])
+  React.useEffect(() => {
+    const levels = 
+    organisationLevel === "AKAGARI"
+      ? [...new Set(Cells())]
+      : organisationLevel === "UMURENGE"
+        ? [...new Set(Sectors())]
+        : organisationLevel === "AKARERE"
+          ? [...new Set(Districts())]
+          : [...new Set(Provinces()  as string[])];
+
+          setLocalLevels(levels as string[]);
+
+  }, [organisationLevel]);
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">
       <div className="flex justify-center cursor-pointer">
@@ -72,13 +72,20 @@ const NewLeader = () => {
         Register Leader
       </h3>
       <div className="w-full flex-col flex justify-center items-center">
-        <form onSubmit={submit} className=" w-full flex flex-col gap-5 justify-center md:px-10 px-6 pt-4">
+        <form
+          onSubmit={submit}
+          className=" w-full flex flex-col gap-5 justify-center md:px-10 px-6 pt-4"
+        >
           <div className="main_input">
             <div className="flex-col flex-1">
               <label htmlFor="id" className="font-bold">
                 Leader
               </label>
-              <CustomMultiSelect selected={selected} setSelected={setSelected} datasrc="/users/all"/>
+              <CustomMultiSelect
+                selected={selected}
+                setSelected={setSelected}
+                datasrc="/users/all"
+              />
             </div>
           </div>
           <div className="main_input">
@@ -86,7 +93,11 @@ const NewLeader = () => {
               <label htmlFor="akarere" className="font-bold">
                 Categories
               </label>
-              <Select data={categories} value={category} onChange={setCategory}/>
+              <Select
+                data={categories}
+                value={category}
+                onChange={setCategory}
+              />
             </div>
           </div>
           <div className="main_input">
@@ -94,7 +105,11 @@ const NewLeader = () => {
               <label htmlFor="intara" className="font-bold">
                 Organisation level
               </label>
-              <Select data={organisationLevels} value={organisationLevel} onChange={setOrganisationLevel}/>
+              <Select
+                data={organisationLevels}
+                value={organisationLevel}
+                onChange={setOrganisationLevel}
+              />
             </div>
           </div>
           <div className="main_input">
@@ -102,7 +117,11 @@ const NewLeader = () => {
               <label htmlFor="umudugudu" className="font-bold">
                 Location
               </label>
-              <Select data={localLevels} value={location} onChange={setLocation}/>
+              <Select
+                data={localLevels}
+                value={location}
+                onChange={setLocation}
+              />
             </div>
           </div>
           <div className="flex items-center justify-center">
