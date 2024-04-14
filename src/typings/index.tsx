@@ -21,6 +21,7 @@ export type Problem = {
   completed: boolean;
   ikibazo: string;
   urwego: string;
+  target: string;
 };
 export type Suggestion = {
   igitekerezo: string;

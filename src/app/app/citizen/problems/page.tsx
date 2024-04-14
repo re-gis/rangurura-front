@@ -73,7 +73,6 @@ const Page = () => {
         <Modal
           opened={opened}
           onClose={close}
-          h={"100vh"}
           closeOnClickOutside={false}
           className="overflow-y-hidden relative"
           size={"xl"}

@@ -52,7 +52,7 @@ const Login = () => {
         setCookie("token", res?.data?.data);
       })
       .catch((err: any) => {
-        console.log("Error occured: ", err.message);
+        console.log("Error occured: ", err.response);
         setLoading(false);
         if (err?.response?.data?.success) {
           if (
@@ -63,7 +63,7 @@ const Login = () => {
           }
           return toast.error(err?.response?.data?.error);
         } else {
-          return toast.error(err.message);
+          return toast.error(err.response?.data?.error);
         }
       });
   };
@@ -132,7 +132,8 @@ const Login = () => {
           <div className="flex flex-col items-center justify-center gap-3 py-2 font-semibold text-base">
             <button
               type="submit"
-              className="btn_primary text-white py-3 px-10 rounded-lg"
+              className={`btn_primary text-white py-3 px-10 rounded-lg ${loading ? " cursor-not-allowed" :""}`}
+              disabled={loading}
             >
               {loading ? (
                 <div className="w-full flex items-center justify-center">
