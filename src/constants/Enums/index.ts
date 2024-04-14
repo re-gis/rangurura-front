@@ -13,7 +13,7 @@ export const organisationLevels = [
   },
   {
     label: "Intara",
-    value: "INTATA",
+    value: "INTARA",
   },
 ];
 export const categories = [

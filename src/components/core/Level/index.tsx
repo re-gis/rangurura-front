@@ -12,8 +12,6 @@ const SelectLevel = ({
   setLevel: Function;
   show?: boolean;
 }) => {
-  console.log(organisationCategory, organisationLevel);
-  const uniqueSectors = [...new Set(Sectors())];
   return (
     <>
       {organisationCategory === "Urwego Rw'Ibanze" && (

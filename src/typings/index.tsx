@@ -16,6 +16,7 @@ export type User = {
   };
 };
 export type Problem = {
+  id: string;
   description: string;
   level: string;
   completed: boolean;
