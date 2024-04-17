@@ -16,7 +16,7 @@ import logo from "@/assets/images/logo-dark (1).png";
 import "@mantine/spotlight/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/core/styles.css";
-import '@mantine/notifications/styles.css';
+import "@mantine/notifications/styles.css";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../i18n";
 import { getCookie, setCookie } from "cookies-next";
@@ -95,7 +95,7 @@ export default function RootLayout({
                 <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
               </Suspense>
             </ChatProvider>
-            <Notifications position="top-right" zIndex={1000}/>
+            <Notifications position="top-right" zIndex={1000} />
           </MantineProvider>
         </NextUIProvider>
         <Toaster />

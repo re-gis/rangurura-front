@@ -1,4 +1,4 @@
-import { Problem } from "@/typings";
+import { Event } from "@/typings";
 import { ApiEndpoint } from "@/constants/index";
 import * as React from "react";
 import { notifications } from "@mantine/notifications";
@@ -6,17 +6,17 @@ import { ClipLoader } from "react-spinners";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-const DeleteProblem = ({
-  problem,
+const DeleteEvent = ({
+  event,
   close,
 }: {
-  problem: Problem;
+  event: Event;
   close: Function;
 }) => {
   const [loading, setLoading] = React.useState(false);
   const deleteProblem = () => {
     setLoading(true);
-    ApiEndpoint.delete(`/problems/delete/${problem.id}`)
+    ApiEndpoint.delete(`/problems/delete/${event.id}`)
       .then((res) => {
         notifications.show({
           title: "Delete Problem",
@@ -40,13 +40,13 @@ const DeleteProblem = ({
   return (
     <div className="w-full h-full flex flex-col gap-3 items-center">
       <header className="w-full text-center font-extrabold text-lg">
-        Are you sure you want to delete this Problem?
+        Are you sure you want to delete this Event?
       </header>
       <div className="w-full flex flex-col">
-        <h2>Location: {problem?.target}</h2>
+        <h2>Name: {event?.eventName}</h2>
         <h2>Description: </h2>
         <p className="border border-[#ccc] my-3 p-2 text-justify rounded-lg text-[90%] bg-[#e6edfc]">
-          {problem.ikibazo}
+          {event?.descriptions}
         </p>
         <div className="w-full mt-5 flex justify-between md:px-[10%]">
           <button
@@ -73,4 +73,4 @@ const DeleteProblem = ({
   );
 };
 
-export default DeleteProblem;
+export default DeleteEvent;

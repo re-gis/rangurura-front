@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-const DeleteProblem = ({
+const EditProblem = ({
   problem,
   close,
 }: {
@@ -16,8 +16,8 @@ const DeleteProblem = ({
   const [loading, setLoading] = React.useState(false);
   const deleteProblem = () => {
     setLoading(true);
-    ApiEndpoint.delete(`/problems/delete/${problem.id}`)
-      .then((res) => {
+    ApiEndpoint.delete(`/problem/update/${problem.id}`)
+      .then(() => {
         notifications.show({
           title: "Delete Problem",
           message: "Successfully Deleted Problem!",
@@ -26,7 +26,7 @@ const DeleteProblem = ({
         });
         close();
       })
-      .catch((err) => {
+      .catch(() => {
         notifications.show({
           title: "Delete Problem",
           message: "Error occurred when deleting a problem!",
@@ -48,7 +48,7 @@ const DeleteProblem = ({
         <p className="border border-[#ccc] my-3 p-2 text-justify rounded-lg text-[90%] bg-[#e6edfc]">
           {problem.ikibazo}
         </p>
-        <div className="w-full mt-5 flex justify-between md:px-[10%]">
+        <div className="w-full flex justify-between md:px-[10%]">
           <button
             onClick={() => close()}
             className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#ccc] text-black"
@@ -73,4 +73,4 @@ const DeleteProblem = ({
   );
 };
 
-export default DeleteProblem;
+export default EditProblem;

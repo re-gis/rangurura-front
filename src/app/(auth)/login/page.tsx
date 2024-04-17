@@ -12,6 +12,10 @@ import { useTranslation } from "react-i18next";
 import { setCookie } from "cookies-next";
 import { jwtDecode } from "jwt-decode";
 import { ApiEndpoint } from "@/constants";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+import {  notifications } from "@mantine/notifications";
+
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useRouter();
@@ -39,15 +43,31 @@ const Login = () => {
         const decoded = jwtDecode(res.data.data) as { role: string };
         if (decoded.role == "UMUYOBOZI" || decoded.role == "ADMIN") {
           navigate.push("/app/leader");
-          toast.success(t("Leader Logged in successfully!"));
+          notifications.show({
+            title: "Leader Login",
+            message: "Leader Logged in successfully!",
+            autoClose: 5000,
+            icon: <FaRegCheckCircle />,
+          });
         } else if (decoded.role == "UMUTURAGE") {
           navigate.push("/app/citizen");
-          toast.success(t("Citizen Logged in successfully!"));
+          notifications.show({
+            title: "Citizen Login",
+            message: "Citizen Logged in successfully!",
+            autoClose: 5000,
+            icon: <FaRegCheckCircle />,
+          });
           setLoading(false);
           navigate.push("/app/citizen");
           setDisplayText("Redirecting ...");
         } else {
-          toast.error("Role Not valid!");
+          notifications.show({
+            title: "Auth Error",
+            message: "Role Not valid!",
+            color: "#FF555D",
+            autoClose: 5000,
+            icon: <RxCrossCircled />,
+          });
         }
         setCookie("token", res?.data?.data);
       })
@@ -61,9 +81,21 @@ const Login = () => {
           ) {
             return navigate.push("/verify");
           }
-          return toast.error(err?.response?.data?.error);
+          return (notifications.show({
+            title: "Auth Error",
+            message: err?.response?.data?.error,
+            color: "#FF555D",
+            autoClose: 5000,
+            icon: <RxCrossCircled />,
+          }));
         } else {
-          return toast.error(err.response?.data?.error);
+          return (notifications.show({
+            title: "Auth Error",
+            message: err?.response?.data?.error,
+            color: "#FF555D",
+            autoClose: 5000,
+            icon: <RxCrossCircled />,
+          }));
         }
       });
   };

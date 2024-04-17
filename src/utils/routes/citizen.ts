@@ -36,10 +36,16 @@ export const citizensRoutes = [
     path: "/app/citizen/suggestions",
   },
   {
-    icon: FaRegCalendarCheck,
-    activeIcon: BsCalendar2CheckFill,
+    icon: IoPersonOutline,
+    activeIcon: IoPersonSharp,
     name: "events",
     path: "/app/citizen/events",
+  },
+  {
+    icon: LuSettings,
+    activeIcon: IoSettings,
+    name: "leaders",
+    path: "/app/citizen/leaders",
   },
   {
     icon: LuSettings,

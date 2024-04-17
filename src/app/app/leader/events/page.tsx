@@ -44,7 +44,6 @@ const Page = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
       });
   }, []);
@@ -62,7 +61,6 @@ const Page = () => {
             Refresh
           </button>
           <button
-            type="button"
             onClick={open}
             className="bg-[#20603D] px-3 py-3 rounded-lg flex items-center justify-center text-white font-extrabold"
           >

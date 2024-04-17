@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { getCookie } from "cookies-next";
 import { useTranslation } from "react-i18next";
 import { ApiEndpoint } from "@/constants";
+import { notifications } from "@mantine/notifications";
 
 const Verify = () => {
   const navigate = useRouter();
@@ -45,10 +46,29 @@ const Verify = () => {
   const resendVerification = () => {
     setError("");
     setPageLoading(true);
-    setTimeout(() => {
-      setPageLoading(false);
-      toast.success("Verification code has been sent to your phone");
-    }, 2300);
+    ApiEndpoint.post("/users/otp/send", {
+      phoneNumber: phoneNumber,
+    })
+    .then((res: any)=>{
+      console.log(res.data);
+      notifications.show({
+        title: "Resend Code",
+        message: "Code Resent Successfully!",
+        type: "info",
+        autoClose: 5000,
+      })
+    })
+    .catch((err: any)=>{
+      console.log(err);
+      notifications.show({
+        title: "Resend Code Error",
+        message: err.response.data.error,
+        type: "error",
+        color:"#FF555D",
+        autoClose: 5000,
+      })
+    })
+    .finally(()=> setPageLoading(false));
   };
   return (
     <div className="w-screen h-screen bg-[#EEF3F9] flex flex-col items-center justify-center px-5 md:px-0">
@@ -109,7 +129,7 @@ const Verify = () => {
                 length={6}
                 aria-label="One time code"
                 className="font-poppins"
-                onChange={(value) => {
+                onChange={(value: any) => {
                   setCode(value);
                 }}
               />

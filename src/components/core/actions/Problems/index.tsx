@@ -5,14 +5,14 @@ import { FaEdit } from "react-icons/fa";
 import DeleteProblem from "@/components/core/Modals/DeleteProblem";
 import React, { useState } from "react";
 import { Problem } from "@/typings";
-import { Modal, Menu,rem } from "@mantine/core";
+import { Modal, Menu, rem } from "@mantine/core";
+import { LuMailCheck } from "react-icons/lu";
 
 export default function ProblemActions({ data }: { data: Problem }) {
   const [openDelete, setOpenDelete] = useState(false);
 
   const deleteProblem = () => {
     setOpenDelete(true);
-    console.log(data.ikibazo);
   };
 
   return (
@@ -39,9 +39,9 @@ export default function ProblemActions({ data }: { data: Problem }) {
           <h5>Pin</h5>
         </Menu.Item>
         <Menu.Item
-          leftSection={<FaEdit style={{ width: rem(14), height: rem(14) }} />}
+          leftSection={<LuMailCheck style={{ width: rem(14), height: rem(14) }} />}
         >
-          <h5>Edit</h5>
+          <h5>Mark As Solved</h5>
         </Menu.Item>
 
         <Menu.Divider />
@@ -59,7 +59,7 @@ export default function ProblemActions({ data }: { data: Problem }) {
         </Menu.Item>
       </Menu.Dropdown>
       <Modal opened={openDelete} onClose={() => setOpenDelete(false)}>
-        <DeleteProblem problem={data} close={() => setOpenDelete(false)}/>
+        <DeleteProblem problem={data} close={() => setOpenDelete(false)} />
       </Modal>
     </Menu>
   );

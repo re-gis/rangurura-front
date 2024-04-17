@@ -38,7 +38,7 @@ const Page = () => {
             <ClipLoader size={23} color="black" />
           </div>
         ) : leadersData.length ? (
-          <div className="w-full h-[97%] max-[470px]:grid-cols-1 grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-2 grid lg:grid-cols-4  pt-3 justify-start my-1 ">
+          <div className="w-full h-[97%] max-[470px]:grid-cols-1 grid-cols-2 md:grid-cols-3 gap-x-2 grid lg:grid-cols-4  pt-3 justify-start my-1 ">
             {leadersData.map((person: any, index: number) => (
               <Leader
                 key={index}

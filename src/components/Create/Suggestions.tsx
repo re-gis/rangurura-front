@@ -18,6 +18,10 @@ import {
   categories,
   organisationCategories,
 } from "@/constants/Enums";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+
 
 const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -63,7 +67,12 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
       })
       .then((response) => {
         setLoading(false);
-        toast.success("Suggestion Reported Successfully!");
+        notifications.show({
+          title: "Report Suggestion",
+          message: "Suggestion Reported Successfully!",
+          autoClose: 5000,
+          icon: <FaRegCheckCircle />,
+        });
         setOrganisationLevel("");
         setOrganisationCategory("");
         setLevel("");
@@ -73,8 +82,12 @@ const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
         console.log(response.data);
       })
       .catch((err: any) => {
-        toast.error(err.response?.data.error, {
-          duration: 5000,
+        notifications.show({
+          title: "Report Suggestion Error",
+          message: err.response?.data.error,
+          color: "#FF555D",
+          autoClose: 5000,
+          icon: <RxCrossCircled />,
         });
         console.log("Send suggestions error ", err);
         setLoading(false);

@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { getCookie } from "cookies-next";
 import { useTranslation } from "react-i18next";
 import { ApiEndpoint } from "@/constants";
+import { notifications } from "@mantine/notifications";
 
 const ForgotPassword = () => {
   const navigate = useRouter();
@@ -28,16 +29,28 @@ const ForgotPassword = () => {
       setError("Banza wandike Nimero Ubone kohereza");
       return;
     }
-    ApiEndpoint.post("/users/account/verify", {
+    ApiEndpoint.post("/users/otp/send", {
       phoneNumber: phoneNumber,
     })
       .then((res) => {
         setLoading(false);
         console.log(res.data);
+        notifications.show({
+          title: "Otp Sent",
+          message: res.data.data,
+          type: "success",
+        })
+
+        navigate.push("/verify")
       })
-      .catch((err) => {
+      .catch((err: any) => {
         setLoading(false);
         console.log(err);
+        notifications.show({
+          title: "Otp Sent",
+          message: err?.response?.data.error,
+          type: "error",
+        })
       });
   };
   const resendVerification = () => {
@@ -106,6 +119,7 @@ const ForgotPassword = () => {
           {error ? <h6 className="text-[90%] text-red-600">{error}</h6> : <></>}
           <button
             type="submit"
+            disabled={loading}
             className="bg-[#20603D] text-white py-3 px-6 w-52 rounded-lg"
           >
             {loading ? (

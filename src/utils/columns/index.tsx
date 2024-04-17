@@ -1,9 +1,10 @@
-import ProblemActions from "@/components/core/actions/Problems";
+import EventsActions from "@/components/core/actions/Events";
+import SuggestionActions from "@/components/core/actions/Suggestions";
 import { Event, Problem, Suggestion } from "@/typings";
 import { Tooltip } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
 import { FaRegCheckSquare } from "react-icons/fa";
-import { HiClock, HiDotsVertical } from "react-icons/hi";
+import { HiClock } from "react-icons/hi";
 
 export const problemColumns: ColumnDef<Problem>[] = [
   {
@@ -85,7 +86,7 @@ export const suggestionColumns: ColumnDef<Suggestion>[] = [
   {
     accessorKey: "Actions",
     header: ({ column }) => <></>,
-    cell: ({ row }) => <ProblemActions />,
+    cell: ({ row }) => <SuggestionActions data={row.original} />,
   },
 ];
 
@@ -137,14 +138,9 @@ export const eventsColumns: ColumnDef<Event>[] = [
     header: ({ column }) => <h4>Location</h4>,
     cell: ({ row }) => <h6 className="text-[80%]">{row.original.location}</h6>,
   },
-  // {
-  //   accessorKey: "Duration",
-  //   header: ({ column }) => <h4>Duration</h4>,
-  //   cell: ({ row }) => <h6 className="text-[80%]">{row.original.duration}</h6>,
-  // },
   {
     accessorKey: "Actions",
     header: ({ column }) => <></>,
-    cell: ({ row }) => <ProblemActions />,
+    cell: ({ row }) => <EventsActions data={row.original}/>
   },
 ];

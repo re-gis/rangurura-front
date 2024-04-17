@@ -31,6 +31,8 @@ import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import { getMyProfile } from "@/utils/funcs/funcs";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
 interface Props {
   type: "citizen" | "leader" | "organisation";
 }
@@ -83,9 +85,11 @@ const Navbar = ({ type }: Props) => {
   const navigate = useRouter();
   const logout = () => {
     setCookie("token", undefined);
-    toast.success("Logged out successfully", {
-      position: "top-right",
-      duration: 4000,
+    notifications.show({
+      title: "Come Again 👋",
+      message: "Successfully Logged out!",
+      autoClose: 5000,
+      icon: <FaRegCheckCircle />,
     });
     navigate.push("/");
   };

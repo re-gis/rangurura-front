@@ -4,17 +4,16 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import DeleteProblem from "@/components/core/Modals/DeleteProblem";
 import React, { useState } from "react";
-import { Suggestion } from "@/typings";
+import { Event, Problem } from "@/typings";
 import { Modal, Menu, rem } from "@mantine/core";
 import { LuMailCheck } from "react-icons/lu";
-import DeleteSuggestion from "../../Modals/DeleteSuggestion";
+import DeleteEvent from "../../Modals/DeleteEvent";
 
-export default function SuggestionActions({ data }: { data: Suggestion }) {
+export default function EventsActions({ data }: { data: Event }) {
   const [openDelete, setOpenDelete] = useState(false);
 
   const deleteProblem = () => {
     setOpenDelete(true);
-    console.log(data.igitekerezo);
   };
 
   return (
@@ -31,19 +30,7 @@ export default function SuggestionActions({ data }: { data: Suggestion }) {
             <HiDesktopComputer style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          <h5>Hide</h5>
-        </Menu.Item>
-        <Menu.Item
-          leftSection={
-            <MdPushPin style={{ width: rem(14), height: rem(14) }} />
-          }
-        >
-          <h5>Pin</h5>
-        </Menu.Item>
-        <Menu.Item
-          leftSection={<LuMailCheck style={{ width: rem(14), height: rem(14) }} />}
-        >
-          <h5>Mark As Solved</h5>
+          <h5>Edit</h5>
         </Menu.Item>
 
         <Menu.Divider />
@@ -61,7 +48,7 @@ export default function SuggestionActions({ data }: { data: Suggestion }) {
         </Menu.Item>
       </Menu.Dropdown>
       <Modal opened={openDelete} onClose={() => setOpenDelete(false)}>
-        <DeleteSuggestion suggestion={data} close={() => setOpenDelete(false)} />
+        <DeleteEvent event={data} close={() => setOpenDelete(false)} />
       </Modal>
     </Menu>
   );

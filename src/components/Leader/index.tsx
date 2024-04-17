@@ -6,13 +6,13 @@ import { SlLocationPin } from "react-icons/sl";
 const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
   const role = getRoleFromLevel(leader?.organizationLevel ?? "");
   return (
-    <div className="w-full h-[300px] rounded-lg flex flex-col items-center gap-2 bg-white justify-start px-3 pt-2">
+    <div className="w-full h-[250px] rounded-lg flex flex-col items-center gap-2 bg-white justify-start px-3">
       <Image
         src={profile.imageUrl}
         width={100}
-        height={130}
+        height={100}
         alt=""
-        className="w-full h-[60%] rounded-lg"
+        className="w-full h-[50%] rounded-lg"
       />
       <h6 className="text-left w-full font-bold text-black">
         {profile?.username ?? "Name Not Set"}

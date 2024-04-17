@@ -80,9 +80,6 @@ const Register = () => {
                   className="sub_input"
                   //   onChange={(e) => setSelectedProvince(e.target.value)}
                 >
-                  {/* {address.items.map((province,i) => 
-                    <option key={i} value={province.name}>{province.name}</option>
-                  )} */}
                 </select>
               </div>
             </div>

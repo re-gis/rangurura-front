@@ -15,6 +15,9 @@ import { useTranslation } from "react-i18next";
 import { setCookie } from "cookies-next";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
+
 interface SidebarProps {
   routes: Route[];
   type: string;
@@ -33,9 +36,11 @@ const Sidebar: FC<SidebarProps> = ({ routes, type }) => {
   const logout = () => {
     setLoading(true);
     setCookie("token", undefined);
-    toast.success("Logged out successfully", {
-      position: "top-right",
-      duration: 4000,
+    notifications.show({
+      title: "Come Back Again 👋",
+      message: "Successfully Logged Out!",
+      autoClose: 5000,
+      icon: <FaRegCheckCircle />,
     });
     navigate.push("/");
   };

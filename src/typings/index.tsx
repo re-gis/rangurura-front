@@ -25,10 +25,12 @@ export type Problem = {
   target: string;
 };
 export type Suggestion = {
+  id: string;
   igitekerezo: string;
   level: string;
   status: string;
   urwego: string;
+  location: string;
 };
 
 export type Chat = {
@@ -48,6 +50,7 @@ export type Event = {
   completed: boolean;
   descriptions: string;
   owner: string;
+  id: string;
 };
 
 export interface Route {

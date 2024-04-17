@@ -21,6 +21,10 @@ import {
   organisationCategories,
   organisationLevels,
 } from "@/constants/Enums";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+
 
 const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
   const navigate = useRouter();
@@ -84,40 +88,56 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
           .post(`${baseURL}/problems/create`, formResponse)
           .then((response) => {
             setLoading(false);
-            toast.success(response.data?.data?.message);
+            notifications.show({
+              title: "Report Problem",
+              message: response.data?.data?.message,
+              autoClose: 5000,
+              icon: <FaRegCheckCircle />,
+            });
             console.log(response.data);
             closeL();
           })
           .catch((err: any) => {
             if (err.message === "Network Error") {
-              toast.error(
-                "Request unable to reach our servers. Slow Network Connection Problem!",
-              );
+              notifications.show({
+                title: "Report Problem",
+                message: "Request unable to reach our servers. Slow Network Connection Problem!",
+                color: "#FF555D",
+                autoClose: 5000,
+                icon: <RxCrossCircled />,
+              });
+              
             } else {
-              toast.error(
-                err.response?.data?.error ??
-                  "An Error Occured! If it persists contact the support at support@rangurura.com",
-                {
-                  duration: 5000,
-                },
-              );
+              notifications.show({
+                title: "Report Problem",
+                message: err.response?.data?.error ??
+                  "An Error Occurred! If it persists contact the support at support@rangurura.com",
+                color: "#FF555D",
+                autoClose: 5000,
+                icon: <RxCrossCircled />,
+              });
             }
             console.log(err);
             setLoading(false);
           })
           .catch((err: any) => {
             if (err.message === "Network Error") {
-              toast.error(
-                "Request unable to reach our servers. Slow Network Connection Problem!",
-              );
+              notifications.show({
+                title: "Report Problem",
+                message: "Request unable to reach our servers. Slow Network Connection Problem!",
+                color: "#FF555D",
+                autoClose: 5000,
+                icon: <RxCrossCircled />,
+              });
             } else {
-              toast.error(
-                err.response?.data?.error ??
-                  "An Error Occured! If it persists contact the support at support@rangurura.com",
-                {
-                  duration: 5000,
-                },
-              );
+              notifications.show({
+                title: "Report Problem",
+                message: err.response?.data?.error ??
+                  "An Error Occurred! If it persists contact the support at support@rangurura.com",
+                color: "#FF555D",
+                autoClose: 5000,
+                icon: <RxCrossCircled />,
+              });
             }
           });
       });
