@@ -72,7 +72,7 @@ const Verify = () => {
   };
   return (
     <div className="w-screen h-screen bg-[#EEF3F9] flex flex-col items-center justify-center px-5 md:px-0">
-      <div className="w-full pb-10 flex flex-col items-center md:w-[35%] bg-white px-3 pb-10">
+      <div className="w-full pb-10 flex flex-col items-center md:w-[35%] bg-white px-3">
         <div className="w-full flex justify-start items-center py-2 mt-4">
           <span className="cursor-pointer" onClick={() => navigate.back()}>
             <MdKeyboardArrowLeft />
