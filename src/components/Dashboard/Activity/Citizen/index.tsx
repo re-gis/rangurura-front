@@ -16,6 +16,7 @@ import { Key, useMemo, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Header from "../../Header";
 import Link from "next/link";
+import { useGet } from "@/utils/funcs/useGet";
 
 type TimeFrame = {
   key: string;
@@ -50,6 +51,13 @@ const Activity = () => {
     };
   }, [activeTimeFrame]);
 
+
+  const { data: solvedProblemsData, loading: solvedProblemsLoading } =
+    useGet({ src: "/user-dashboard/number_of_probs_solvedforMe" });
+
+  const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading } =
+    useGet({ src: "/user-dashboard/number_of_pending_probsForMe" });
+
   return (
     <>
       <Header header="Overview" style="font-bold text-md" />
@@ -60,14 +68,26 @@ const Activity = () => {
             <h5 className="text-[#000] text-sm text-center font-semibold mt-1">
               Marked as Solved problems
             </h5>
-            <h4 className="text-[#000] font-extr text-[17px]">{20}</h4>
+            {solvedProblemsLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <h4 className="text-[#000] font-extr text-[17px]">
+                {solvedProblemsData?.data}
+              </h4>
+            )}
           </div>
           <div className="w-full md:h-full bg-[#fad0016c] border-b-[4px] rounded-t-lg border-b-[#FAD201] flex flex-col items-center justify-center">
             <PiClockFill size={20} />
             <h5 className="text-[#000] text-sm text-center font-semibold mt-1">
               Unsolved problems
             </h5>
-            <h4 className="text-[#000] font-extr text-[17px]">{32}</h4>
+            {unsolvedProblemsLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <h4 className="text-[#000] font-extr text-[17px]">
+                {unsolvedProblemsData?.data}
+              </h4>
+            )}
           </div>
         </div>
         <h6 className="w-full px-2 text-center text-sm font-bold leading-4">

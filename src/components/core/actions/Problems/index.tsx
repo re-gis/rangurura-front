@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import DeleteProblem from "@/components/core/Modals/DeleteProblem";
 import React, { useState } from "react";
 import { Problem } from "@/typings";
-import { Modal, Menu,rem } from "@mantine/core";
+import { Modal, Menu, rem } from "@mantine/core";
 
 export default function ProblemActions({ data }: { data: Problem }) {
   const [openDelete, setOpenDelete] = useState(false);
@@ -59,7 +59,7 @@ export default function ProblemActions({ data }: { data: Problem }) {
         </Menu.Item>
       </Menu.Dropdown>
       <Modal opened={openDelete} onClose={() => setOpenDelete(false)}>
-        <DeleteProblem problem={data} close={() => setOpenDelete(false)}/>
+        <DeleteProblem problem={data} close={() => setOpenDelete(false)} />
       </Modal>
     </Menu>
   );
