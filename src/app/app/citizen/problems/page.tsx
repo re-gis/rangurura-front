@@ -1,52 +1,52 @@
 "use client";
-import ReportProblemModel from "@/components/Create/Problems";
-import DistrictOverview from "@/components/Dashboard/DistrictsOverview";
-import ReportProblems from "@/components/Dashboard/Reports";
-import ProblemsTable from "@/components/core/Tables/Problems";
-import { Modal, Button } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IoClose } from "react-icons/io5";
-import { useEffect, useState } from "react";
-import { ApiEndpoint } from "@/constants";
-import { TfiReload } from "react-icons/tfi";
+// import ReportProblemModel from "@/components/Create/Problems";
+// import DistrictOverview from "@/components/Dashboard/DistrictsOverview";
+// import ReportProblems from "@/components/Dashboard/Reports";
+// import ProblemsTable from "@/components/core/Tables/Problems";
+// import { Modal, Button } from "@mantine/core";
+// import { useDisclosure } from "@mantine/hooks";
+// import { IoClose } from "react-icons/io5";
+// import { useEffect, useState } from "react";
+// import { ApiEndpoint } from "@/constants";
+// import { TfiReload } from "react-icons/tfi";
 const Page = () => {
-  const [opened, { open, close }] = useDisclosure(false);
-  const [loading, setLoading] = useState(false);
-  const [problemsData, setProblemsData] = useState([]);
-  const refetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await ApiEndpoint.get("/problems/my/asked");
-      if (response.data?.data?.message) {
-        setProblemsData([]);
-      } else {
-        setProblemsData(response?.data?.data?.reverse());
-      }
-    } catch (err) {
-      console.error("Error fetching problems:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    setLoading(true);
-    ApiEndpoint.get("/problems/my/asked")
-      .then((res) => {
-        console.log(res.data?.data);
-        if (res.data?.data?.message) {
-          setProblemsData([]);
-        } else {
-          setProblemsData(res.data?.data?.reverse());
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  // const [opened, { open, close }] = useDisclosure(false);
+  // const [loading, setLoading] = useState(false);
+  // const [problemsData, setProblemsData] = useState([]);
+  // const refetchData = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await ApiEndpoint.get("/problems/my/asked");
+  //     if (response.data?.data?.message) {
+  //       setProblemsData([]);
+  //     } else {
+  //       setProblemsData(response?.data?.data?.reverse());
+  //     }
+  //   } catch (err) {
+  //     console.error("Error fetching problems:", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   setLoading(true);
+  //   ApiEndpoint.get("/problems/my/asked")
+  //     .then((res) => {
+  //       console.log(res.data?.data);
+  //       if (res.data?.data?.message) {
+  //         setProblemsData([]);
+  //       } else {
+  //         setProblemsData(res.data?.data?.reverse());
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
   return (
     <div className="w-full h-[90%] flex items-center justify-between mt-4">
-      <div className="w-full h-full">
+      {/* <div className="w-full h-full">
         <div className="w-full flex items-center justify-between">
           <h1 className="text-[1.5rem] font-extrabold">Problems</h1>
           <div className="flex flex-col md:flex-row gap-4">
@@ -83,7 +83,7 @@ const Page = () => {
           </button>
           <ReportProblemModel closeL={close} />
         </Modal>
-      </div>
+      </div> */}
     </div>
   );
 };
