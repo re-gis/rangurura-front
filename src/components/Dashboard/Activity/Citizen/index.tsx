@@ -51,9 +51,9 @@ const Activity = () => {
     };
   }, [activeTimeFrame]);
 
-
-  const { data: solvedProblemsData, loading: solvedProblemsLoading } =
-    useGet({ src: "/user-dashboard/number_of_probs_solvedforMe" });
+  const { data: solvedProblemsData, loading: solvedProblemsLoading } = useGet({
+    src: "/user-dashboard/number_of_probs_solvedforMe",
+  });
 
   const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading } =
     useGet({ src: "/user-dashboard/number_of_pending_probsForMe" });
