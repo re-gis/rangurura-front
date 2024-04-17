@@ -19,7 +19,7 @@ const Page = () => {
       <div className="w-full md:h-[44%] flex flex-col md:flex-row justify-between">
         <div className="my-2 md:my-0 md:w-[32%] bg-white rounded-lg px-3 flex justify-center">
           <Calendar
-            getDayProps={(date) => ({
+            getDayProps={(date: any) => ({
               selected: selected.some((s: any) =>
                 dayjs(date).isSame(s, "date"),
               ),
