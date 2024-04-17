@@ -79,8 +79,7 @@ const Register = () => {
                   id="intara"
                   className="sub_input"
                   //   onChange={(e) => setSelectedProvince(e.target.value)}
-                >
-                </select>
+                ></select>
               </div>
             </div>
             <div className="main_input">

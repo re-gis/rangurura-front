@@ -6,13 +6,7 @@ import { ClipLoader } from "react-spinners";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-const DeleteEvent = ({
-  event,
-  close,
-}: {
-  event: Event;
-  close: Function;
-}) => {
+const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
   const [loading, setLoading] = React.useState(false);
   const deleteProblem = () => {
     setLoading(true);

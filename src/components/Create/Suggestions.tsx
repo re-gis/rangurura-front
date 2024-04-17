@@ -22,7 +22,6 @@ import { notifications } from "@mantine/notifications";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-
 const CreateSuggestionModal = ({ closeL }: { closeL: Function }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, setLoading] = useState(false);

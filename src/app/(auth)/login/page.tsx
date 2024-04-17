@@ -14,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
 import { ApiEndpoint } from "@/constants";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import {  notifications } from "@mantine/notifications";
+import { notifications } from "@mantine/notifications";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -81,21 +81,21 @@ const Login = () => {
           ) {
             return navigate.push("/verify");
           }
-          return (notifications.show({
+          return notifications.show({
             title: "Auth Error",
             message: err?.response?.data?.error,
             color: "#FF555D",
             autoClose: 5000,
             icon: <RxCrossCircled />,
-          }));
+          });
         } else {
-          return (notifications.show({
+          return notifications.show({
             title: "Auth Error",
             message: err?.response?.data?.error,
             color: "#FF555D",
             autoClose: 5000,
             icon: <RxCrossCircled />,
-          }));
+          });
         }
       });
   };

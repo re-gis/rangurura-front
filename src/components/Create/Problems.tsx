@@ -25,7 +25,6 @@ import { notifications } from "@mantine/notifications";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-
 const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
   const navigate = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
@@ -101,16 +100,17 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             if (err.message === "Network Error") {
               notifications.show({
                 title: "Report Problem",
-                message: "Request unable to reach our servers. Slow Network Connection Problem!",
+                message:
+                  "Request unable to reach our servers. Slow Network Connection Problem!",
                 color: "#FF555D",
                 autoClose: 5000,
                 icon: <RxCrossCircled />,
               });
-              
             } else {
               notifications.show({
                 title: "Report Problem",
-                message: err.response?.data?.error ??
+                message:
+                  err.response?.data?.error ??
                   "An Error Occurred! If it persists contact the support at support@rangurura.com",
                 color: "#FF555D",
                 autoClose: 5000,
@@ -124,7 +124,8 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             if (err.message === "Network Error") {
               notifications.show({
                 title: "Report Problem",
-                message: "Request unable to reach our servers. Slow Network Connection Problem!",
+                message:
+                  "Request unable to reach our servers. Slow Network Connection Problem!",
                 color: "#FF555D",
                 autoClose: 5000,
                 icon: <RxCrossCircled />,
@@ -132,7 +133,8 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
             } else {
               notifications.show({
                 title: "Report Problem",
-                message: err.response?.data?.error ??
+                message:
+                  err.response?.data?.error ??
                   "An Error Occurred! If it persists contact the support at support@rangurura.com",
                 color: "#FF555D",
                 autoClose: 5000,

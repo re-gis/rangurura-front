@@ -49,26 +49,26 @@ const Verify = () => {
     ApiEndpoint.post("/users/otp/send", {
       phoneNumber: phoneNumber,
     })
-    .then((res: any)=>{
-      console.log(res.data);
-      notifications.show({
-        title: "Resend Code",
-        message: "Code Resent Successfully!",
-        type: "info",
-        autoClose: 5000,
+      .then((res: any) => {
+        console.log(res.data);
+        notifications.show({
+          title: "Resend Code",
+          message: "Code Resent Successfully!",
+          type: "info",
+          autoClose: 5000,
+        });
       })
-    })
-    .catch((err: any)=>{
-      console.log(err);
-      notifications.show({
-        title: "Resend Code Error",
-        message: err.response.data.error,
-        type: "error",
-        color:"#FF555D",
-        autoClose: 5000,
+      .catch((err: any) => {
+        console.log(err);
+        notifications.show({
+          title: "Resend Code Error",
+          message: err.response.data.error,
+          type: "error",
+          color: "#FF555D",
+          autoClose: 5000,
+        });
       })
-    })
-    .finally(()=> setPageLoading(false));
+      .finally(() => setPageLoading(false));
   };
   return (
     <div className="w-screen h-screen bg-[#EEF3F9] flex flex-col items-center justify-center px-5 md:px-0">

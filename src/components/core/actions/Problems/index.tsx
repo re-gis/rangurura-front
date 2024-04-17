@@ -39,7 +39,9 @@ export default function ProblemActions({ data }: { data: Problem }) {
           <h5>Pin</h5>
         </Menu.Item>
         <Menu.Item
-          leftSection={<LuMailCheck style={{ width: rem(14), height: rem(14) }} />}
+          leftSection={
+            <LuMailCheck style={{ width: rem(14), height: rem(14) }} />
+          }
         >
           <h5>Mark As Solved</h5>
         </Menu.Item>

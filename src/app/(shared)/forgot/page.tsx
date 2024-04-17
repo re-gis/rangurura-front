@@ -39,9 +39,9 @@ const ForgotPassword = () => {
           title: "Otp Sent",
           message: res.data.data,
           type: "success",
-        })
+        });
 
-        navigate.push("/verify")
+        navigate.push("/verify");
       })
       .catch((err: any) => {
         setLoading(false);
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
           title: "Otp Sent",
           message: err?.response?.data.error,
           type: "error",
-        })
+        });
       });
   };
   const resendVerification = () => {

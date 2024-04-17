@@ -41,7 +41,9 @@ export default function SuggestionActions({ data }: { data: Suggestion }) {
           <h5>Pin</h5>
         </Menu.Item>
         <Menu.Item
-          leftSection={<LuMailCheck style={{ width: rem(14), height: rem(14) }} />}
+          leftSection={
+            <LuMailCheck style={{ width: rem(14), height: rem(14) }} />
+          }
         >
           <h5>Mark As Solved</h5>
         </Menu.Item>
@@ -61,7 +63,10 @@ export default function SuggestionActions({ data }: { data: Suggestion }) {
         </Menu.Item>
       </Menu.Dropdown>
       <Modal opened={openDelete} onClose={() => setOpenDelete(false)}>
-        <DeleteSuggestion suggestion={data} close={() => setOpenDelete(false)} />
+        <DeleteSuggestion
+          suggestion={data}
+          close={() => setOpenDelete(false)}
+        />
       </Modal>
     </Menu>
   );
