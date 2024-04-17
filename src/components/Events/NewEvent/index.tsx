@@ -80,7 +80,7 @@ const NewEvent = ({ close }: { close: Function }) => {
         Create Announcement
       </h3>
       <div className="w-full flex-col flex justify-center items-center">
-        <form
+        <form 
           onSubmit={submit}
           className="w-full flex flex-col gap-2 justify-center md:px-3 px-2 pt-2"
         >
