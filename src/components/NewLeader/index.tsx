@@ -61,7 +61,7 @@ const NewLeader = ({ close }: { close: Function }) => {
             ? [...new Set(Districts())]
             : [...new Set(Provinces() as string[])];
 
-    setLocalLevels(levels as string[]);
+    setLocalLevels(levels as never[]);
   }, [organisationLevel]);
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">

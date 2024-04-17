@@ -45,7 +45,7 @@ const SearchForm = ({
             { value: "table", label: "This Table" },
           ]}
           defaultValue={searchType}
-          onChange={(e) => {
+          onChange={(e: any) => {
             if (!e) return;
             setSearchType(e);
           }}
