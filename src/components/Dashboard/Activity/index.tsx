@@ -52,23 +52,21 @@ const Activity = () => {
   //   src: userRole === "ADMIN" ? "/suggestions/number_of_all_ideas" : "/user-dashboard/number_of_all_ideas",
   // });
 
-
-
   const { data: solvedProblemsData, loading: solvedProblemsLoading } = useGet({
-    src: 'problems/number_of_approved_probs',
+    src: "problems/number_of_approved_probs",
   });
 
   const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading } =
     useGet({ src: "/problems/number_of_pending_problems" });
 
-  
-    const { data: eventsData, loading: eventLoading } = useGet({
-      src: '/events/number_of_events',
-    });
-  
-    const { data:suggestionsData, loading:suggestionsLoading } =
-      useGet({ src: "/suggestions/number_of_all_ideas" });
-      
+  const { data: eventsData, loading: eventLoading } = useGet({
+    src: "/events/number_of_events",
+  });
+
+  const { data: suggestionsData, loading: suggestionsLoading } = useGet({
+    src: "/suggestions/number_of_all_ideas",
+  });
+
   const timeFrame = [
     {
       key: "day",
@@ -152,4 +150,3 @@ const Activity = () => {
 };
 
 export default Activity;
-
