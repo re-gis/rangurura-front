@@ -117,30 +117,6 @@ const ReportProblemModel = ({ closeL }: { closeL: Function }) => {
                 icon: <RxCrossCircled />,
               });
             }
-            console.log(err);
-            setLoading(false);
-          })
-          .catch((err: any) => {
-            if (err.message === "Network Error") {
-              notifications.show({
-                title: "Report Problem",
-                message:
-                  "Request unable to reach our servers. Slow Network Connection Problem!",
-                color: "#FF555D",
-                autoClose: 5000,
-                icon: <RxCrossCircled />,
-              });
-            } else {
-              notifications.show({
-                title: "Report Problem",
-                message:
-                  err.response?.data?.error ??
-                  "An Error Occurred! If it persists contact the support at support@rangurura.com",
-                color: "#FF555D",
-                autoClose: 5000,
-                icon: <RxCrossCircled />,
-              });
-            }
           });
       });
   };

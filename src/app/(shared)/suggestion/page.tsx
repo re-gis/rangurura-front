@@ -19,6 +19,9 @@ import {
   organisationCategories,
   organisationLevels,
 } from "@/constants/Enums";
+import { notifications } from "@mantine/notifications";
+import { RxCrossCircled } from "react-icons/rx";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const ReportProblemModel = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -57,9 +60,12 @@ const ReportProblemModel = () => {
       .post(`${baseURL}/suggestions/send_idea`, formData)
       .then((response) => {
         setLoading(false);
-        toast.success(
-          "Suggestion Reported Successfully! Consider Tracking the Progress by Creating your Account.",
-        );
+        notifications.show({
+          title: "Report Suggestion",
+          message: "Suggestion Reported Successfully!",
+          autoClose: 5000,
+          icon: <FaRegCheckCircle />,
+        });
         setOrganisationLevel("");
         setOrganisationCategory("");
         setLevel("");
@@ -69,8 +75,12 @@ const ReportProblemModel = () => {
         console.log(response.data);
       })
       .catch((err: any) => {
-        toast.error(err.response?.data.error, {
-          duration: 5000,
+        notifications.show({
+          title: "Report Suggestion Error",
+          message: err.response?.data.error,
+          color: "#FF555D",
+          autoClose: 5000,
+          icon: <RxCrossCircled />,
         });
         console.log("Send suggestions error ", err);
         setLoading(false);

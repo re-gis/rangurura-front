@@ -8,8 +8,7 @@ export const ApiEndpoint = axios.create({
   baseURL: "http://194.163.167.131:7400/api/v1",
   headers: {
     Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-    Connection: "keep-alive",
+    "Content-Type": "application/json"
   },
 });
 export const problems: Problem[] = [];

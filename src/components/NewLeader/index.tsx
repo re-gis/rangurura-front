@@ -9,6 +9,8 @@ import CustomMultiSelect from "../core/MultiSelect";
 import { Cells, Sectors, Districts, Provinces } from "rwanda";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const NewLeader = ({ close }: { close: Function }) => {
   const [localLevels, setLocalLevels] = useState([]);
@@ -35,14 +37,17 @@ const NewLeader = ({ close }: { close: Function }) => {
       sector: leader?.sector,
       village: leader?.village,
     };
-    console.log(formData, selected);
     ApiEndpoint.post("/leaders/addLeader", formData)
       .then((res: any) => {
-        toast.success("Leader Assigned successfully!");
+        notifications.show({
+          title: "Assign Leader",
+          message: "Leader Assigned successfully!",
+          autoClose: 5000,
+          icon: <FaRegCheckCircle />,
+        });
         setOrganisationLevel("");
         setCategory("");
         setLocation("");
-        // setSelected([{}]);
         close();
       })
       .catch((err: any) => {
