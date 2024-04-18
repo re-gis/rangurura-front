@@ -33,6 +33,7 @@ import { useEffect, useState } from "react";
 import { getMyProfile } from "@/utils/funcs/funcs";
 import { notifications } from "@mantine/notifications";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { Skeleton } from "@nextui-org/react";
 interface Props {
   type: "citizen" | "leader" | "organisation";
 }
@@ -176,7 +177,7 @@ const Navbar = ({ type }: Props) => {
           </Link>
           <Dropdown placement="bottom-start">
             {loading ? (
-              <h4></h4>
+              <Skeleton className={"md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer"}/>
             ) : (
               <>
                 <DropdownTrigger>
