@@ -219,7 +219,7 @@ const NewEvent = ({ close }: { close: Function }) => {
               type="submit"
               className="btn_primary py-2 rounded-md px-10 text-white"
             >
-              {loading ? <ClipLoader color="white" /> : "Create Announcement"}
+              {loading ? <ClipLoader color="white" size={20}/> : "Create Announcement"}
             </button>
           </div>
         </form>

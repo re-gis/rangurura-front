@@ -69,6 +69,7 @@ const actions: SpotlightActionData[] = [
 
 const Navbar = ({ type }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     cell: "",
     district: "",
@@ -85,12 +86,14 @@ const Navbar = ({ type }: Props) => {
   const navigate = useRouter();
   const logout = () => {
     setCookie("token", undefined);
-    notifications.show({
-      title: "Come Again 👋",
-      message: "Successfully Logged out!",
-      autoClose: 5000,
-      icon: <FaRegCheckCircle />,
-    });
+    setTimeout(()=>{
+      notifications.show({
+        title: "Come Again 👋",
+        message: "Successfully Logged out!",
+        autoClose: 5000,
+        icon: <FaRegCheckCircle />,
+      });
+    }, 2000)
     navigate.push("/");
   };
   useEffect(() => {
@@ -98,10 +101,13 @@ const Navbar = ({ type }: Props) => {
       .then((data: any) => {
         console.log("User Profile in Navbar -->", data);
         setProfile(data.data);
+        setLoading(false);
       })
       .catch((err: any) => {
         console.log(err);
+        setLoading(false);
       });
+      
   }, []);
   return (
     <>
@@ -170,24 +176,30 @@ const Navbar = ({ type }: Props) => {
             <Image src={person} alt="" className="w-6 h-6" />
           </Link>
           <Dropdown placement="bottom-start">
-            <DropdownTrigger>
-              <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer">
-                <Image
-                  src={personImg}
-                  alt=""
-                  className="w-14 h-14 rounded-[100%]"
-                />
 
-                <div className="flex-col hidden lg:flex">
-                  <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
-                  <p className="text-[11.4px] font-bold">
-                    {(type == "leader" || type == "organisation") &&
-                      profile?.district + " District"}
-                  </p>
-                </div>
-                <RiArrowDownSLine size={15} />
-              </div>
-            </DropdownTrigger>
+                {loading ? 
+                <h4></h4>
+              :
+                  <>
+                    <DropdownTrigger>
+                      <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer">
+                        <Image
+                          src={personImg}
+                          alt=""
+                          className="w-14 h-14 rounded-[100%]"
+                        />
+                            <div className="flex-col hidden lg:flex">
+                          <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>
+                          <p className="text-[11.4px] font-bold">
+                            {(type == "leader" || type == "organisation") &&
+                              profile?.district}
+                          </p>
+                        </div>
+                        <RiArrowDownSLine size={15} />
+                      </div>
+                    </DropdownTrigger>
+                  </>
+              }
             <DropdownMenu
               aria-label="User Actions"
               variant="flat"

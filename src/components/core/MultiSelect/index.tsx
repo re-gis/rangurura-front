@@ -47,12 +47,12 @@ const CustomMultiSelect: React.FC<Props> = ({
       placeholder={placeholder}
       px={6}
       searchable
-      data={loading ? [] : data}
+      data={loading ? [{label: "Loading ...", value: ""}] : data}
       value={selected}
       nothingFoundMessage="No Leaders found"
       maxValues={1}
       onChange={(value: any) => setSelected(value)}
-      disabled={disabled}
+      disabled={loading}
     />
   );
 };

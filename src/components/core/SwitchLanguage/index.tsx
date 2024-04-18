@@ -40,12 +40,12 @@ export default function SwitchLanguages({ color }: { color: any }) {
           variant="flat"
           className={`capitalize flex items-center justify-center gap-4 text-[${color}] font-bold bg-[#ccc] rounded-lg p-2`}
         >
-          <Image
-            src={flags[languages.indexOf(selectedValue)] ?? "ki"}
-            alt=""
-            width={24}
-            height={24}
-          />
+         <Image
+        src={flags[languages.indexOf(selectedValue)] ?? rw} // Provide a default image path "/ki"
+                alt=""
+                width={24}
+                height={24}
+              />
           {selectedValue}
           <FiChevronDown />
         </Button>
