@@ -75,7 +75,7 @@ const ReportProblemModel = () => {
           title: "Report Problem",
           message: response.data?.data?.message,
           autoClose: 5000,
-        })
+        });
         console.log(response.data);
         setOrganisationLevel("");
         setOrganisationCategory("");
