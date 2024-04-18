@@ -88,19 +88,20 @@ const Page = () => {
             View More <FaAngleRight />
           </Link>
         </div>
-        {events.length > 0 ? 
-        <EventsTable
-        dataProps={events.slice(0, 5)}
-        showPagination={false}
-        styles="h-full"
-      /> :
-        <div className="w-full flex flex-col items-center">
-          <Image src={no_data} alt="No Data GIF" />
-          <h1 className="mt-[1rem] font-bold">
-            No Announcements found in your system!
-          </h1>
-        </div>
-      }
+        {events.length > 0 ? (
+          <EventsTable
+            dataProps={events.slice(0, 5)}
+            showPagination={false}
+            styles="h-full"
+          />
+        ) : (
+          <div className="w-full flex flex-col items-center">
+            <Image src={no_data} alt="No Data GIF" />
+            <h1 className="mt-[1rem] font-bold">
+              No Announcements found in your system!
+            </h1>
+          </div>
+        )}
       </div>
     </section>
   );

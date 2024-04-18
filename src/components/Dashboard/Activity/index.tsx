@@ -18,31 +18,36 @@ import { useGet } from "@/utils/funcs/useGet";
 import { jwtDecode } from "jwt-decode";
 import { getCookie } from "cookies-next";
 
-type useGetResp  = {
+type useGetResp = {
   data: any;
   loading: boolean;
-}
+};
 type TimeFrame = {
   key: string;
   label: string;
 };
 
 const Activity = () => {
-
-  const { data: solvedProblemsData, loading: solvedProblemsLoading }:useGetResp = useGet({
+  const {
+    data: solvedProblemsData,
+    loading: solvedProblemsLoading,
+  }: useGetResp = useGet({
     src: "problems/number_of_approved_probs",
   });
 
-  const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading }:useGetResp =
-    useGet({ src: "/problems/number_of_pending_problems" });
+  const {
+    data: unsolvedProblemsData,
+    loading: unsolvedProblemsLoading,
+  }: useGetResp = useGet({ src: "/problems/number_of_pending_problems" });
 
-  const { data: eventsData, loading: eventLoading }:useGetResp = useGet({
+  const { data: eventsData, loading: eventLoading }: useGetResp = useGet({
     src: "/events/number_of_events",
   });
 
-  const { data: suggestionsData, loading: suggestionsLoading }:useGetResp = useGet({
-    src: "/suggestions/number_of_all_ideas",
-  });
+  const { data: suggestionsData, loading: suggestionsLoading }: useGetResp =
+    useGet({
+      src: "/suggestions/number_of_all_ideas",
+    });
 
   const timeFrame = [
     {

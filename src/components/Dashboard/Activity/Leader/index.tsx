@@ -6,31 +6,36 @@ import { useMemo, useState } from "react";
 import Header from "@/components/Dashboard/Header";
 import { useGet } from "@/utils/funcs/useGet";
 
-type useGetResp  = {
+type useGetResp = {
   data: any;
   loading: boolean;
-}
+};
 type TimeFrame = {
   key: string;
   label: string;
 };
 
 const Activity = () => {
-
-  const { data: solvedProblemsData, loading: solvedProblemsLoading }: useGetResp = useGet({
+  const {
+    data: solvedProblemsData,
+    loading: solvedProblemsLoading,
+  }: useGetResp = useGet({
     src: "/leader-dashboard/number_of_approved_probs",
   });
 
-  const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading } : useGetResp =
-    useGet({ src: "/leader-dashboard/number_of_pending_probs" });
+  const {
+    data: unsolvedProblemsData,
+    loading: unsolvedProblemsLoading,
+  }: useGetResp = useGet({ src: "/leader-dashboard/number_of_pending_probs" });
 
   const { data: eventsData, loading: eventLoading }: useGetResp = useGet({
     src: "/events/number_of_events",
   });
 
-  const { data: suggestionsData, loading: suggestionsLoading }: useGetResp = useGet({
-    src: "/leader-dashboard/number_of_suggestions",
-  });
+  const { data: suggestionsData, loading: suggestionsLoading }: useGetResp =
+    useGet({
+      src: "/leader-dashboard/number_of_suggestions",
+    });
 
   const timeFrame = [
     {

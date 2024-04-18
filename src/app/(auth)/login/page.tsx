@@ -106,7 +106,6 @@ const Login = () => {
             autoClose: 5000,
             icon: <RxCrossCircled />,
           });
-
         } else {
           return notifications.show({
             title: "Auth Error",
@@ -205,7 +204,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      {redLoading && <RedirectionLoader/>}
+      {redLoading && <RedirectionLoader />}
     </section>
   );
 };

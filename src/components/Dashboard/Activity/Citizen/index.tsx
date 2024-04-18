@@ -8,7 +8,7 @@ import { useGet } from "@/utils/funcs/useGet";
 type useGetResp = {
   data: any;
   loading: boolean;
-}
+};
 type TimeFrame = {
   key: string;
   label: string;
@@ -37,12 +37,19 @@ const Activity = () => {
     timeFrame[0],
   );
 
-  const { data: solvedProblemsData, loading: solvedProblemsLoading }: useGetResp = useGet({
+  const {
+    data: solvedProblemsData,
+    loading: solvedProblemsLoading,
+  }: useGetResp = useGet({
     src: "/user-dashboard/number_of_probs_solvedforMe",
   });
 
-  const { data: unsolvedProblemsData, loading: unsolvedProblemsLoading } : useGetResp =
-    useGet({ src: "/user-dashboard/number_of_pending_probsForMe" });
+  const {
+    data: unsolvedProblemsData,
+    loading: unsolvedProblemsLoading,
+  }: useGetResp = useGet({
+    src: "/user-dashboard/number_of_pending_probsForMe",
+  });
 
   return (
     <>
