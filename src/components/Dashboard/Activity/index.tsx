@@ -103,24 +103,26 @@ const Activity = () => {
         <div className="w-full h-full bg-[#00D56040] border-b-[3px] rounded-t-lg border-b-[#00D560] flex flex-col items-center justify-center">
           <FaRegCheckSquare size={18} />
           <h5 className="text-[#000] font-semibold mt-1">Solved problems</h5>
-          {solvedProblemsLoading ? (
+          {/* {solvedProblemsLoading ? (
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
               {solvedProblemsData?.data?.data}
             </h4>
-          )}
+          )} */}
+          3
         </div>
         <div className="w-full md:h-full bg-[#F5292940] border-b-[3px] rounded-t-lg border-b-[#F52929] flex flex-col items-center justify-center">
           <PiClockFill size={20} />
           <h5 className="text-[#000] font-semibold mt-1">Unsolved problems</h5>
-          {unsolvedProblemsLoading ? (
+          {/* {unsolvedProblemsLoading ? (
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
               {unsolvedProblemsData?.data?.data}
             </h4>
-          )}
+          )} */}
+          2
         </div>
         <div className="w-full md:h-full bg-[#00A1DE52] border-b-[3px] rounded-t-lg border-b-[#00A1DE] flex flex-col items-center justify-center">
           <FaRegCalendar size={18} />
@@ -136,13 +138,14 @@ const Activity = () => {
         <div className="w-full md:h-full bg-[#FAD20169] border-b-[3px] rounded-t-lg border-b-[#FAD201] flex flex-col items-center justify-center">
           <GiVote size={23} />
           <h5 className="text-[#000] font-semibold mt-1">Suggestions</h5>
-          {suggestionsLoading ? (
+          {/* {suggestionsLoading ? (
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
               {suggestionsData?.data?.data}
             </h4>
-          )}
+          )} */}
+          3
         </div>
       </div>
     </>
