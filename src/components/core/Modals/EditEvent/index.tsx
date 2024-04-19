@@ -6,15 +6,27 @@ import { ClipLoader } from "react-spinners";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
-const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
+const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
   const [loading, setLoading] = React.useState(false);
-  const deleteProblem = () => {
+  const [newDesc, setNewDesc] = React.useState(event?.descriptions)
+  const editEvent = () => {
     setLoading(true);
-    ApiEndpoint.delete(`/events/delete_event/${event.id}`)
+    const newEvent = {
+        "category": event.category,
+        "descriptions": newDesc,
+        "endDate": event.endDate,
+        "endTime": event.endTime,
+        "eventName": event.eventName,
+        "location": event.location,
+        "organizationLevel": event.organizationLevel,
+        "startDate": event.startDate,
+        "startTime" : event.startTime
+    }
+    ApiEndpoint.put(`/events/update_event/${event.id}`, newEvent)
       .then((res) => {
         notifications.show({
-          title: "Delete Event",
-          message: "Successfully Deleted Event!",
+          title: "Edit Event",
+          message: "Successfully Edited Event!",
           autoClose: 5000,
           icon: <FaRegCheckCircle />,
         });
@@ -22,8 +34,8 @@ const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
       })
       .catch((err) => {
         notifications.show({
-          title: "Delete Event",
-          message: "Error occurred when deleting a event!",
+          title: "Edit Event",
+          message: "Error occurred when editing an event!",
           color: "#FF555D",
           autoClose: 5000,
           icon: <RxCrossCircled />,
@@ -34,14 +46,12 @@ const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
   return (
     <div className="w-full h-full flex flex-col gap-3 items-center">
       <header className="w-full text-center font-extrabold text-lg">
-        Are you sure you want to delete this Event?
+        Edit Event
       </header>
       <div className="w-full flex flex-col">
         <h2>Name: {event?.eventName}</h2>
         <h2>Description: </h2>
-        <p className="border border-[#ccc] my-3 p-2 text-justify rounded-lg text-[90%] bg-[#e6edfc]">
-          {event?.descriptions}
-        </p>
+        <textarea value={newDesc} onChange={(e: any)=> setNewDesc(e.target.value)} className="border border-[#ccc] my-3 p-2 text-justify rounded-lg text-[90%] bg-[#f1f6ff] resize-none"/>
         <div className="w-full mt-5 flex justify-between md:px-[10%]">
           <button
             onClick={() => close()}
@@ -50,15 +60,15 @@ const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
             Cancel
           </button>
           <button
-            onClick={deleteProblem}
-            className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#FF555D] text-black"
+            onClick={editEvent}
+            className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#0075FF] text-white"
           >
             {loading ? (
               <div className="w-full h-full flex items-center justify-center">
                 <ClipLoader size={24} color="white" />
               </div>
             ) : (
-              "Delete"
+              "Save"
             )}
           </button>
         </div>
@@ -67,4 +77,4 @@ const DeleteEvent = ({ event, close }: { event: Event; close: Function }) => {
   );
 };
 
-export default DeleteEvent;
+export default EditEvent;

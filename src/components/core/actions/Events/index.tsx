@@ -8,10 +8,11 @@ import { Event, Problem } from "@/typings";
 import { Modal, Menu, rem } from "@mantine/core";
 import { LuMailCheck } from "react-icons/lu";
 import DeleteEvent from "../../Modals/DeleteEvent";
+import EditEvent from "../../Modals/EditEvent";
 
 export default function EventsActions({ data }: { data: Event }) {
   const [openDelete, setOpenDelete] = useState(false);
-
+  const [openEdit, setOpenEdit] = useState(false);
   const deleteProblem = () => {
     setOpenDelete(true);
   };
@@ -26,6 +27,7 @@ export default function EventsActions({ data }: { data: Event }) {
 
       <Menu.Dropdown>
         <Menu.Item
+        onClick={()=> setOpenEdit(true)}
           leftSection={
             <HiDesktopComputer style={{ width: rem(14), height: rem(14) }} />
           }
@@ -49,6 +51,9 @@ export default function EventsActions({ data }: { data: Event }) {
       </Menu.Dropdown>
       <Modal opened={openDelete} onClose={() => setOpenDelete(false)}>
         <DeleteEvent event={data} close={() => setOpenDelete(false)} />
+      </Modal>
+      <Modal opened={openEdit} onClose={() => setOpenEdit(false)}>
+        <EditEvent event={data} close={() => setOpenEdit(false)} />
       </Modal>
     </Menu>
   );

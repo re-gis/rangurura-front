@@ -16,9 +16,9 @@ const Page = () => {
   const [suggestionsData, setSuggestionsData] = useState([]);
   const [loading2, setLoading2] = useState(true);
   const [loadingPage, setLoadingPage] = useState(true);
-  useEffect(()=>{
+  useEffect(() => {
     setLoadingPage(false);
-  },[])
+  }, []);
   useEffect(() => {
     setLoading2(true);
     ApiEndpoint.get("/problems/local")
