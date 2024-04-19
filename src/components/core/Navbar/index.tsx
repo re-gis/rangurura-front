@@ -34,6 +34,7 @@ import { getMyProfile } from "@/utils/funcs/funcs";
 import { notifications } from "@mantine/notifications";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Skeleton } from "@nextui-org/react";
+import ProfileDropDown from "./ProfileDropdown";
 interface Props {
   type: "citizen" | "leader" | "organisation";
 }
@@ -112,25 +113,6 @@ const Navbar = ({ type }: Props) => {
   return (
     <>
       <div className="w-full h-[15vh] md:h-[10vh] flex flex-col md:flex-row items-center justify-between mt-[10vh] md:mt-0">
-        <Modal opened={openedLogout} onClose={closeL} size={"sm"}>
-          <h5 className="w-full text-center">
-            Are you sure you want to logout ?
-          </h5>
-          <div className="flex w-full items-center justify-between px-4 mt-10">
-            <button
-              onClick={closeL}
-              className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#ccc] text-black"
-            >
-              cancel
-            </button>
-            <button
-              onClick={logout}
-              className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
-            >
-              Logout
-            </button>
-          </div>
-        </Modal>
         <div className="w-full md:w-[49%] h-4/5 flex items-center gap-1">
           <div className="w-[95%] h-[85%] relative">
             <input
@@ -175,62 +157,7 @@ const Navbar = ({ type }: Props) => {
           >
             <Image src={person} alt="" className="w-6 h-6" />
           </Link>
-          <Dropdown placement="bottom-start">
-            {loading ? (
-              <Skeleton className={"md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer"}/>
-            ) : (
-              <>
-                <DropdownTrigger>
-                  <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer">
-                    <Image
-                      src={personImg}
-                      alt=""
-                      className="w-14 h-14 rounded-[100%]"
-                    />
-                    <div className="flex-col hidden lg:flex">
-                      <h6 className="text-[11.4px] font-bold">
-                        {profile?.name}
-                      </h6>
-                      <p className="text-[11.4px] font-bold">
-                        {(type == "leader" || type == "organisation") &&
-                          profile?.district}
-                      </p>
-                    </div>
-                    <RiArrowDownSLine size={15} />
-                  </div>
-                </DropdownTrigger>
-              </>
-            )}
-            <DropdownMenu
-              aria-label="User Actions"
-              variant="flat"
-              className={"bg-white px-3 py-5"}
-            >
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-bold">Signed in as {profile?.name}</p>
-              </DropdownItem>
-              <DropdownItem key="settings" className="hover:bg-[#ccc]">
-                My Report
-              </DropdownItem>
-              <DropdownItem key="analytics" className="hover:bg-[#ccc]">
-                General Report
-              </DropdownItem>
-              <DropdownItem key="system" className="hover:bg-[#ccc]">
-                System Settings
-              </DropdownItem>
-              <DropdownItem key="help_and_feedback" className="hover:bg-[#ccc]">
-                Help & Feedback
-              </DropdownItem>
-              <DropdownItem
-                key="logout"
-                color="danger"
-                className="hover:bg-[#FF0000] hover:text-white"
-                onClick={openL}
-              >
-                Log Out
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <ProfileDropDown type={type}/>
         </div>
         <Spotlight
           actions={actions}

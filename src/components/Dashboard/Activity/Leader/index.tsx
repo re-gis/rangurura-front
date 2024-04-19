@@ -37,6 +37,8 @@ const Activity = () => {
       src: "/leader-dashboard/number_of_suggestions",
     });
 
+  console.log(unsolvedProblemsData, eventsData, suggestionsData);
+
   const timeFrame = [
     {
       key: "day",
@@ -77,7 +79,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {solvedProblemsData?.data?.data}
+              {solvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -88,7 +90,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {unsolvedProblemsData?.data?.data}
+              {unsolvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -98,8 +100,8 @@ const Activity = () => {
           {eventLoading ? (
             <p>Loading...</p>
           ) : (
-            <h4 className="text-[#000] font-extr text-[17px]">
-              {eventsData?.data?.data}
+            <h4 className="text-[#000] text-[17px]">
+              {eventsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -110,7 +112,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {suggestionsData?.data?.data}
+              {suggestionsData?.data ?? 0}
             </h4>
           )}
         </div>
