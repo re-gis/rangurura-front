@@ -1,22 +1,10 @@
-import Image from "next/image";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { PiClockFill } from "react-icons/pi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { GiVote } from "react-icons/gi";
-import { GrExpand } from "react-icons/gr";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-} from "@nextui-org/react";
-import { Key, useEffect, useMemo, useState } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import Header from "../Header";
+import { useMemo, useState } from "react";
+import Header from "@/components/Dashboard/Header";
 import { useGet } from "@/utils/funcs/useGet";
-import { jwtDecode } from "jwt-decode";
-import { getCookie } from "cookies-next";
 
 type useGetResp = {
   data: any;
@@ -32,13 +20,13 @@ const Activity = () => {
     data: solvedProblemsData,
     loading: solvedProblemsLoading,
   }: useGetResp = useGet({
-    src: "problems/number_of_approved_probs",
+    src: "/leader-dashboard/number_of_approved_probs",
   });
 
   const {
     data: unsolvedProblemsData,
     loading: unsolvedProblemsLoading,
-  }: useGetResp = useGet({ src: "/problems/number_of_pending_problems" });
+  }: useGetResp = useGet({ src: "/leader-dashboard/number_of_pending_probs" });
 
   const { data: eventsData, loading: eventLoading }: useGetResp = useGet({
     src: "/events/number_of_events",
@@ -46,8 +34,10 @@ const Activity = () => {
 
   const { data: suggestionsData, loading: suggestionsLoading }: useGetResp =
     useGet({
-      src: "/suggestions/number_of_all_ideas",
+      src: "/leader-dashboard/number_of_suggestions",
     });
+
+  console.log(unsolvedProblemsData, eventsData, suggestionsData);
 
   const timeFrame = [
     {
@@ -89,7 +79,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {solvedProblemsData?.data?.data}
+              {solvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -100,7 +90,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {unsolvedProblemsData?.data?.data}
+              {unsolvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -110,8 +100,8 @@ const Activity = () => {
           {eventLoading ? (
             <p>Loading...</p>
           ) : (
-            <h4 className="text-[#000] font-extr text-[17px]">
-              {eventsData?.data?.data}
+            <h4 className="text-[#000] text-[17px]">
+              {eventsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -122,7 +112,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {suggestionsData?.data?.data}
+              {suggestionsData?.data ?? 0}
             </h4>
           )}
         </div>

@@ -43,7 +43,7 @@ const Page = () => {
         }
         setLoading(false);
       })
-      .catch(() => {
+      .catch((err) => {
         setLoading(false);
       });
   }, []);

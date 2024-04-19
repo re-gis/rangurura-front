@@ -9,7 +9,6 @@ export const ApiEndpoint = axios.create({
   headers: {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
-    Connection: "keep-alive",
   },
 });
 export const problems: Problem[] = [];

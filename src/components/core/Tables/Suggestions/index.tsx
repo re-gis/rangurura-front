@@ -11,6 +11,7 @@ import TableSkeleton from "../../data-table/TableSkeleton";
 import no_data from "@/assets/images/no_data_gif.gif";
 import Image from "next/image";
 import SuggestionsActions from "../../actions/Suggestions";
+import TextToSpeech from "@/components/TTS";
 
 const SuggestionsTable = ({
   data,
@@ -44,6 +45,11 @@ const SuggestionsTable = ({
         ) : (
           <FaRegCheckSquare color="#00D560" />
         ),
+    },
+    {
+      accessorKey: "listen",
+      header: ({ column }) => <h3>Listen</h3>,
+      cell: ({ row }) => <TextToSpeech text={row.original.igitekerezo}/>,
     },
     {
       accessorKey: "Actions",

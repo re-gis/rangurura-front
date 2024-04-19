@@ -15,10 +15,12 @@ import { ApiEndpoint } from "@/constants";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { notifications } from "@mantine/notifications";
+import RedirectionLoader from "@/components/RedirectionLoader";
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useRouter();
+  const [redLoading, setRedLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [displayText, setDisplayText] = useState<string>(t("login.login"));
@@ -39,9 +41,12 @@ const Login = () => {
     axios
       .post("http://194.163.167.131:7400/api/v1/auth/login", formData)
       .then((res) => {
+        setLoading(false);
         setCookie("token", res.data.data);
         const decoded = jwtDecode(res.data.data) as { role: string };
-        if (decoded.role == "UMUYOBOZI" || decoded.role == "ADMIN") {
+        if (decoded.role?.toLowerCase() == "umuyobozi") {
+          setDisplayText("Redirecting ...");
+          setRedLoading(true);
           navigate.push("/app/leader");
           notifications.show({
             title: "Leader Login",
@@ -49,7 +54,18 @@ const Login = () => {
             autoClose: 5000,
             icon: <FaRegCheckCircle />,
           });
-        } else if (decoded.role == "UMUTURAGE") {
+        }
+        if (decoded.role?.toLowerCase() == "admin") {
+          setDisplayText("Redirecting ...");
+          setRedLoading(true);
+          navigate.push("/app/admin");
+          notifications.show({
+            title: "Admin Login",
+            message: "Admin Logged in successfully!",
+            autoClose: 5000,
+            icon: <FaRegCheckCircle />,
+          });
+        } else if (decoded.role?.toLowerCase() == "umuturage") {
           navigate.push("/app/citizen");
           notifications.show({
             title: "Citizen Login",
@@ -60,6 +76,7 @@ const Login = () => {
           setLoading(false);
           navigate.push("/app/citizen");
           setDisplayText("Redirecting ...");
+          setRedLoading(true);
         } else {
           notifications.show({
             title: "Auth Error",
@@ -79,6 +96,7 @@ const Login = () => {
             String(err?.response?.data?.error) ==
             "Verify the account to continue!"
           ) {
+            setRedLoading(true);
             return navigate.push("/verify");
           }
           return notifications.show({
@@ -186,6 +204,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      {redLoading && <RedirectionLoader />}
     </section>
   );
 };

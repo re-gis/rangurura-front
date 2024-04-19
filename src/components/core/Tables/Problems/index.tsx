@@ -22,6 +22,7 @@ import Image from "next/image";
 import { FaRegEye } from "react-icons/fa";
 import { IoDocumentAttach } from "react-icons/io5";
 import { MdOutlineFileDownload } from "react-icons/md";
+import TextToSpeech from "@/components/TTS";
 
 type Problem = {
   level: string;
@@ -106,8 +107,13 @@ const ProblemsTable = ({
     },
     {
       accessorKey: "Level",
-      header: ({ column }) => <h4>Level</h4>,
+      header: ({ column }) => <h4>Listen</h4>,
       cell: ({ row }) => <h6 className="text-[80%]">{row.original.urwego}</h6>,
+    },
+    {
+      accessorKey: "Listen",
+      header: ({ column }) => <></>,
+      cell: ({ row }) => <TextToSpeech text={row.original?.ikibazo}/>,
     },
     {
       accessorKey: "Actions",

@@ -51,6 +51,10 @@ export type Event = {
   descriptions: string;
   owner: string;
   id: string;
+  startTime: string;
+  endTime: string;
+  organizationLevel: string;
+  category: string;
 };
 
 export interface Route {
