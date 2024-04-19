@@ -27,7 +27,7 @@ export default function EventsActions({ data }: { data: Event }) {
 
       <Menu.Dropdown>
         <Menu.Item
-        onClick={()=> setOpenEdit(true)}
+          onClick={() => setOpenEdit(true)}
           leftSection={
             <HiDesktopComputer style={{ width: rem(14), height: rem(14) }} />
           }

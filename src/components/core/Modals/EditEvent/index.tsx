@@ -8,20 +8,20 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
   const [loading, setLoading] = React.useState(false);
-  const [newDesc, setNewDesc] = React.useState(event?.descriptions)
+  const [newDesc, setNewDesc] = React.useState(event?.descriptions);
   const editEvent = () => {
     setLoading(true);
     const newEvent = {
-        "category": event.category,
-        "descriptions": newDesc,
-        "endDate": event.endDate,
-        "endTime": event.endTime,
-        "eventName": event.eventName,
-        "location": event.location,
-        "organizationLevel": event.organizationLevel,
-        "startDate": event.startDate,
-        "startTime" : event.startTime
-    }
+      category: event.category,
+      descriptions: newDesc,
+      endDate: event.endDate,
+      endTime: event.endTime,
+      eventName: event.eventName,
+      location: event.location,
+      organizationLevel: event.organizationLevel,
+      startDate: event.startDate,
+      startTime: event.startTime,
+    };
     ApiEndpoint.put(`/events/update_event/${event.id}`, newEvent)
       .then((res) => {
         notifications.show({
@@ -46,12 +46,16 @@ const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
   return (
     <div className="w-full h-full flex flex-col gap-3 items-center">
       <header className="w-full text-center font-extrabold text-lg">
-        Edit Event
+        Edit Announcement
       </header>
       <div className="w-full flex flex-col">
         <h2>Name: {event?.eventName}</h2>
-        <h2>Description: </h2>
-        <textarea value={newDesc} onChange={(e: any)=> setNewDesc(e.target.value)} className="border border-[#ccc] my-3 p-2 text-justify rounded-lg text-[90%] bg-[#f1f6ff] resize-none"/>
+        <h2 className="mt-3 text-[90%] mb-[-0.71rem] font-bold">Edit Description: </h2>
+        <textarea
+          value={newDesc}
+          onChange={(e: any) => setNewDesc(e.target.value)}
+          className="border border-[#ccc] outline outline-blue-500 caret-blue-500 my-3 p-2 text-justify rounded-lg text-[90%] bg-[#f1f6ff] resize-none"
+        />
         <div className="w-full mt-5 flex justify-between md:px-[10%]">
           <button
             onClick={() => close()}
@@ -60,8 +64,9 @@ const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
             Cancel
           </button>
           <button
+            disabled={event.descriptions === newDesc}
             onClick={editEvent}
-            className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#0075FF] text-white"
+            className={`py-3 px-8 rounded-3xl flex items-center justify-center ${event.descriptions === newDesc && "cursor-not-allowed"} bg-[#0075FF] text-white`}
           >
             {loading ? (
               <div className="w-full h-full flex items-center justify-center">
