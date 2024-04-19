@@ -50,7 +50,9 @@ const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
       </header>
       <div className="w-full flex flex-col">
         <h2>Name: {event?.eventName}</h2>
-        <h2 className="mt-3 text-[90%] mb-[-0.71rem] font-bold">Edit Description: </h2>
+        <h2 className="mt-3 text-[90%] mb-[-0.71rem] font-bold">
+          Edit Description:{" "}
+        </h2>
         <textarea
           value={newDesc}
           onChange={(e: any) => setNewDesc(e.target.value)}
@@ -66,7 +68,9 @@ const EditEvent = ({ event, close }: { event: Event; close: Function }) => {
           <button
             disabled={event.descriptions === newDesc}
             onClick={editEvent}
-            className={`py-3 px-8 rounded-3xl flex items-center justify-center ${event.descriptions === newDesc && "cursor-not-allowed"} bg-[#0075FF] text-white`}
+            className={`py-3 px-8 rounded-3xl flex items-center justify-center ${
+              event.descriptions === newDesc && "cursor-not-allowed"
+            } bg-[#0075FF] text-white`}
           >
             {loading ? (
               <div className="w-full h-full flex items-center justify-center">

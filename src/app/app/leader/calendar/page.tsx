@@ -1,6 +1,6 @@
 "use client";
 
-import Activity from "@/components/Dashboard/Activity";
+import Activity from "@/components/Dashboard/Activity/Leader";
 import ProblemsCategories from "@/components/Dashboard/ProblemCategories";
 import dayjs from "dayjs";
 import { useState } from "react";

@@ -17,9 +17,10 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { useDisclosure } from "@mantine/hooks";
 import { setCookie } from "cookies-next";
 import { notifications } from "@mantine/notifications";
+import { ClipLoader } from "react-spinners";
 
 export default function ProfileDropDown({ type }: { type: string }) {
-  const [openDelete, setOpenDelete] = useState(false);
+  const [loadingLogout, setLoadingLogout] = useState(false);
   const [loading, setLoading] = useState(true);
   const [opened, { open, close }] = useDisclosure(false);
   const [profile, setProfile] = useState({
@@ -56,6 +57,7 @@ export default function ProfileDropDown({ type }: { type: string }) {
       autoClose: 5000,
       icon: <FaRegCheckCircle />,
     });
+    setLoadingLogout(true);
     navigate.push("/");
   };
 
@@ -139,7 +141,11 @@ export default function ProfileDropDown({ type }: { type: string }) {
                 onClick={logout}
                 className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
               >
-                Logout
+                {loadingLogout ? 
+                <div className="w-full h-full flex justify-center items-center">
+                  <ClipLoader size={20} color="white"/>
+                </div>
+                 : "Logout"}
               </button>
             </div>
           </Modal>

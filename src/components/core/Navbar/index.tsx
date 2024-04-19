@@ -84,7 +84,6 @@ const Navbar = ({ type }: Props) => {
     verified: true,
     village: "",
   });
-  const [openedLogout, { openL, closeL }] = useDisclosure(false);
   const navigate = useRouter();
   const logout = () => {
     setCookie("token", undefined);
