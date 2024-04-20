@@ -49,7 +49,7 @@ const SuggestionsTable = ({
     {
       accessorKey: "listen",
       header: ({ column }) => <h3>Listen</h3>,
-      cell: ({ row }) => <TextToSpeech text={row.original.igitekerezo}/>,
+      cell: ({ row }) => <TextToSpeech text={row.original.igitekerezo} />,
     },
     {
       accessorKey: "Actions",
