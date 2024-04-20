@@ -9,6 +9,7 @@ import Image from "next/image";
 import SwitchLanguages from "@/components/core/SwitchLanguage";
 import { useTranslation } from "react-i18next";
 import { FaArrowUp } from "react-icons/fa6";
+import { BackgroundBeams } from "../ui/background-beams";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -126,7 +127,7 @@ const NavBar = () => {
             {t("website.navbar.signup")}
           </Link>
         </div>
-        <div className="md:flex hidden md:w-[20%] w-30 min-w-[240px]">
+        <div className="md:flex hidden md:w-[20%] w-30 min-w-[240px] relative">
           <Image src={phone} alt="" className="" />
         </div>
       </div>
@@ -139,6 +140,8 @@ const NavBar = () => {
           <FaArrowUp color="white" />
         </div>
       )}
+
+      <BackgroundBeams />
     </nav>
   );
 };

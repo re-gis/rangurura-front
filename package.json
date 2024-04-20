@@ -26,9 +26,10 @@
     "@tanstack/react-table": "^8.11.2",
     "@tremor/react": "^3.13.2",
     "axios": "^1.6.5",
+    "clsx": "^2.1.0",
     "cookies-next": "^4.1.1",
     "dayjs": "^1.11.10",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^10.18.0",
     "i18next": "^23.7.17",
     "i18next-http-backend": "^2.4.2",
     "jwt-decode": "^4.0.0",
@@ -48,7 +49,8 @@
     "redux": "^5.0.1",
     "sharp": "^0.33.3",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.0.7"
+    "swiper": "^11.0.7",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
