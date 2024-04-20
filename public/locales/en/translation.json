@@ -154,5 +154,15 @@
     "signin": "Sign in",
     "signup": "Sign up",
     "all_rights": "Rangurura. All right reserved"
+  },
+  "suggestion_form":{
+    "title":"Give suggestion",
+    "where":"Choose organisation where you want to give suggestion",
+    "local":"Local organisations",
+    "security":"Security organisations",
+    "choose_local1":"Sector",
+    "choose_local2":"Cell",
+    "choose_local3":"District",
+    "choose_local4":"Province"
   }
 }

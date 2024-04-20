@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-const {t,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <section
       className="flex flex-col justify-between p-4 w-full gap-4 md:py-[6vh] footer-section"
@@ -31,9 +31,7 @@ const {t,i18n} = useTranslation();
               </a>
             </h3>
           </div>
-          <p className="text-left font-light">
-          {t("footer.title_desc")}
-          </p>
+          <p className="text-left font-light">{t("footer.title_desc")}</p>
           <div className="flex flex-row justify-between font-semibold">
             <Link href="#home">{t("footer.home")}</Link>
             <Link href="#qns">{t("footer.problems")}</Link>
