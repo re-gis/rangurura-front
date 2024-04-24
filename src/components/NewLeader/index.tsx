@@ -160,16 +160,21 @@
 // };
 // export default NewLeader;
 
-"use client"
+"use client";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import logo from "@/assets/images/logo-dark (1).png";
 import Link from "next/link";
 import Image from "next/image";
 import { ApiEndpoint, districts } from "@/constants";
 import { Select } from "@mantine/core";
-import { leaders,leaderCategory, categories, organisationLevels } from "@/constants/Enums";
+import {
+  leaders,
+  leaderCategory,
+  categories,
+  organisationLevels,
+} from "@/constants/Enums";
 import CustomMultiSelect from "../core/MultiSelect";
-import { Cells, Sectors, Districts, Provinces ,Villages} from "rwanda";
+import { Cells, Sectors, Districts, Provinces, Villages } from "rwanda";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import { notifications } from "@mantine/notifications";
@@ -186,8 +191,8 @@ const NewLeader = ({ close }: { close: Function }) => {
   const [role, setRole] = useState("");
   const [selected, setSelected] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-const [userRole,setUserRole] =useState();
-const [isModelOpen,setIsModelOpen] = useState(false);
+  const [userRole, setUserRole] = useState();
+  const [isModelOpen, setIsModelOpen] = useState(false);
 
   useEffect(() => {
     // Get token from localStorage or wherever it's stored
@@ -199,17 +204,24 @@ const [isModelOpen,setIsModelOpen] = useState(false);
       // Automatically set the organization level based on user's role
       if (decodedToken.role === "ADMIN") {
         setOrganisationLevel("INTARA");
-      } else if (decodedToken.role === "UMUYOBOZI" && decodedToken.organisationLevel === "AKARERE") {
+      } else if (
+        decodedToken.role === "UMUYOBOZI" &&
+        decodedToken.organisationLevel === "AKARERE"
+      ) {
         setOrganisationLevel("UMURENGE");
-      } else if (decodedToken.role === "UMUYOBOZI" && decodedToken.organisationLevel === "UMURENGE") {
+      } else if (
+        decodedToken.role === "UMUYOBOZI" &&
+        decodedToken.organisationLevel === "UMURENGE"
+      ) {
         setOrganisationLevel("AKAGARI");
-      } else if (decodedToken.role === "UMUYOBOZI" && decodedToken.organisationLevel === "AKAGARI") {
+      } else if (
+        decodedToken.role === "UMUYOBOZI" &&
+        decodedToken.organisationLevel === "AKAGARI"
+      ) {
         setOrganisationLevel("UMUDUGUDU");
-      } 
+      }
     }
   }, []);
-
-
 
   const submit = async (e: any) => {
     e.preventDefault();
@@ -225,28 +237,28 @@ const [isModelOpen,setIsModelOpen] = useState(false);
       organizationLevel: organisationLevel,
       phoneNumber: leader?.phoneNumber,
       province: leader?.province,
-      role:leader?.role,
+      role: leader?.role,
       sector: leader?.sector,
       village: leader?.village,
     };
- 
-    const handleIdChange=(e:any)=>{
+
+    const handleIdChange = (e: any) => {
       e.preventDefault();
-      const userId ={
+      const userId = {
         nationalId: leader?.nationalId,
-      }
+      };
       ApiEndpoint.post(`/users/${userId}`, userId)
-      .then((res: any) => {
-         if(res?.data?.role === "leader"){
-          console.log('already a leader let update')
-         }else(res?.data?.role ==="")
-      })
-      .catch((err: any) => {
-        console.log('user not found')
-        setIsModelOpen(true);
-      })
-      .finally(() => setLoading(false));
-  };
+        .then((res: any) => {
+          if (res?.data?.role === "leader") {
+            console.log("already a leader let update");
+          } else res?.data?.role === "";
+        })
+        .catch((err: any) => {
+          console.log("user not found");
+          setIsModelOpen(true);
+        })
+        .finally(() => setLoading(false));
+    };
     ApiEndpoint.post("/leaders/addLeader", formData)
       .then((res: any) => {
         notifications.show({
@@ -255,11 +267,11 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           autoClose: 5000,
           icon: <FaRegCheckCircle />,
         });
-    
+
         setCategory("");
         setLeadCategory("");
         setLocation("");
-        setRole("")
+        setRole("");
         close();
       })
       .catch((err: any) => {
@@ -311,28 +323,28 @@ const [isModelOpen,setIsModelOpen] = useState(false);
                 National id
               </label>
               <input
-              type="text"
-              name="nationalId"
-              placeholder="123456789123457"
-              className="sub_input  rounded-lg px-3"
-              required
-              onChange={handleIdChange}
-            />
+                type="text"
+                name="nationalId"
+                placeholder="123456789123457"
+                className="sub_input  rounded-lg px-3"
+                required
+                onChange={handleIdChange}
+              />
             </div>
           </div>
           <div className="main_input">
             <div className="flex-col flex-1">
               <label htmlFor="organisationLevel" className="font-bold">
-              Organisation Level
+                Organisation Level
               </label>
               <input
-              // type="text"
-              name="organisationLevel"
-              placeholder="Akagari"
-              value={organisationLevel}
-              className="sub_input  rounded-lg px-3"
-              required
-            />
+                // type="text"
+                name="organisationLevel"
+                placeholder="Akagari"
+                value={organisationLevel}
+                className="sub_input  rounded-lg px-3"
+                required
+              />
             </div>
           </div>
           <div className="main_input">
@@ -350,7 +362,7 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           <div className="main_input">
             <div className="flex-col flex-1 ">
               <label htmlFor="intara" className="font-bold">
-            Role
+                Role
               </label>
               <Select
                 data={leaderCategory}
@@ -387,8 +399,8 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           </div>
         </form>
       </div>
-     <Modal>
-     <form
+      <Modal>
+        <form
           onSubmit={submit}
           className=" w-full flex flex-col gap-5 justify-center md:px-10 px-6 pt-4"
         >
@@ -398,26 +410,26 @@ const [isModelOpen,setIsModelOpen] = useState(false);
                 Names
               </label>
               <input
-              type="text"
-              name="names"
-              placeholder="Amazina"
-              className="sub_input  rounded-lg px-3"
-              required
-            />
+                type="text"
+                name="names"
+                placeholder="Amazina"
+                className="sub_input  rounded-lg px-3"
+                required
+              />
             </div>
           </div>
           <div className="main_input">
             <div className="flex-col flex-1">
               <label htmlFor="phoneNumber" className="font-bold">
-              Phone number
+                Phone number
               </label>
               <input
-              type="number"
-              name="phoneNumber"
-              placeholder="phoneNumber"
-              className="sub_input  rounded-lg px-3"
-              required
-            />
+                type="number"
+                name="phoneNumber"
+                placeholder="phoneNumber"
+                className="sub_input  rounded-lg px-3"
+                required
+              />
             </div>
           </div>
           <div className="main_input">
@@ -447,7 +459,7 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           <div className="main_input">
             <div className="flex-col flex-1 ">
               <label htmlFor="intara" className="font-bold">
-              Umurenge
+                Umurenge
               </label>
               <Select
                 data={Sectors}
@@ -459,7 +471,7 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           <div className="main_input">
             <div className="flex-col flex-1 ">
               <label htmlFor="akagari" className="font-bold">
-               Akagari
+                Akagari
               </label>
               <Select
                 data={Cells}
@@ -471,7 +483,7 @@ const [isModelOpen,setIsModelOpen] = useState(false);
           <div className="main_input">
             <div className="flex-col flex-1 ">
               <label htmlFor="umudugudu" className="font-bold">
-               Umudugudu
+                Umudugudu
               </label>
               <Select
                 data={Villages}
@@ -495,7 +507,7 @@ const [isModelOpen,setIsModelOpen] = useState(false);
             </button>
           </div>
         </form>
-     </Modal>
+      </Modal>
       <div></div>
     </div>
   );
@@ -505,5 +517,3 @@ export default NewLeader;
 function jwt_decode(token: string): any {
   throw new Error("Function not implemented.");
 }
-
-

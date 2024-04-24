@@ -96,7 +96,6 @@ export const governmentOrgs = [
   },
 ];
 
-
 export const leaderCategory = [
   {
     label: "Umuyobozi mukuru",
