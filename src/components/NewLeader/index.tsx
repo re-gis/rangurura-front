@@ -21,6 +21,7 @@ import { getCookies } from "cookies-next";
 const NewLeader = ({ close }: { close: Function }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
+  const[nationalId,setNationalId] = useState("")
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
   const [sector, setSector] = useState("");
@@ -31,11 +32,10 @@ const NewLeader = ({ close }: { close: Function }) => {
   const [category, setCategory] = useState("");
   const [leadCategory, setLeadCategory] = useState("");
   const [location, setLocation] = useState("");
-  const [selected, setSelected] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
-
+  
 
   useEffect(() => {
     // Get token from cookies
@@ -45,7 +45,7 @@ const NewLeader = ({ close }: { close: Function }) => {
       setUserRole(decodedToken.role);
       // Automatically set the organisation level based on the user's role
       if (decodedToken.role === "ADMIN") {
-        setOrganisationLevel("Intara");
+        setOrganisationLevel("INTARA");
       } else if (
         decodedToken.role === "UMUYOBOZI" &&
         decodedToken.organisationLevel === "AKARERE"
@@ -61,52 +61,21 @@ const NewLeader = ({ close }: { close: Function }) => {
         decodedToken.organisationLevel === "AKAGARI"
       ) {
         setOrganisationLevel("UMUDUGUDU");
-      } 
+      }
     }
   }, []);
 
-  // const handleChange = async (e: any) => {
-  //   const nationalId = e.target.value; 
-  //   try {
-  //     const res = await ApiEndpoint.post(`users/get_user_by_national_id`, {
-  //       nationalId,
-  //     });
-  //     if (res?.data) {
-  //       if (res?.data?.data?.role === "UMUTURAGE") {
-  //         console.log("I'm umuturage");
-  //         setPhoneNumber(res.data?.data?.phoneNumber);
-  //         setCell(res?.data?.data?.cell);
-  //         setDistrict(res?.data?.data?.district);
-  //         setName(res?.data?.data?.name);
-  //         setProvince(res?.data?.data.province);
-  //         setSector(res?.data?.data.sector);
-  //         setVillage(res?.data?.data.village);
-  //       } else if (res?.data?.data?.role === "UMUYOBOZI") {
-  //         console.log("Already a leader, let's update");
-  //       } else {
-  //         console.log("Do not have an account");
-  //         setIsModelOpen(true);
-  //       }
-  //     } else {
-  //       console.log("No user found with the provided national ID");
-  //     }
-  //   } catch (err) {
-  //     console.log("An error occurred", err);
-  //   } finally {
-  //     setLoading(false); 
-  //   }
-  // };
-
   const handleChange = async (e: any) => {
-    const nationalId = e.target.value; 
+    const nationalId = e.target.value;
     try {
       const res = await ApiEndpoint.post(`users/get_user_by_national_id`, {
         nationalId,
       });
-      console.log("API response:", res); 
+      console.log("API response:", res);
       if (res?.data) {
         if (res?.data?.data?.role === "UMUTURAGE") {
           console.log("I'm umuturage");
+          setNationalId(nationalId);
           setPhoneNumber(res.data?.data?.phone);
           setCell(res?.data?.data?.cell);
           setDistrict(res?.data?.data?.district);
@@ -116,9 +85,19 @@ const NewLeader = ({ close }: { close: Function }) => {
           setVillage(res?.data?.data.village);
         } else if (res?.data?.data?.role === "UMUYOBOZI") {
           console.log("Already a leader, let's update");
+          setNationalId(nationalId);
+          setPhoneNumber(res.data?.data?.phone);
+          setCell(res?.data?.data?.cell);
+          setDistrict(res?.data?.data?.district);
+          setName(res?.data?.data?.realName);
+          setProvince(res?.data?.data.province);
+          setSector(res?.data?.data.sector);
+          setVillage(res?.data?.data.village);
+          
         } else {
           console.log("Do not have an account");
-          setIsModelOpen(true);
+          setNationalId(nationalId);
+          setIsModelOpen(true)
         }
       } else {
         console.log("No user found with the provided national ID");
@@ -126,27 +105,25 @@ const NewLeader = ({ close }: { close: Function }) => {
     } catch (err) {
       console.log("An error occurred", err);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
-  
   const submit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    const leader = JSON.parse(selected ?? "{}");
     const formData = {
       category: category,
-      cell: leader?.cell,
-      district: leader?.district,
+      cell: cell,
+      district: district,
       location: location,
-      name: leader?.name,
-      nationalId: leader?.nationalId,
+      name: name,
+      nationalId: nationalId,
       organizationLevel: organisationLevel,
-      phoneNumber: leader?.phoneNumber,
-      province: leader?.province,
-      role: leader?.role,
-      sector: leader?.sector,
-      village: leader?.village,
+      phoneNumber:phoneNumber,
+      province:province,
+      role: leadCategory,
+      sector: sector,
+      village: village,
     };
 
     // Submit leader data
@@ -166,41 +143,6 @@ const NewLeader = ({ close }: { close: Function }) => {
         setCategory("");
         setLeadCategory("");
         setLocation("");
-        close();
-      })
-      .catch((err: any) => {
-        // Show error toast
-        toast.error(err.message);
-        console.log(err);
-        setLoading(false);
-      })
-      .finally(() => setLoading(false));
-  };
-
-  const submitAdditionalInfo = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    const formData = {
-      category: category,
-      cell: cell,
-      district: district,
-      location: location,
-      name: name,
-      nationalId: selected?.nationalId,
-      organizationLevel: organisationLevel,
-      phoneNumber: phoneNumber,
-      province: province,
-      role: leadCategory,
-      sector: sector,
-      village: village,
-    };
-
-    // Submit additional information
-    ApiEndpoint.post("/leaders/addLeader", formData)
-      .then((res: any) => {
-        // Show success notification
-        toast.success("Additional information submitted successfully");
-        setLoading(false);
         close();
       })
       .catch((err: any) => {
@@ -320,6 +262,142 @@ const NewLeader = ({ close }: { close: Function }) => {
               />
             </div>
           </div>
+          {isModelOpen && (
+            <div>
+              <h2 className="">The user has no account in Rangurura so you will have to fill in additional information</h2>
+              <div className="main_input">
+            <div className="flex-col flex-1">
+              <label htmlFor="name" className="font-bold">
+                Phone number
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Isamaza Sylvin"
+                className="sub_input rounded-lg px-3"
+                required
+                onChange={(e: any)=> setName(e.target.value)}
+              />
+            </div>
+              </div>
+              <div className="main_input">
+            <div className="flex-col flex-1">
+              <label htmlFor="phone" className="font-bold">
+                Phone number
+              </label>
+              <input
+                type="number"
+                name="phone"
+                placeholder="+250788006677"
+                className="sub_input rounded-lg px-3"
+                required
+                onChange={(e: any)=> setPhoneNumber(e.target.value)}
+              />
+            </div>
+              </div>
+              <div className="main_input">
+              <div className="flex-col flex-1 ">
+                <label htmlFor="intara">Province</label>
+                <select
+                  name="province"
+                  id="intara"
+                  className="sub_input"
+                  onChange={(e: any)=> setProvince(e.target.value)}
+                  required
+                >
+                  {/* <option></option> */}
+                  {Provinces().map((province: string) => {
+                    return <option value={province}>{province}</option>;
+                  })}
+                </select>
+              </div> 
+              </div>
+            
+              <div className="main_input">
+              <div className="flex-col flex-1 ">
+                <label htmlFor="akarere">District</label>
+                <select
+                  name="district"
+                  id="akarere"
+                  className={`sub_input`}
+                  onChange={(e: any)=> setDistrict(e.target.value)}
+                  required
+                  // disabled={formData.province === ""}
+                >
+                  {/* <option></option> */}
+                  {Districts(province)?.map((district: string) => {
+                    return <option value={district}>{district}</option>;
+                  })}
+                </select>
+              </div>
+              </div>
+              <div className="main_input">
+              <div className="flex-col flex-1 ">
+                <label htmlFor="umurenge">Sector</label>
+                <select
+                  name="sector"
+                  id="umurenge"
+                  className="sub_input"
+                  onChange={(e: any)=> setSector(e.target.value)}
+                  required
+                >
+                  {/* <option></option> */}
+                  {Sectors(province, district)?.map(
+                    (sector: string) => {
+                      return <option value={sector}>{sector}</option>;
+                    },
+                  )}
+                </select>
+              </div>
+            </div>
+            <div className="main_input">
+              <div className="flex-col flex-1 ">
+                <label htmlFor="akagari">Cell</label>
+                <select
+                  name="cell"
+                  id="akagari"
+                  className="sub_input"
+                  onChange={(e: any)=> setCell(e.target.value)}
+                  required
+                >
+                  {/* <option></option> */}
+                  {Cells(
+                    province,
+                    district,
+                    sector,
+                  )?.map((cell: string) => {
+                    return <option value={cell}>{cell}</option>;
+                  })}
+                </select>
+              </div>
+              </div>
+              <div className="main_input">
+              <div className="flex-col flex-1 ">
+                <label htmlFor="umudugudu">Villages</label>
+                <select
+                  name="village"
+                  id="umudugudu"
+                  className="sub_input"
+                  onChange={(e: any)=> setVillage(e.target.value)}
+                  required
+                >
+                  {/* <option></option> */}
+                  {Villages(
+                    province,
+                    district,
+                    sector,
+                    cell,
+                  )?.map((village: string) => {
+                    return <option value={village}>{village}</option>;
+                  })}
+                </select>
+              </div>
+            </div>
+
+            
+            </div>
+          )}
+
           {/* Submit Button */}
           <div className="flex items-center justify-center">
             <button
@@ -337,64 +415,6 @@ const NewLeader = ({ close }: { close: Function }) => {
           </div>
         </form>
       </div>
-      {/* Modal for Additional Information */}
-      <Modal open={isModelOpen} onClose={() => setIsModelOpen(false)}>
-        {/* Additional Information Form */}
-        <form onSubmit={submitAdditionalInfo} className="flex flex-col gap-5">
-          {/* Phone Number */}
-          <input
-            type="text"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          {/* Cell */}
-          <Select
-            data={Cells()}
-            value={cell}
-            onChange={(value: any) => setCell(value)}
-            placeholder="Select Cell"
-          />
-          {/* District */}
-          <Select
-            data={Districts()}
-            value={district}
-            onChange={(value: any) => setDistrict(value)}
-            placeholder="Select District"
-          />
-          {/* Name */}
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          {/* Province */}
-          <Select
-            data={Provinces()}
-            value={province}
-            onChange={(value: any) => setProvince(value)}
-            placeholder="Select Province"
-          />
-          {/* Sector */}
-          <Select
-            data={Sectors()}
-            value={sector}
-            onChange={(value: any) => setSector(value)}
-            placeholder="Select Sector"
-          />
-          {/* Village */}
-          <Select
-            data={Villages()}
-            value={village}
-            onChange={(value: any) => setVillage(value)}
-            placeholder="Select Village"
-          />
-
-          {/* Submit Button */}
-          <button type="submit">Submit</button>
-        </form>
-      </Modal>
     </div>
   );
 };
