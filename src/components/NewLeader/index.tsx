@@ -21,7 +21,7 @@ import { getCookies } from "cookies-next";
 const NewLeader = ({ close }: { close: Function }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
-  const[nationalId,setNationalId] = useState("")
+  const [nationalId, setNationalId] = useState("");
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
   const [sector, setSector] = useState("");
@@ -35,7 +35,6 @@ const NewLeader = ({ close }: { close: Function }) => {
   const [loading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
-  
 
   useEffect(() => {
     // Get token from cookies
@@ -93,11 +92,10 @@ const NewLeader = ({ close }: { close: Function }) => {
           setProvince(res?.data?.data.province);
           setSector(res?.data?.data.sector);
           setVillage(res?.data?.data.village);
-          
         } else {
           console.log("Do not have an account");
           setNationalId(nationalId);
-          setIsModelOpen(true)
+          setIsModelOpen(true);
         }
       } else {
         console.log("No user found with the provided national ID");
@@ -119,8 +117,8 @@ const NewLeader = ({ close }: { close: Function }) => {
       name: name,
       nationalId: nationalId,
       organizationLevel: organisationLevel,
-      phoneNumber:phoneNumber,
-      province:province,
+      phoneNumber: phoneNumber,
+      province: province,
       role: leadCategory,
       sector: sector,
       village: village,
@@ -264,137 +262,129 @@ const NewLeader = ({ close }: { close: Function }) => {
           </div>
           {isModelOpen && (
             <div>
-              <h2 className="">The user has no account in Rangurura so you will have to fill in additional information</h2>
+              <h2 className="">
+                The user has no account in Rangurura so you will have to fill in
+                additional information
+              </h2>
               <div className="main_input">
-            <div className="flex-col flex-1">
-              <label htmlFor="name" className="font-bold">
-                Phone number
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Isamaza Sylvin"
-                className="sub_input rounded-lg px-3"
-                required
-                onChange={(e: any)=> setName(e.target.value)}
-              />
-            </div>
-              </div>
-              <div className="main_input">
-            <div className="flex-col flex-1">
-              <label htmlFor="phone" className="font-bold">
-                Phone number
-              </label>
-              <input
-                type="number"
-                name="phone"
-                placeholder="+250788006677"
-                className="sub_input rounded-lg px-3"
-                required
-                onChange={(e: any)=> setPhoneNumber(e.target.value)}
-              />
-            </div>
+                <div className="flex-col flex-1">
+                  <label htmlFor="name" className="font-bold">
+                    Phone number
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Isamaza Sylvin"
+                    className="sub_input rounded-lg px-3"
+                    required
+                    onChange={(e: any) => setName(e.target.value)}
+                  />
+                </div>
               </div>
               <div className="main_input">
-              <div className="flex-col flex-1 ">
-                <label htmlFor="intara">Province</label>
-                <select
-                  name="province"
-                  id="intara"
-                  className="sub_input"
-                  onChange={(e: any)=> setProvince(e.target.value)}
-                  required
-                >
-                  {/* <option></option> */}
-                  {Provinces().map((province: string) => {
-                    return <option value={province}>{province}</option>;
-                  })}
-                </select>
-              </div> 
-              </div>
-            
-              <div className="main_input">
-              <div className="flex-col flex-1 ">
-                <label htmlFor="akarere">District</label>
-                <select
-                  name="district"
-                  id="akarere"
-                  className={`sub_input`}
-                  onChange={(e: any)=> setDistrict(e.target.value)}
-                  required
-                  // disabled={formData.province === ""}
-                >
-                  {/* <option></option> */}
-                  {Districts(province)?.map((district: string) => {
-                    return <option value={district}>{district}</option>;
-                  })}
-                </select>
-              </div>
+                <div className="flex-col flex-1">
+                  <label htmlFor="phone" className="font-bold">
+                    Phone number
+                  </label>
+                  <input
+                    type="number"
+                    name="phone"
+                    placeholder="+250788006677"
+                    className="sub_input rounded-lg px-3"
+                    required
+                    onChange={(e: any) => setPhoneNumber(e.target.value)}
+                  />
+                </div>
               </div>
               <div className="main_input">
-              <div className="flex-col flex-1 ">
-                <label htmlFor="umurenge">Sector</label>
-                <select
-                  name="sector"
-                  id="umurenge"
-                  className="sub_input"
-                  onChange={(e: any)=> setSector(e.target.value)}
-                  required
-                >
-                  {/* <option></option> */}
-                  {Sectors(province, district)?.map(
-                    (sector: string) => {
-                      return <option value={sector}>{sector}</option>;
-                    },
-                  )}
-                </select>
+                <div className="flex-col flex-1 ">
+                  <label htmlFor="intara">Province</label>
+                  <select
+                    name="province"
+                    id="intara"
+                    className="sub_input"
+                    onChange={(e: any) => setProvince(e.target.value)}
+                    required
+                  >
+                    {/* <option></option> */}
+                    {Provinces().map((province: string) => {
+                      return <option value={province}>{province}</option>;
+                    })}
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="main_input">
-              <div className="flex-col flex-1 ">
-                <label htmlFor="akagari">Cell</label>
-                <select
-                  name="cell"
-                  id="akagari"
-                  className="sub_input"
-                  onChange={(e: any)=> setCell(e.target.value)}
-                  required
-                >
-                  {/* <option></option> */}
-                  {Cells(
-                    province,
-                    district,
-                    sector,
-                  )?.map((cell: string) => {
-                    return <option value={cell}>{cell}</option>;
-                  })}
-                </select>
-              </div>
-              </div>
-              <div className="main_input">
-              <div className="flex-col flex-1 ">
-                <label htmlFor="umudugudu">Villages</label>
-                <select
-                  name="village"
-                  id="umudugudu"
-                  className="sub_input"
-                  onChange={(e: any)=> setVillage(e.target.value)}
-                  required
-                >
-                  {/* <option></option> */}
-                  {Villages(
-                    province,
-                    district,
-                    sector,
-                    cell,
-                  )?.map((village: string) => {
-                    return <option value={village}>{village}</option>;
-                  })}
-                </select>
-              </div>
-            </div>
 
-            
+              <div className="main_input">
+                <div className="flex-col flex-1 ">
+                  <label htmlFor="akarere">District</label>
+                  <select
+                    name="district"
+                    id="akarere"
+                    className={`sub_input`}
+                    onChange={(e: any) => setDistrict(e.target.value)}
+                    required
+                    // disabled={formData.province === ""}
+                  >
+                    {/* <option></option> */}
+                    {Districts(province)?.map((district: string) => {
+                      return <option value={district}>{district}</option>;
+                    })}
+                  </select>
+                </div>
+              </div>
+              <div className="main_input">
+                <div className="flex-col flex-1 ">
+                  <label htmlFor="umurenge">Sector</label>
+                  <select
+                    name="sector"
+                    id="umurenge"
+                    className="sub_input"
+                    onChange={(e: any) => setSector(e.target.value)}
+                    required
+                  >
+                    {/* <option></option> */}
+                    {Sectors(province, district)?.map((sector: string) => {
+                      return <option value={sector}>{sector}</option>;
+                    })}
+                  </select>
+                </div>
+              </div>
+              <div className="main_input">
+                <div className="flex-col flex-1 ">
+                  <label htmlFor="akagari">Cell</label>
+                  <select
+                    name="cell"
+                    id="akagari"
+                    className="sub_input"
+                    onChange={(e: any) => setCell(e.target.value)}
+                    required
+                  >
+                    {/* <option></option> */}
+                    {Cells(province, district, sector)?.map((cell: string) => {
+                      return <option value={cell}>{cell}</option>;
+                    })}
+                  </select>
+                </div>
+              </div>
+              <div className="main_input">
+                <div className="flex-col flex-1 ">
+                  <label htmlFor="umudugudu">Villages</label>
+                  <select
+                    name="village"
+                    id="umudugudu"
+                    className="sub_input"
+                    onChange={(e: any) => setVillage(e.target.value)}
+                    required
+                  >
+                    {/* <option></option> */}
+                    {Villages(province, district, sector, cell)?.map(
+                      (village: string) => {
+                        return <option value={village}>{village}</option>;
+                      },
+                    )}
+                  </select>
+                </div>
+              </div>
             </div>
           )}
 

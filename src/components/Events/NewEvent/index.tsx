@@ -15,13 +15,11 @@ const NewEvent = ({ close }: { close: Function }) => {
   const [formData, setFormData] = useState({
     category: "",
     descriptions: "",
-    endDate: "",
-    endTime: "",
+    endDateTime: "",
     eventName: "",
     location: "",
     organizationLevel: "",
-    startDate: "",
-    startTime: "",
+    startDateTime: "",
   });
 
   const handleChange = (
@@ -47,13 +45,11 @@ const NewEvent = ({ close }: { close: Function }) => {
         setFormData({
           category: "",
           descriptions: "",
-          endDate: "",
-          endTime: "",
+          endDateTime: "",
           eventName: "",
           location: "",
           organizationLevel: "",
-          startDate: "",
-          startTime: "",
+          startDateTime: "",
         });
         close();
       })
@@ -117,28 +113,28 @@ const NewEvent = ({ close }: { close: Function }) => {
           </div>
           <div className="main_input">
             <div className="flex-col flex-1">
-              <label htmlFor="startDate" className="font-bold">
-                Start Date
+              <label htmlFor="startDateTime" className="font-bold">
+                Start Date and time
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 className="sub_input"
-                id="startDate"
-                name="startDate"
-                value={formData.startDate}
+                id="startDateTime"
+                name="startDateTime"
+                value={formData.startDateTime}
                 onChange={handleChange}
               />
             </div>
             <div className="flex-col flex-1">
-              <label htmlFor="endDate" className="font-bold">
-                End Date
+              <label htmlFor="endDateTime" className="font-bold">
+                End Date and time
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 className="sub_input"
-                id="endDate"
-                name="endDate"
-                value={formData.endDate}
+                id="endDateTime"
+                name="endDateTime"
+                value={formData.endDateTime}
                 onChange={handleChange}
               />
             </div>
@@ -171,34 +167,6 @@ const NewEvent = ({ close }: { close: Function }) => {
                     category: value,
                   }))
                 }
-              />
-            </div>
-          </div>
-          <div className="main_input">
-            <div className="flex-col flex-1">
-              <label htmlFor="startTime" className="font-bold">
-                Start Time
-              </label>
-              <input
-                type="time"
-                className="sub_input"
-                id="startTime"
-                name="startTime"
-                value={formData.startTime}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="flex-col flex-1">
-              <label htmlFor="endTime" className="font-bold">
-                End Time
-              </label>
-              <input
-                type="time"
-                className="sub_input"
-                id="endTime"
-                name="endTime"
-                value={formData.endTime}
-                onChange={handleChange}
               />
             </div>
           </div>
