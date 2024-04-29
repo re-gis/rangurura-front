@@ -43,6 +43,8 @@ export type Chat = {
 };
 
 export type Event = {
+  startDateTime: any;
+  endDateTime: any;
   eventName: string;
   startDate: string;
   endDate: string;

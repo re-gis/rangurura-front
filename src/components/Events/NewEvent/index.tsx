@@ -29,7 +29,6 @@ const NewEvent = ({ close }: { close: Function }) => {
   ) => {
     const { name, value } = e.target;
 
-    // Convert datetime-local value to a format without 'T'
     if (name === "startDateTime" || name === "endDateTime") {
       const formattedDateTime = value.replace("T", " ");
 
@@ -53,7 +52,7 @@ const NewEvent = ({ close }: { close: Function }) => {
         toast.success(
           res.data?.data?.message ?? "Announcement sent successfully!",
         );
-      
+
         setFormData({
           category: "",
           descriptions: "",
