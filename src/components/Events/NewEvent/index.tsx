@@ -25,13 +25,24 @@ const NewEvent = ({ close }: { close: Function }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    // Convert datetime-local value to a format without 'T'
+    if (name === "startDateTime" || name === "endDateTime") {
+      const formattedDateTime = value.replace("T", " ");
+
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: formattedDateTime,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -123,6 +134,7 @@ const NewEvent = ({ close }: { close: Function }) => {
                 name="startDateTime"
                 value={formData.startDateTime}
                 onChange={handleChange}
+                step={1}
               />
             </div>
             <div className="flex-col flex-1">
@@ -136,6 +148,7 @@ const NewEvent = ({ close }: { close: Function }) => {
                 name="endDateTime"
                 value={formData.endDateTime}
                 onChange={handleChange}
+                step={1}
               />
             </div>
           </div>

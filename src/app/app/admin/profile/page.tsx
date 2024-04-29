@@ -8,7 +8,7 @@ import { useGet } from "@/utils/funcs/useGet";
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { data, loading }: { data: any; loading: boolean } = useGet({
-    src: "/leaders/my_profile",
+    src: "/users/me",
   });
   const { profile }: any = data;
   console.log(data);
@@ -71,7 +71,7 @@ const Profile = () => {
               placeholder="Isamaza sylvain"
               id="amazina"
               name="name"
-              value={data?.data?.user?.realName}
+              value={data?.data?.user?.name}
               disabled
             />
           </div>

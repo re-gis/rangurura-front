@@ -18,7 +18,7 @@ const Page = () => {
   const refetchData = async () => {
     setLoading(true);
     try {
-      const response = await ApiEndpoint.get("/events/my_events");
+      const response = await ApiEndpoint.get("/events/mine");
       if (response.data?.data?.message) {
         setEvents([]);
       } else {
@@ -33,9 +33,9 @@ const Page = () => {
 
   useEffect(() => {
     setLoading(true);
-    ApiEndpoint.get("/events/my_events")
+    ApiEndpoint.get("/events/mine")
       .then((res) => {
-        console.log(res.data?.data);
+        console.log(res.data);
         if (res.data?.data?.message) {
           setEvents([]);
         } else {
