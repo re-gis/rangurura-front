@@ -30,7 +30,6 @@ const Page = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     setLoading(true);
     ApiEndpoint.get("/events/mine")

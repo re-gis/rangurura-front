@@ -25,7 +25,7 @@ const NewEvent = ({ close }: { close: Function }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
 
@@ -53,6 +53,7 @@ const NewEvent = ({ close }: { close: Function }) => {
         toast.success(
           res.data?.data?.message ?? "Announcement sent successfully!",
         );
+      
         setFormData({
           category: "",
           descriptions: "",
