@@ -14,7 +14,7 @@ import PostponeEvent from "../../Modals/PostponeEvent";
 export default function EventsActions({ data }: { data: Event }) {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const[openPostpone,setOpenPostpone] = useState(false);
+  const [openPostpone, setOpenPostpone] = useState(false);
   const deleteProblem = () => {
     setOpenDelete(true);
   };
@@ -44,7 +44,6 @@ export default function EventsActions({ data }: { data: Event }) {
         >
           <h5>Postpone</h5>
         </Menu.Item>
-
 
         <Menu.Divider />
 
