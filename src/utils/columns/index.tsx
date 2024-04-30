@@ -126,12 +126,16 @@ export const eventsColumns: ColumnDef<Event>[] = [
   {
     accessorKey: "Start Date Time",
     header: ({ column }) => <h4>Start Date Time</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.startDateTime}</h6>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.startDateTime}</h6>
+    ),
   },
   {
     accessorKey: "End Date",
     header: ({ column }) => <h4>End Date Time</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.endDateTime}</h6>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.endDateTime}</h6>
+    ),
   },
   {
     accessorKey: "Location",
@@ -142,5 +146,5 @@ export const eventsColumns: ColumnDef<Event>[] = [
     accessorKey: "Actions",
     header: ({ column }) => <></>,
     cell: ({ row }) => <EventsActions data={row.original} />,
-  },
+  },  
 ];

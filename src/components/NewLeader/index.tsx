@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import logo from "@/assets/images/logo-dark (1).png";
 import Link from "next/link";
 import Image from "next/image";
-import { ApiEndpoint, districts, notifications } from "@/constants";
+import { ApiEndpoint, districts } from "@/constants";
+import { notifications } from "@mantine/notifications";
 import { Select } from "@mantine/core";
 import {
   categories,
@@ -37,33 +38,49 @@ const NewLeader = ({ close }: { close: Function }) => {
   const [isModelOpen, setIsModelOpen] = useState(false);
 
   useEffect(() => {
-    // Get token from cookies
     const { token } = getCookies();
     if (token) {
       const decodedToken: any = jwtDecode(token);
       setUserRole(decodedToken.role);
-      // Automatically set the organisation level based on the user's role
-      if (decodedToken.role === "ADMIN") {
-        setOrganisationLevel("INTARA");
-      } else if (
-        decodedToken.role === "UMUYOBOZI" &&
-        decodedToken.organisationLevel === "AKARERE"
-      ) {
-        setOrganisationLevel("UMURENGE");
-      } else if (
-        decodedToken.role === "UMUYOBOZI" &&
-        decodedToken.organisationLevel === "UMURENGE"
-      ) {
-        setOrganisationLevel("AKAGARI");
-      } else if (
-        decodedToken.role === "UMUYOBOZI" &&
-        decodedToken.organisationLevel === "AKAGARI"
-      ) {
-        setOrganisationLevel("UMUDUGUDU");
+      
+      if (decodedToken.role === "UMUYOBOZI") {
+        ApiEndpoint.get(`/leaders/my_profile`)
+          .then((res) => {
+            const leaderData = res?.data?.data?.leader;
+            if (leaderData) {
+              const { organizationLevel, location } = leaderData;
+              setOrganisationLevel(organizationLevel);
+              setLocation(location);
+
+              let localLevels = [];
+
+              switch (organizationLevel) {
+                case "INTARA":
+                  localLevels = Districts(location);
+                  break;
+                case "UMURENGE":
+                  localLevels = Sectors(location);
+                  break;
+                case "AKAGARI":
+                  localLevels = Cells(location);
+                  break;
+                case "UMUDUGUDU":
+                  localLevels = Villages(location);
+                  break;
+                default:
+                  break;
+              }
+  
+              setLocalLevels([...new Set(localLevels)] as never);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching UMUYOBOZI data:", error);
+          });
       }
     }
   }, []);
-
+  
   const handleChange = async (e: any) => {
     const nationalId = e.target.value;
     try {
@@ -128,13 +145,12 @@ const NewLeader = ({ close }: { close: Function }) => {
     ApiEndpoint.post("/leaders/addLeader", formData)
       .then((res: any) => {
         // Show success notification
-        // notifications.show({
-        //   title: "Assign Leader",
-        //   message: "Leader Assigned successfully!",
-        //   autoClose: 5000,
-        //   icon: <FaRegCheckCircle />,
-        // });
-        toast.success("leader assigned successfully");
+        notifications.show({
+          title: "Assign Leader",
+          message: "Leader Assigned successfully!",
+          autoClose: 5000,
+          icon: <FaRegCheckCircle />,
+        });
         setLoading(false);
 
         // Clear form data
@@ -151,20 +167,6 @@ const NewLeader = ({ close }: { close: Function }) => {
       })
       .finally(() => setLoading(false));
   };
-
-  // Set local levels based on the selected organisation level
-  useEffect(() => {
-    const levels =
-      organisationLevel === "AKAGARI"
-        ? [...new Set(Cells())]
-        : organisationLevel === "UMURENGE"
-          ? [...new Set(Sectors())]
-          : organisationLevel === "AKARERE"
-            ? [...new Set(Districts())]
-            : [...new Set(Provinces() as string[])];
-
-    setLocalLevels(levels as never[]);
-  }, [organisationLevel]);
 
   return (
     <div className="bg-white rounded-xl h-full w-full mt-[-2rem]">
