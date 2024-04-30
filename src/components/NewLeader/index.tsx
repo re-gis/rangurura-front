@@ -42,11 +42,15 @@ const NewLeader = ({ close }: { close: Function }) => {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       setUserRole(decodedToken.role);
-
-      if (decodedToken.role === "UMUYOBOZI") {
+      if (decodedToken.role === "ADMIN") {
+        setOrganisationLevel("INTARA");
+        const provinces = Provinces();
+        setLocalLevels([...new Set(provinces)] as never[]);
+      }
+     else if (decodedToken.role === "UMUYOBOZI") {
         ApiEndpoint.get(`/leaders/my_profile`)
           .then((res) => {
-            const leaderData = res?.data?.data?.leader;
+            const leaderData = res?.data?.data?.leader; 
             if (leaderData) {
               const { organizationLevel, location } = leaderData;
               setOrganisationLevel(organizationLevel);
@@ -59,9 +63,9 @@ const NewLeader = ({ close }: { close: Function }) => {
                 case "INTARA":
                   localLevels = Districts(location);
                   break;
-                  case "AKARERE":
-                    localLevels = Sectors(location);
-                    break;
+                case "AKARERE":
+                  localLevels = Sectors(location);
+                  break;
                 case "UMURENGE":
                   localLevels = Cells(location);
                   break;
@@ -69,7 +73,7 @@ const NewLeader = ({ close }: { close: Function }) => {
                   localLevels = Villages(location);
                   break;
                 case "UMUDUGUDU":
-                 toast.error("You are not allowed to perform this action")
+                  toast.error("You are not allowed to perform this action");
                   break;
                 default:
                   break;
@@ -81,6 +85,9 @@ const NewLeader = ({ close }: { close: Function }) => {
           .catch((error) => {
             console.error("Error fetching UMUYOBOZI data:", error);
           });
+      }
+      else{
+        toast.error("You are not allowed to perform this action");
       }
     }
   }, []);

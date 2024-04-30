@@ -54,8 +54,7 @@ const Login = () => {
             autoClose: 5000,
             icon: <FaRegCheckCircle />,
           });
-        }
-       else if (decoded.role?.toLowerCase() == "admin") {
+        } else if (decoded.role?.toLowerCase() == "admin") {
           setDisplayText("Redirecting ...");
           setRedLoading(true);
           navigate.push("/app/admin");
@@ -77,8 +76,7 @@ const Login = () => {
           navigate.push("/app/citizen");
           setDisplayText("Redirecting ...");
           setRedLoading(true);
-        } 
-        else {
+        } else {
           notifications.show({
             title: "Auth Error",
             message: "Role Not valid!",
