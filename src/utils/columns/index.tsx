@@ -146,5 +146,5 @@ export const eventsColumns: ColumnDef<Event>[] = [
     accessorKey: "Actions",
     header: ({ column }) => <></>,
     cell: ({ row }) => <EventsActions data={row.original} />,
-  },  
+  },
 ];

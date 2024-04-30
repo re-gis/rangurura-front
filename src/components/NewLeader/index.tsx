@@ -42,7 +42,7 @@ const NewLeader = ({ close }: { close: Function }) => {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       setUserRole(decodedToken.role);
-      
+
       if (decodedToken.role === "UMUYOBOZI") {
         ApiEndpoint.get(`/leaders/my_profile`)
           .then((res) => {
@@ -51,26 +51,30 @@ const NewLeader = ({ close }: { close: Function }) => {
               const { organizationLevel, location } = leaderData;
               setOrganisationLevel(organizationLevel);
               setLocation(location);
-
+              console.log(organizationLevel);
+              console.log(location);
               let localLevels = [];
 
               switch (organizationLevel) {
                 case "INTARA":
                   localLevels = Districts(location);
                   break;
+                  case "AKARERE":
+                    localLevels = Sectors(location);
+                    break;
                 case "UMURENGE":
-                  localLevels = Sectors(location);
-                  break;
-                case "AKAGARI":
                   localLevels = Cells(location);
                   break;
-                case "UMUDUGUDU":
+                case "AKAGARI":
                   localLevels = Villages(location);
+                  break;
+                case "UMUDUGUDU":
+                 toast.error("You are not allowed to perform this action")
                   break;
                 default:
                   break;
               }
-  
+
               setLocalLevels([...new Set(localLevels)] as never);
             }
           })
@@ -80,7 +84,7 @@ const NewLeader = ({ close }: { close: Function }) => {
       }
     }
   }, []);
-  
+
   const handleChange = async (e: any) => {
     const nationalId = e.target.value;
     try {
