@@ -9,10 +9,12 @@ import { Modal, Menu, rem } from "@mantine/core";
 import { LuMailCheck } from "react-icons/lu";
 import DeleteEvent from "../../Modals/DeleteEvent";
 import EditEvent from "../../Modals/EditEvent";
+import PostponeEvent from "../../Modals/PostponeEvent";
 
 export default function EventsActions({ data }: { data: Event }) {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const[openPostpone,setOpenPostpone] = useState(false);
   const deleteProblem = () => {
     setOpenDelete(true);
   };
@@ -34,6 +36,15 @@ export default function EventsActions({ data }: { data: Event }) {
         >
           <h5>Edit</h5>
         </Menu.Item>
+        <Menu.Item
+          onClick={() => setOpenPostpone(true)}
+          leftSection={
+            <HiDesktopComputer style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          <h5>Postpone</h5>
+        </Menu.Item>
+
 
         <Menu.Divider />
 
@@ -54,6 +65,9 @@ export default function EventsActions({ data }: { data: Event }) {
       </Modal>
       <Modal opened={openEdit} onClose={() => setOpenEdit(false)}>
         <EditEvent event={data} close={() => setOpenEdit(false)} />
+      </Modal>
+      <Modal opened={openPostpone} onClose={() => setOpenPostpone(false)}>
+        <PostponeEvent event={data} close={() => setOpenPostpone(false)} />
       </Modal>
     </Menu>
   );
