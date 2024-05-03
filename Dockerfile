@@ -10,7 +10,7 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json", "./"]
 
 # Install dependencies using NPM
-RUN npm install
+RUN npm install --force
 
 # If you are building your code for production
 # RUN npm install --production=true
