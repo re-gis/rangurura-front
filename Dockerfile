@@ -21,7 +21,7 @@ COPY . .
 # Build the application (if needed)
 # Replace with your actual build command
 # In Next.js, the build output is typically in the .next folder
-# RUN npm run  build
+RUN npm run  build
 
 # Expose the port your application will listen on
 EXPOSE 5200
