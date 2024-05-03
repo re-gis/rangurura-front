@@ -1,7 +1,7 @@
 {
   "website": {
     "navbar": {
-      "home": "maison",
+      "home": "Accueil",
       "problems": "Problèmes",
       "contacts": "Contactes",
       "faq": "FAQ",
@@ -21,6 +21,32 @@
     "settings": "Paramètres",
     "my_account": "Mon compte",
     "logout": "Sortir"
+  },
+  "login": {
+    "login": "Se connecter",
+    "id": "Identité nationale",
+    "password": "Mot de passe",
+    "forgot_password": "Mot de passe oublié ?",
+    "first_time": "Vous n'avez pas de compte ?",
+    "create_account": "Créer un compte"
+  },
+  "signup": {
+    "signup": "Inscription",
+    "info": "Infos",
+    "confirmation": "Confirmation",
+    "name": "Nom et Prenoms",
+    "id": "Identité nationale",
+    "phone": "Numéro de téléphone",
+    "province": "Province",
+    "district": "Districte",
+    "sector": "Secteur",
+    "cell": "Cellule",
+    "village": "Village",
+    "password": "Mot de passe",
+    "cpassword": "Confirmer le mot de passe",
+    "agree": "Je confirme que les informations que j'ai fournies sont exactes",
+    "submit": "Créer",
+    "ask": "Vous avez déjà un compte ?"
   },
   "verify": {
     "verify": "Verifier le compte",

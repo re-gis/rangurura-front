@@ -89,7 +89,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {solvedProblemsData?.data?.data}
+              {solvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>
@@ -100,7 +100,7 @@ const Activity = () => {
             <p>Loading...</p>
           ) : (
             <h4 className="text-[#000] font-extr text-[17px]">
-              {unsolvedProblemsData?.data?.data}
+              {unsolvedProblemsData?.data?.data ?? 0}
             </h4>
           )}
         </div>

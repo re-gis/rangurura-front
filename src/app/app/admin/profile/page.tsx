@@ -8,7 +8,7 @@ import { useGet } from "@/utils/funcs/useGet";
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { data, loading }: { data: any; loading: boolean } = useGet({
-    src: "/leaders/my_profile",
+    src: "/users/me",
   });
   const { profile }: any = data;
   console.log(data);
@@ -71,7 +71,7 @@ const Profile = () => {
               placeholder="Isamaza sylvain"
               id="amazina"
               name="name"
-              value={data?.data?.user?.realName}
+              value={data?.data?.name}
               disabled
             />
           </div>
@@ -82,7 +82,7 @@ const Profile = () => {
               className="sub_input cursor-not-allowed"
               placeholder="2345678"
               id="numbero_indangamuntu"
-              value={data?.data?.leader?.nationalId}
+              value={data?.data?.nationalId}
               disabled
             />
           </div>
@@ -96,7 +96,7 @@ const Profile = () => {
               placeholder="Isamaza sylvain"
               id="numero_telefone"
               name="numero_telefone"
-              value={data?.data?.user?.phone}
+              value={data?.data?.phoneNumber}
               disabled
             />
           </div>
@@ -106,7 +106,7 @@ const Profile = () => {
               name="intara"
               id="intara"
               className="sub_input cursor-not-allowed"
-              value={data?.data?.user?.province}
+              value={data?.data?.province}
               disabled
             ></input>
           </div>
@@ -118,7 +118,7 @@ const Profile = () => {
               name="akarere"
               id="akarere"
               className="sub_input cursor-not-allowed"
-              value={data?.data?.user?.district}
+              value={data?.data?.district}
               disabled
             ></input>
           </div>
@@ -128,7 +128,7 @@ const Profile = () => {
               name="umurenge"
               id="umurenge"
               className="sub_input cursor-not-allowed"
-              value={data?.data?.user?.sector}
+              value={data?.data?.sector}
               disabled
             ></input>
           </div>
@@ -140,7 +140,7 @@ const Profile = () => {
               name="akagari"
               id="akagari"
               className="sub_input cursor-not-allowed"
-              value={data?.data?.user?.cell}
+              value={data?.data?.cell}
               disabled
             ></input>
           </div>
@@ -150,7 +150,7 @@ const Profile = () => {
               name="umudugudu"
               id="umudugudu"
               className="sub_input cursor-not-allowed"
-              value={data?.data?.user?.village}
+              value={data?.data?.village}
               disabled
             ></input>
           </div>

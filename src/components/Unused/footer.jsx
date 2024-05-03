@@ -10,7 +10,10 @@ import twitter from "@/assets/vector/contactFooter/Vector.png";
 import Image from "next/image";
 import vector from "@/assets/images/footer.svg";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
 const Footer = () => {
+  const { t, i18n } = useTranslation();
   return (
     <section
       className="flex flex-col justify-between p-4 w-full gap-4 md:py-[6vh] footer-section"
@@ -28,18 +31,13 @@ const Footer = () => {
               </a>
             </h3>
           </div>
-          <p className="text-left font-light">
-            “Rangurura” is your direct channel to make your voice heard. We
-            believe that every citizen's concerns and issues matter. Our
-            platform empowers you to report problems, share feedback, and
-            request assistance with ease.
-          </p>
+          <p className="text-left font-light">{t("footer.title_desc")}</p>
           <div className="flex flex-row justify-between font-semibold">
-            <Link href="#home">Home</Link>
-            <Link href="#qns">Problems</Link>
-            <Link href="#contacts">Contact</Link>
-            <Link href="/login">Sign in</Link>
-            <Link href="/register">Sign up</Link>
+            <Link href="#home">{t("footer.home")}</Link>
+            <Link href="#qns">{t("footer.problems")}</Link>
+            <Link href="#contacts">{t("footer.contacts")}</Link>
+            <Link href="/login">{t("footer.signin")}</Link>
+            <Link href="/register">{t("footer.signup")}</Link>
           </div>
         </div>
         <div className="max-[500px]:w-full w-[50%] flex flex-col justify-end items-end gap-8">
@@ -91,8 +89,7 @@ const Footer = () => {
       </div>
       <div className="flex items-center justify-left px-[3rem] text-white font-bold mt-10">
         {" "}
-        <span className="text-2xl mr-2"> &copy;</span> 2023 Rangurura. All
-        rights reserved
+        <span className="text-2xl mr-2"> &copy;</span> {t("footer.all_rights")}
       </div>
     </section>
   );

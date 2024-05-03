@@ -1,16 +1,10 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import SortButton from "@/components/core/data-table/sort-button";
 import { Event } from "@/typings";
 import { events as data } from "@/constants";
 import { DataTable } from "@/components/core/data-table";
-import { useState } from "react";
-import { Tooltip, Button } from "@nextui-org/react";
 import { FaRegCheckSquare } from "react-icons/fa";
-import { MdOutlineTaskAlt } from "react-icons/md";
-import { SlLocationPin } from "react-icons/sl";
-import { RiUserLocationFill } from "react-icons/ri";
 import { HiDotsVertical } from "react-icons/hi";
 import { HiClock } from "react-icons/hi2";
 import { eventsColumns } from "@/utils/columns";
@@ -38,14 +32,18 @@ const columns: ColumnDef<Event>[] = [
     ),
   },
   {
-    accessorKey: "Start Date",
-    header: ({ column }) => <h4>Start Date</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.startDate}</h6>,
+    accessorKey: "Start Date Time",
+    header: ({ column }) => <h4>Start Date Time</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.startDateTime}</h6>
+    ),
   },
   {
-    accessorKey: "End Date",
-    header: ({ column }) => <h4>End Date</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.endDate}</h6>,
+    accessorKey: "End Date Time",
+    header: ({ column }) => <h4>End Date Time</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.endDateTime}</h6>
+    ),
   },
   {
     accessorKey: "Location",

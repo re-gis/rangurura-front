@@ -141,11 +141,13 @@ export default function ProfileDropDown({ type }: { type: string }) {
                 onClick={logout}
                 className="py-3 px-6 rounded-lg flex items-center justify-center bg-[#FF0000] text-white"
               >
-                {loadingLogout ? 
-                <div className="w-full h-full flex justify-center items-center">
-                  <ClipLoader size={20} color="white"/>
-                </div>
-                 : "Logout"}
+                {loadingLogout ? (
+                  <div className="w-full h-full flex justify-center items-center">
+                    <ClipLoader size={20} color="white" />
+                  </div>
+                ) : (
+                  "Logout"
+                )}
               </button>
             </div>
           </Modal>

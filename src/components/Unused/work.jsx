@@ -36,7 +36,7 @@ const Work = () => {
               {t("working_section.privacy")}
             </h4>
             <p className="md:text-base text-xs">
-              {t("working_section.priivacy_desc")}
+              {t("working_section.privacy_desc")}
             </p>
           </div>
           {/* </div> */}

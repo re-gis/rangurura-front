@@ -43,16 +43,14 @@ export type Chat = {
 };
 
 export type Event = {
+  startDateTime: any;
+  endDateTime: any;
   eventName: string;
-  startDate: string;
-  endDate: string;
   location: string;
   completed: boolean;
   descriptions: string;
   owner: string;
   id: string;
-  startTime: string;
-  endTime: string;
   organizationLevel: string;
   category: string;
 };

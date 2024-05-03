@@ -124,14 +124,18 @@ export const eventsColumns: ColumnDef<Event>[] = [
     ),
   },
   {
-    accessorKey: "Start Date",
-    header: ({ column }) => <h4>Start Date</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.startDate}</h6>,
+    accessorKey: "Start Date Time",
+    header: ({ column }) => <h4>Start Date Time</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.startDateTime}</h6>
+    ),
   },
   {
     accessorKey: "End Date",
-    header: ({ column }) => <h4>End Date</h4>,
-    cell: ({ row }) => <h6 className="text-[80%]">{row.original.endDate}</h6>,
+    header: ({ column }) => <h4>End Date Time</h4>,
+    cell: ({ row }) => (
+      <h6 className="text-[80%]">{row.original.endDateTime}</h6>
+    ),
   },
   {
     accessorKey: "Location",

@@ -113,7 +113,7 @@ const ProblemsTable = ({
     {
       accessorKey: "Listen",
       header: ({ column }) => <></>,
-      cell: ({ row }) => <TextToSpeech text={row.original?.ikibazo}/>,
+      cell: ({ row }) => <TextToSpeech text={row.original?.ikibazo} />,
     },
     {
       accessorKey: "Actions",
