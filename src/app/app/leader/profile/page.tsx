@@ -4,6 +4,11 @@ import Image from "next/image";
 import { MdOutlineFileUpload } from "react-icons/md";
 import upload from "../../../../assets/images/upload.png";
 import { useGet } from "@/utils/funcs/useGet";
+import { ApiEndpoint } from "@/constants";
+import { notifications } from "@mantine/notifications";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -11,12 +16,73 @@ const Profile = () => {
     src: "/users/me",
   });
   const { profile }: any = data;
-  console.log(data);
-  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  useEffect(() => {
+    if (!loading && data) {
+      setFormData({
+        cell: data?.data?.cell || "",
+        district: data?.data?.district || "",
+        imageUrl: data?.data?.imageUrl || "",
+        name: data?.data?.name || "",
+        nationalId: data?.data?.nationalId || "",
+        phoneNumber: data?.data?.phoneNumber || "",
+        province: data?.data?.province || "",
+        sector: data?.data?.sector || "",
+        village: data?.data?.village || "",
+      });
+    }
+  }, [data, loading]);
+
+  const [formData, setFormData] = useState({
+    cell: "",
+    district: "",
+    imageUrl: "",
+    name: "",
+    nationalId: "",
+    phoneNumber: "",
+    province: "",
+    sector: "",
+    village: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
     const file = e.target.files?.[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
     }
+  };
+
+  const editProfile = () => {
+    ApiEndpoint.put(`/users/update_profile/`, formData)
+      .then((res) => {
+        notifications.show({
+          title: "Edit Profile",
+          message: "Successfully Edited Profile!",
+          autoClose: 5000,
+          icon: <FaRegCheckCircle />,
+        });
+        // Handle any logic after successful update
+      })
+      .catch((err) => {
+        notifications.show({
+          title: "Edit Profile",
+          message: "Error occurred when editing profile!",
+          color: "#FF555D",
+          autoClose: 5000,
+          icon: <RxCrossCircled />,
+        });
+      });
   };
 
   return (
@@ -53,7 +119,7 @@ const Profile = () => {
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageUpload}
-            disabled={true}
+            //  disabled={true}
           />
         </div>
       </div>
@@ -67,23 +133,24 @@ const Profile = () => {
             <label htmlFor="amazina">Amazina</label>
             <input
               type="text"
-              className="sub_input cursor-not-allowed"
+              className="sub_input "
               placeholder="Isamaza sylvain"
               id="amazina"
               name="name"
-              value={data?.data?.name}
-              disabled
+              value={formData.name}
+              onChange={handleChange}
+      
             />
           </div>
           <div className="flex-col flex-1">
             <label htmlFor="numero_indangamuntu">Numero y'indangamuntu</label>
             <input
               type="text"
-              className="sub_input cursor-not-allowed"
+              className="sub_input "
               placeholder="2345678"
-              id="numbero_indangamuntu"
-              value={data?.data?.nationalId}
-              disabled
+              id="nationalId"
+              value={formData.nationalId}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -92,22 +159,23 @@ const Profile = () => {
             <label htmlFor="numero_telefone">Numero ya telefone</label>
             <input
               type="text"
-              className="sub_input cursor-not-allowed"
+              className="sub_input "
               placeholder="Isamaza sylvain"
               id="numero_telefone"
-              name="numero_telefone"
-              value={data?.data?.phoneNumber}
-              disabled
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
             />
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="intara">Intara</label>
             <input
-              name="intara"
+              name="province"
               id="intara"
-              className="sub_input cursor-not-allowed"
-              value={data?.data?.province}
-              disabled
+              className="sub_input "
+              value={formData.province}
+              onChange={handleChange}
+      
             ></input>
           </div>
         </div>
@@ -115,21 +183,23 @@ const Profile = () => {
           <div className="flex-col flex-1 ">
             <label htmlFor="akarere">Akarere</label>
             <input
-              name="akarere"
+              name="sector"
               id="akarere"
-              className="sub_input cursor-not-allowed"
-              value={data?.data?.district}
-              disabled
+              className="sub_input "
+              value={formData.district}
+              onChange={handleChange}
+      
             ></input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umurenge">Umurenge</label>
             <input
-              name="umurenge"
+              name="sector"
               id="umurenge"
-              className="sub_input cursor-not-allowed"
-              value={data?.data?.sector}
-              disabled
+              className="sub_input "
+              value={formData.sector}
+              onChange={handleChange}
+      
             ></input>
           </div>
         </div>
@@ -137,26 +207,28 @@ const Profile = () => {
           <div className="flex-col flex-1 ">
             <label htmlFor="akagari">Akagari</label>
             <input
-              name="akagari"
+              name="cell"
               id="akagari"
-              className="sub_input cursor-not-allowed"
-              value={data?.data?.cell}
-              disabled
+              className="sub_input "
+              value={formData.cell}
+              onChange={handleChange}
+      
             ></input>
           </div>
           <div className="flex-col flex-1 ">
             <label htmlFor="umudugudu">Umudugudu</label>
             <input
-              name="umudugudu"
+              name="village"
               id="umudugudu"
-              className="sub_input cursor-not-allowed"
-              value={data?.data?.village}
-              disabled
+              className="sub_input "
+              value={formData.village}
+              onChange={handleChange}
+       
             ></input>
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <button
+        <button
             type="button"
             className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white"
           >

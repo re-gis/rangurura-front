@@ -12,7 +12,7 @@ const Page = () => {
   const refetchData = async () => {
     setLoading(true);
     try {
-      const response = await ApiEndpoint.get("/problems/local");
+      const response = await ApiEndpoint.get("/problems/all");
       if (response.data?.data?.message) {
         setProblemsData([]);
       } else {
