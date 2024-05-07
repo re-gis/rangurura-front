@@ -5,42 +5,32 @@ import { notifications } from "@mantine/notifications";
 import { ClipLoader } from "react-spinners";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import {
-  categories,
-  leaderCategory,
-  organisationLevels,
-} from "@/constants/Enums";
 import { Cells, Sectors, Districts, Provinces, Villages } from "rwanda";
 import { jwtDecode } from "jwt-decode";
-import { Modal } from "@nextui-org/react";
 import toast from "react-hot-toast";
 import { getCookies } from "cookies-next";
 import { useEffect } from "react";
-
-
-const EscalateProblem = ({
-  problem,
-  close,
-}: {
-  problem: Problem;
-  close: Function;
-}) => {
-
-
-  const [localLevels, setLocalLevels] = useState([]);
+import { Select } from "@mantine/core";
+const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }) => {
+  const [localLevels, setLocalLevels] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [organisationLevel, setOrganisationLevel] = useState("");
-  const [userRole, setUserRole] = useState("");
+  const [location,setLocation]= React.useState("")
+  const [organizationLevel, setOrganisationLevel] =React.useState("");
+  const [userRole, setUserRole] = React.useState("");
+  const[nextUrwego,setNextUrwego]=React.useState('');
 
   useEffect(() => {
     const { token } = getCookies();
     if (token) {
       const decodedToken: any = jwtDecode(token);
       setUserRole(decodedToken.role);
+      
       if (decodedToken.role === "ADMIN") {
-        setOrganisationLevel("INTARA");
-        const provinces = Provinces();
-        setLocalLevels([...new Set(provinces)] as never[]);
+        // setOrganisationLevel("INTARA");
+        // const provinces = Provinces();
+        // setLocalLevels([...new Set(provinces)] as never[]);
+        toast.error("You are not allowed to perform this action")
+  
       } else if (decodedToken.role === "UMUYOBOZI") {
         ApiEndpoint.get(`/leaders/my_profile`)
           .then((res) => {
@@ -52,27 +42,28 @@ const EscalateProblem = ({
               console.log(organizationLevel);
               console.log(location);
               let localLevels = [];
-
+  
               switch (organizationLevel) {
-                case "INTARA":
-                  localLevels = Districts(location);
-                  break;
                 case "AKARERE":
-                  localLevels = Sectors(location);
+                  localLevels = Provinces(location);
+                  setNextUrwego("INTARA"); 
                   break;
                 case "UMURENGE":
-                  localLevels = Cells(location);
+                  localLevels = Districts(location);
+                  setNextUrwego("AKARERE"); 
                   break;
                 case "AKAGARI":
-                  localLevels = Villages(location);
+                  localLevels = Sectors(location);
+                  setNextUrwego("UMURENGE");
                   break;
                 case "UMUDUGUDU":
-                  toast.error("You are not allowed to perform this action");
+                  localLevels = Cells(location);
+                  setNextUrwego("AKAGARI"); 
                   break;
                 default:
                   break;
               }
-
+              console.log("localLevels:", localLevels);
               setLocalLevels([...new Set(localLevels)] as never);
             }
           })
@@ -85,14 +76,20 @@ const EscalateProblem = ({
     }
   }, []);
   
-  const formData = React.useState({  
-      nextUrwego: "",
-      problemId: problem.id,
-      target: ""
-  })
-  const deleteProblem = () => {
+  const [formData,setFormData] = React.useState({
+    nextUrwego:nextUrwego,
+    problemId: problem.id,
+    target: location
+  });
+
+  const escalateProblem = () => {
     setLoading(true);
-    ApiEndpoint.put(`/problem/update/${problem.id}`,formData)
+    const formData = {
+      nextUrwego: nextUrwego,
+      problemId: problem.id,
+      target: location
+    };
+    ApiEndpoint.post("/problem/escalate", formData)
       .then(() => {
         notifications.show({
           title: "Escalate Problem",
@@ -113,34 +110,64 @@ const EscalateProblem = ({
       })
       .finally(() => setLoading(false));
   };
+  
   return (
     <div className="w-full h-full flex flex-col gap-3 items-center">
       <header className="w-full text-center font-extrabold text-lg">
-       Escalate Problem
+        Escalate Problem
       </header>
       <div className="w-full flex flex-col">
         <div className="flex-row flex-1">
           <label htmlFor="problemId" className="font-bold">
-            Name
+            Problem Id
           </label>
           <input
             type="text"
             className="sub_input"
             id="problemId"
             name="problemId"
-            value={formData.problemId}
-            // onChange={handleChange}
+            disabled
+            value={problem.id}
+         
           />
         </div>
-        <div className="w-full flex justify-between md:px-[10%]">
+        <div className="flex-row flex-1">
+          <label htmlFor="nextUrwego" className="font-bold">
+           Next Level
+          </label>
+          <input
+            type="text"
+            className="sub_input"
+            id="nextUrwego"
+            name="nextUrwego"
+            value={nextUrwego}
+            disabled
+         
+          />
+        </div>
+
+            <div className="flex-col flex-1">
+              <label htmlFor="location" className="font-bold" >
+                Target Location
+              </label>
+              <Select
+                 aria-label="Location"
+                 data={localLevels}
+                 value={location}
+                 onChange={setLocation}
+              />
+
+          </div>
+
+        <div className="w-full flex justify-between py-[2%] md:px-[10%]">
           <button
-            onClick={() => close()}
+            onClick={() => close()} 
             className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#ccc] text-black"
           >
             Cancel
           </button>
           <button
-            onClick={deleteProblem}
+            onClick={escalateProblem}
             className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#FF555D] text-black"
           >
             {loading ? (
@@ -158,7 +185,3 @@ const EscalateProblem = ({
 };
 
 export default EscalateProblem;
-function useState(arg0: never[]): [any, any] {
-  throw new Error("Function not implemented.");
-}
-

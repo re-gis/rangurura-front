@@ -45,7 +45,7 @@ const Profile = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -54,9 +54,7 @@ const Profile = () => {
     }));
   };
 
-  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (
-    e
-  ) => {
+  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
@@ -119,7 +117,7 @@ const Profile = () => {
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageUpload}
-             disabled={true}
+            disabled={true}
           />
         </div>
       </div>
@@ -139,7 +137,6 @@ const Profile = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-      
             />
           </div>
           <div className="flex-col flex-1">
@@ -175,7 +172,6 @@ const Profile = () => {
               className="sub_input "
               value={formData.province}
               onChange={handleChange}
-      
             ></input>
           </div>
         </div>
@@ -188,7 +184,6 @@ const Profile = () => {
               className="sub_input "
               value={formData.district}
               onChange={handleChange}
-      
             ></input>
           </div>
           <div className="flex-col flex-1 ">
@@ -199,7 +194,6 @@ const Profile = () => {
               className="sub_input "
               value={formData.sector}
               onChange={handleChange}
-      
             ></input>
           </div>
         </div>
@@ -212,7 +206,6 @@ const Profile = () => {
               className="sub_input "
               value={formData.cell}
               onChange={handleChange}
-      
             ></input>
           </div>
           <div className="flex-col flex-1 ">
@@ -223,12 +216,11 @@ const Profile = () => {
               className="sub_input "
               value={formData.village}
               onChange={handleChange}
-       
             ></input>
           </div>
         </div>
         <div className="flex items-center justify-center">
-        <button
+          <button
             type="button"
             className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white"
           >

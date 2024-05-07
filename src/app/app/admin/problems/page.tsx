@@ -26,7 +26,7 @@ const Page = () => {
   };
   useEffect(() => {
     setLoading(true);
-    ApiEndpoint.get("/problems/local")
+    ApiEndpoint.get("/problems/all")
       .then((res) => {
         console.log(res.data?.data);
         if (res.data?.data?.message) {
