@@ -1,4 +1,4 @@
-import { getRoleFromLevel } from "@/utils/funcs/funcs"
+import { getRoleFromLevel } from "@/utils/funcs/funcs";
 import { Modal } from "@mantine/core";
 import Image from "next/image";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { SlLocationPin } from "react-icons/sl";
 
 const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
   const role = getRoleFromLevel(leader?.organizationLevel ?? "");
-  const [openV, setOpenV] =useState(false);
+  const [openV, setOpenV] = useState(false);
   return (
     <div className="w-full h-[250px] rounded-lg flex flex-col items-center gap-2 bg-white justify-start px-3">
       <Image
@@ -47,42 +47,45 @@ const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
         </button>
       </div>
       <Modal opened={openV} onClose={() => setOpenV(false)} size={"lg"}>
-        <h3 className="text-center text-[#20603D] font-bold my-4 text-xl">Leader's profile</h3>
+        <h3 className="text-center text-[#20603D] font-bold my-4 text-xl">
+          Leader's profile
+        </h3>
         <div className="w-full h-full flex flex-col gap-4 pb-5 pl-5">
-        <Image
-        src={profile.imageUrl}
-        width={50}
-        height={50}
-        alt=""
-        className="w-[30%] h-[30%] rounded-lg bg-center items-center self-center align-center"
-      />
-        
+          <Image
+            src={profile.imageUrl}
+            width={50}
+            height={50}
+            alt=""
+            className="w-[30%] h-[30%] rounded-lg bg-center items-center self-center align-center"
+          />
+
           <h6 className="mt-[10px]">
-            <span className="font-extrabold text-md">Name:</span> {profile?.realName}
+            <span className="font-extrabold text-md">Name:</span>{" "}
+            {profile?.realName}
           </h6>
           <h6 className="mt-[10px]">
-           <span className="text-md font-extrabold"> National ID:</span> {profile?.username}
+            <span className="text-md font-extrabold"> National ID:</span>{" "}
+            {profile?.username}
           </h6>
           <h6 className="mt-[10px]">
-          <span className="text-md font-extrabold">  Phone Number:</span> {profile?.phone}
+            <span className="text-md font-extrabold"> Phone Number:</span>{" "}
+            {profile?.phone}
           </h6>
           {/* <h6 className="mt-[10px]">
             Office: {leader?.office}
           </h6> */}
           <h6 className="mt-[10px]">
-          <span className="text-md font-extrabold"> Role :</span>  {role}
+            <span className="text-md font-extrabold"> Role :</span> {role}
           </h6>
           <h6 className="mt-[10px]">
-           <span className="font-extrabold text-md">Location :</span>  {profile.district + " - " + profile.sector + " - " + profile.cell}
+            <span className="font-extrabold text-md">Location :</span>{" "}
+            {profile.district + " - " + profile.sector + " - " + profile.cell}
           </h6>
           <p>
-        
             <span className="font-extrabold font-italic text-justify">
               {/* {openedProblem?.ikibazo} */}
             </span>
-    
           </p>
-        
         </div>
       </Modal>
     </div>
