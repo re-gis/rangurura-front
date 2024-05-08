@@ -3,7 +3,7 @@ import SuggestionActions from "@/components/core/actions/Suggestions";
 import { Event, Problem, Suggestion } from "@/typings";
 import { Tooltip } from "@nextui-org/react";
 import { ColumnDef } from "@tanstack/react-table";
-import { FaRegCheckSquare } from "react-icons/fa";
+import { FaRegCheckSquare, FaRegEye } from "react-icons/fa";
 import { HiClock } from "react-icons/hi";
 
 export const problemColumns: ColumnDef<Problem>[] = [
@@ -141,6 +141,25 @@ export const eventsColumns: ColumnDef<Event>[] = [
     accessorKey: "Location",
     header: ({ column }) => <h4>Location</h4>,
     cell: ({ row }) => <h6 className="text-[80%]">{row.original.location}</h6>,
+  },
+  {
+    accessorKey: "View",
+    header: ({ column }) => (
+      <div className="cursor-pointer w-full flex justify-end">
+        <h5>View</h5>
+      </div>
+    ),
+    cell: ({ row }) => (
+      <div
+        className="pr-4 w-full flex justify-end cursor-pointer"
+        onClick={() => {
+          // setOpenedEvent(row.original);
+          // setOpenV(true);
+        }}
+      >
+        <FaRegEye />
+      </div>
+    ),
   },
   {
     accessorKey: "Actions",

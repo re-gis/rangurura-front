@@ -1,5 +1,4 @@
 "use client";
-
 import NewEvent from "@/components/Events/NewEvent";
 import EventsTable from "@/components/core/Tables/Events";
 import { Modal, Button } from "@mantine/core";

@@ -11,26 +11,31 @@ import toast from "react-hot-toast";
 import { getCookies } from "cookies-next";
 import { useEffect } from "react";
 import { Select } from "@mantine/core";
-const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }) => {
+const EscalateProblem = ({
+  problem,
+  close,
+}: {
+  problem: Problem;
+  close: Function;
+}) => {
   const [localLevels, setLocalLevels] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [location,setLocation]= React.useState("")
-  const [organizationLevel, setOrganisationLevel] =React.useState("");
+  const [location, setLocation] = React.useState("");
+  const [organizationLevel, setOrganisationLevel] = React.useState("");
   const [userRole, setUserRole] = React.useState("");
-  const[nextUrwego,setNextUrwego]=React.useState('');
+  const [nextUrwego, setNextUrwego] = React.useState("");
 
   useEffect(() => {
     const { token } = getCookies();
     if (token) {
       const decodedToken: any = jwtDecode(token);
       setUserRole(decodedToken.role);
-      
+
       if (decodedToken.role === "ADMIN") {
         // setOrganisationLevel("INTARA");
         // const provinces = Provinces();
         // setLocalLevels([...new Set(provinces)] as never[]);
-        toast.error("You are not allowed to perform this action")
-  
+        toast.error("You are not allowed to perform this action");
       } else if (decodedToken.role === "UMUYOBOZI") {
         ApiEndpoint.get(`/leaders/my_profile`)
           .then((res) => {
@@ -42,15 +47,15 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
               console.log(organizationLevel);
               console.log(location);
               let localLevels = [];
-  
+
               switch (organizationLevel) {
                 case "AKARERE":
                   localLevels = Provinces(location);
-                  setNextUrwego("INTARA"); 
+                  setNextUrwego("INTARA");
                   break;
                 case "UMURENGE":
                   localLevels = Districts(location);
-                  setNextUrwego("AKARERE"); 
+                  setNextUrwego("AKARERE");
                   break;
                 case "AKAGARI":
                   localLevels = Sectors(location);
@@ -58,7 +63,7 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
                   break;
                 case "UMUDUGUDU":
                   localLevels = Cells(location);
-                  setNextUrwego("AKAGARI"); 
+                  setNextUrwego("AKAGARI");
                   break;
                 default:
                   break;
@@ -75,11 +80,11 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
       }
     }
   }, []);
-  
-  const [formData,setFormData] = React.useState({
-    nextUrwego:nextUrwego,
+
+  const [formData, setFormData] = React.useState({
+    nextUrwego: nextUrwego,
     problemId: problem.id,
-    target: location
+    target: location,
   });
 
   const escalateProblem = () => {
@@ -87,9 +92,9 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
     const formData = {
       nextUrwego: nextUrwego,
       problemId: problem.id,
-      target: location
+      target: location,
     };
-    ApiEndpoint.post("/problem/escalate", formData)
+    ApiEndpoint.post("/problems/escalate", formData)
       .then(() => {
         notifications.show({
           title: "Escalate Problem",
@@ -110,7 +115,7 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
       })
       .finally(() => setLoading(false));
   };
-  
+
   return (
     <div className="w-full h-full flex flex-col gap-3 items-center">
       <header className="w-full text-center font-extrabold text-lg">
@@ -128,12 +133,11 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
             name="problemId"
             disabled
             value={problem.id}
-         
           />
         </div>
         <div className="flex-row flex-1">
           <label htmlFor="nextUrwego" className="font-bold">
-           Next Level
+            Next Level
           </label>
           <input
             type="text"
@@ -142,26 +146,24 @@ const EscalateProblem = ({problem,close,}: {problem: Problem; close: Function; }
             name="nextUrwego"
             value={nextUrwego}
             disabled
-         
           />
         </div>
 
-            <div className="flex-col flex-1">
-              <label htmlFor="location" className="font-bold" >
-                Target Location
-              </label>
-              <Select
-                 aria-label="Location"
-                 data={localLevels}
-                 value={location}
-                 onChange={setLocation}
-              />
-
-          </div>
+        <div className="flex-col flex-1">
+          <label htmlFor="location" className="font-bold">
+            Target Location
+          </label>
+          <Select
+            aria-label="Location"
+            data={localLevels}
+            value={location}
+            onChange={setLocation}
+          />
+        </div>
 
         <div className="w-full flex justify-between py-[2%] md:px-[10%]">
           <button
-            onClick={() => close()} 
+            onClick={() => close()}
             className="py-3 px-8 rounded-3xl flex items-center justify-center bg-[#ccc] text-black"
           >
             Cancel

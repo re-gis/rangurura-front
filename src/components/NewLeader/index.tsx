@@ -262,7 +262,7 @@ const NewLeader = ({ close }: { close: Function }) => {
           <div className="main_input">
             <div className="flex-col flex-1">
               <label htmlFor="location" className="font-bold">
-                  Location
+                Location
               </label>
               <Select
                 data={localLevels}
