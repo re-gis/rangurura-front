@@ -11,7 +11,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any>(null);
   const { data, loading }: { data: any; loading: boolean } = useGet({
     src: "/users/me",
   });
@@ -21,7 +21,7 @@ const Profile = () => {
       setFormData({
         cell: data?.data?.cell || "",
         district: data?.data?.district || "",
-        // imageUrl: data?.data?.imageUrl || "",
+        imageUrl: data?.data?.imageUrl || "",
         name: data?.data?.name || "",
         nationalId: data?.data?.nationalId || "",
         phoneNumber: data?.data?.phoneNumber || "",
@@ -35,9 +35,9 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     cell: "",
     district: "",
-    // imageUrl: "",
+    imageUrl: "",
     name: "",
-    nationalId: "",
+    nationalId:"",
     phoneNumber: "",
     province: "",
     sector: "",
@@ -54,15 +54,47 @@ const Profile = () => {
     }));
   };
 
+  
   const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+      setSelectedImage(file); 
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          imageUrl: reader.result as string,
+        }));
+      };
+      reader.readAsDataURL(file);
     }
   };
-
+  
   const editProfile = () => {
-    ApiEndpoint.post(`/users/updateprofile/`, formData)
+    if (!selectedImage) {
+      notifications.show({
+        title: "Profile pic not found",
+        message: "Please select an image.",
+        color: "#FF555D",
+        autoClose: 5000,
+        icon: <RxCrossCircled />,
+      });
+      return;
+    }
+  
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("imageUrl", selectedImage);
+  
+    // Append other form data
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key !== "imageUrl") { 
+        formDataWithImage.append(key, value);
+      }
+    });
+  
+    console.log("FormData with image:", formDataWithImage);
+  
+    ApiEndpoint.post(`/users/updateprofile/`, formDataWithImage)
       .then((res) => {
         notifications.show({
           title: "Edit Profile",
@@ -70,7 +102,6 @@ const Profile = () => {
           autoClose: 5000,
           icon: <FaRegCheckCircle />,
         });
-        // Handle any logic after successful update
       })
       .catch((err) => {
         notifications.show({
@@ -82,7 +113,8 @@ const Profile = () => {
         });
       });
   };
-
+  
+  
   return (
     <div className="bg-white w-full h-[90%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
@@ -93,9 +125,9 @@ const Profile = () => {
       <div className="lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
         {selectedImage ? (
           <Image
-            src={selectedImage}
+           src={URL.createObjectURL(selectedImage)}
             alt="upload"
-            className=" w-4/12 h-36 rounded-2xl bg-contain"
+            className=" w-4/12 h-64 rounded-2xl bg-contain"
             width="270"
             height="100"
           />
