@@ -110,28 +110,63 @@ const EventsTable = ({
     <div className="w-full h-max px-2 bg-white mt-8">
       <Modal opened={openV} onClose={() => setOpenV(false)} size={"lg"}>
         <div className="w-full h-full flex flex-col gap-4 pb-5 pl-5">
-          <h3 className="text-[#20603D] font-extrabold text-center text-xl">Event information</h3>
+          <h3 className="text-[#20603D] font-extrabold text-center text-xl">
+            Event information
+          </h3>
           <div className="mt-[10px] mx-3">
-            <h6><span className="font-extrabold text-md mx-2">Event name:</span> {openedEvent?.eventName}</h6>
+            <h6>
+              <span className="font-extrabold text-md mx-2">Event name:</span>{" "}
+              {openedEvent?.eventName}
+            </h6>
           </div>
           <div className="mt-[10px] mx-3">
-          <h6><span className="font-extrabold text-md mx-2">Description: </span> {openedEvent?.descriptions}</h6>
-         </div>
-         <div className="mt-[10px] mx-3">
-          <h6> <span className="text-md font-extrabold mx-2">Organization Level: </span>{openedEvent?.organizationLevel}</h6>
-         </div>
-         <div className="mt-[10px] mx-3">
-          <h6> <span className="font-extrabold text-md mx-2">Category:</span> {openedEvent?.category}</h6>
-         </div>
-         <div className="mt-[10px] mx-3">
-          <h6> <span className="text-md font-extrabold mx-2">Start Date and Time :</span>{openedEvent?.startDateTime}</h6>
-         </div>
-         <div className="mt-[10px] mx-3">
-          <h6><span className="text-md font-extrabold mx-2">End Date and Time: </span>{openedEvent?.endDateTime}</h6>
-         </div>
-         <div className="mt-[10px] mx-3">
-          <h6> <span className="text-md font-extrabold mx-2">Location: </span>{openedEvent?.location}</h6>
-         </div>
+            <h6>
+              <span className="font-extrabold text-md mx-2">Description: </span>{" "}
+              {openedEvent?.descriptions}
+            </h6>
+          </div>
+          <div className="mt-[10px] mx-3">
+            <h6>
+              {" "}
+              <span className="text-md font-extrabold mx-2">
+                Organization Level:{" "}
+              </span>
+              {openedEvent?.organizationLevel}
+            </h6>
+          </div>
+          <div className="mt-[10px] mx-3">
+            <h6>
+              {" "}
+              <span className="font-extrabold text-md mx-2">
+                Category:
+              </span>{" "}
+              {openedEvent?.category}
+            </h6>
+          </div>
+          <div className="mt-[10px] mx-3">
+            <h6>
+              {" "}
+              <span className="text-md font-extrabold mx-2">
+                Start Date and Time :
+              </span>
+              {openedEvent?.startDateTime}
+            </h6>
+          </div>
+          <div className="mt-[10px] mx-3">
+            <h6>
+              <span className="text-md font-extrabold mx-2">
+                End Date and Time:{" "}
+              </span>
+              {openedEvent?.endDateTime}
+            </h6>
+          </div>
+          <div className="mt-[10px] mx-3">
+            <h6>
+              {" "}
+              <span className="text-md font-extrabold mx-2">Location: </span>
+              {openedEvent?.location}
+            </h6>
+          </div>
         </div>
       </Modal>
       <div className={`${styles} w-full h-[80%]`}>

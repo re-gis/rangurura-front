@@ -21,7 +21,7 @@ const Profile = () => {
       setFormData({
         cell: data?.data?.cell || "",
         district: data?.data?.district || "",
-        imageUrl: data?.data?.imageUrl || "",
+        // imageUrl: data?.data?.imageUrl || "",
         name: data?.data?.name || "",
         nationalId: data?.data?.nationalId || "",
         phoneNumber: data?.data?.phoneNumber || "",
@@ -35,7 +35,7 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     cell: "",
     district: "",
-    imageUrl: "",
+    // imageUrl: "",
     name: "",
     nationalId: "",
     phoneNumber: "",
@@ -62,7 +62,7 @@ const Profile = () => {
   };
 
   const editProfile = () => {
-    ApiEndpoint.put(`/users/update_profile`, formData)
+    ApiEndpoint.post(`/users/updateprofile`, formData)
       .then((res) => {
         notifications.show({
           title: "Edit Profile",
@@ -165,7 +165,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex-col flex-1 ">
-            <label htmlFor="intara">Intara</label>
+            <label htmlFor="province">Intara</label>
             <input
               name="province"
               id="intara"
@@ -179,7 +179,7 @@ const Profile = () => {
           <div className="flex-col flex-1 ">
             <label htmlFor="akarere">Akarere</label>
             <input
-              name="sector"
+              name="district"
               id="akarere"
               className="sub_input "
               value={formData.district}
@@ -223,6 +223,7 @@ const Profile = () => {
           <button
             type="button"
             className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white"
+            onClick={editProfile}
           >
             Update profile
           </button>
