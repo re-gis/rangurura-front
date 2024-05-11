@@ -40,7 +40,7 @@ const Page = () => {
         </button>
       </div>
       <div className="w-full h-[92%] overflow-y-auto">
-        {loading ? (
+        {loading ? (  
           <div className="w-full flex justify-center items-center">
             <ClipLoader size={23} color="black" />
           </div>
