@@ -11,17 +11,19 @@ import { RxCrossCircled } from "react-icons/rx";
 import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [defaultPic, setDefaultPic] = useState<string | null>("");
+  const [load, setLoad] = useState(false);
   const { data, loading }: { data: any; loading: boolean } = useGet({
     src: "/users/me",
   });
   const { profile }: any = data;
   useEffect(() => {
     if (!loading && data) {
+      console.log(data);
       setFormData({
         cell: data?.data?.cell || "",
         district: data?.data?.district || "",
-        // imageUrl: data?.data?.imageUrl || "",
         name: data?.data?.name || "",
         nationalId: data?.data?.nationalId || "",
         phoneNumber: data?.data?.phoneNumber || "",
@@ -29,13 +31,13 @@ const Profile = () => {
         sector: data?.data?.sector || "",
         village: data?.data?.village || "",
       });
+      setDefaultPic(data?.data?.imageUrl || "");
     }
   }, [data, loading]);
 
   const [formData, setFormData] = useState({
     cell: "",
     district: "",
-    // imageUrl: "",
     name: "",
     nationalId: "",
     phoneNumber: "",
@@ -54,28 +56,57 @@ const Profile = () => {
     }));
   };
 
-  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files?.[0];
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageDataUrl = reader.result as string;
+        setSelectedImage(imageDataUrl);
+      };
+      reader.readAsDataURL(image);
     }
   };
 
-  const editProfile = () => {
-    ApiEndpoint.post(`/users/updateprofile`, formData)
-      .then((res) => {
+  const editProfile = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // if (!selectedImage) {
+    //   notifications.show({
+    //     title: "Profile pic not found",
+    //     message: "Please select an image.",
+    //     color: "#FF555D",
+    //     autoClose: 5000,
+    //     icon: <RxCrossCircled />,
+    //   });
+    //   return;
+    // }
+
+    setLoad(true);
+
+    // Convert the details to query parameters
+    const detailsQueryParam = encodeURIComponent(JSON.stringify(formData));
+    const queryParams = `?details=${detailsQueryParam}`;
+
+    // Create FormData object and append the selected image
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("profile", selectedImage);
+
+    ApiEndpoint.post(`/users/updateprofile${queryParams}`, formDataWithImage)
+      .then((response) => {
+        setLoad(false);
         notifications.show({
           title: "Edit Profile",
-          message: "Successfully updated profile",
+          message: "Successfully Edited Profile!",
           autoClose: 5000,
           icon: <FaRegCheckCircle />,
         });
-        // Handle any logic after successful update
       })
-      .catch((err) => {
+      .catch((error) => {
+        setLoad(false);
         notifications.show({
           title: "Edit Profile",
-          message: "Error occurred when updating profile",
+          message: "Error occurred when editing profile!",
           color: "#FF555D",
           autoClose: 5000,
           icon: <RxCrossCircled />,
@@ -91,11 +122,21 @@ const Profile = () => {
         </h2>
       </div>
       <div className="lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
-        {selectedImage ? (
+        {defaultPic && defaultPic?.length > 0 && selectedImage == null ? (
+          <Image
+            src={defaultPic}
+            alt="upload"
+            id="profile"
+            className=" w-4/12 h-64 rounded-2xl bg-contain"
+            width="270"
+            height="100"
+          />
+        ) : selectedImage ? (
           <Image
             src={selectedImage}
             alt="upload"
-            className=" w-4/12 h-36 rounded-2xl bg-contain"
+            id="profile"
+            className=" w-4/12 h-64 rounded-2xl bg-contain"
             width="270"
             height="100"
           />
@@ -105,7 +146,7 @@ const Profile = () => {
         <div className="lg:ml-20 ml-10 w-56 lg:space-y-6">
           <h1 className="text-xl font-bold mt-16">Hindura ifoto</h1>
           <label
-            htmlFor="imageUpload"
+            htmlFor="profile_b"
             className=" flex bg-[#20603D] py-2 rounded-md px-10 text-white"
           >
             <MdOutlineFileUpload className="w-4 m-1" />
@@ -113,18 +154,17 @@ const Profile = () => {
           </label>
           <input
             type="file"
-            id="imageUpload"
+            id="profile_b"
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageUpload}
-            disabled={true}
+            //  disabled={true}
           />
         </div>
       </div>
-
       <form
         className="w-full flex flex-col gap-y- justify-center ml-6 md:px-10 px-10 pt-6"
-        // onSubmit={handleSubmit}
+        onSubmit={editProfile}
       >
         <div className="main_input">
           <div className="flex-col flex-1">
@@ -165,7 +205,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex-col flex-1 ">
-            <label htmlFor="province">Intara</label>
+            <label htmlFor="intara">Intara</label>
             <input
               name="province"
               id="intara"
@@ -219,18 +259,22 @@ const Profile = () => {
             ></input>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-10">
           <button
-            type="button"
-            className="bg-[#20603D] py-2 mt-4 rounded-md px-10 text-white"
-            onClick={editProfile}
+            type="submit"
+            className="bg-[#20603D] text-white p-2 px-10 rounded-md"
           >
-            Update profile
+            {load ? (
+              <div className="w-full h-full flex justify-center items-center">
+                <ClipLoader size={18} color="white" />
+              </div>
+            ) : (
+              "Update profile"
+            )}
           </button>
         </div>
       </form>
     </div>
   );
 };
-
 export default Profile;

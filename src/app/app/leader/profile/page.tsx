@@ -12,7 +12,7 @@ import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<any>(null);
-  const [defaultPic,setDefaultPic] = useState< string| null>("")
+  const [defaultPic, setDefaultPic] = useState<string | null>("");
   const [load, setLoad] = useState(false);
   const { data, loading }: { data: any; loading: boolean } = useGet({
     src: "/users/me",
@@ -31,7 +31,7 @@ const Profile = () => {
         sector: data?.data?.sector || "",
         village: data?.data?.village || "",
       });
-      setDefaultPic(data?.data?.imageUrl || "")
+      setDefaultPic(data?.data?.imageUrl || "");
     }
   }, [data, loading]);
 
@@ -47,7 +47,7 @@ const Profile = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -67,11 +67,10 @@ const Profile = () => {
       reader.readAsDataURL(image);
     }
   };
-  
 
   const editProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     // if (!selectedImage) {
     //   notifications.show({
     //     title: "Profile pic not found",
@@ -82,17 +81,17 @@ const Profile = () => {
     //   });
     //   return;
     // }
-  
+
     setLoad(true);
-    
+
     // Convert the details to query parameters
     const detailsQueryParam = encodeURIComponent(JSON.stringify(formData));
     const queryParams = `?details=${detailsQueryParam}`;
-  
+
     // Create FormData object and append the selected image
     const formDataWithImage = new FormData();
     formDataWithImage.append("profile", selectedImage);
-  
+
     ApiEndpoint.post(`/users/updateprofile${queryParams}`, formDataWithImage)
       .then((response) => {
         setLoad(false);
@@ -114,7 +113,7 @@ const Profile = () => {
         });
       });
   };
-  
+
   return (
     <div className="bg-white w-full h-[90%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
