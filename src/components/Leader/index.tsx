@@ -15,7 +15,7 @@ const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
         width={100}
         height={100}
         alt=""
-        className="w-[50%] h-[50%] rounded-lg bg-center items-center self-center align-center"
+        className="w-[50%] h-[50%] mt-3 rounded-lg bg-center items-center self-center align-center"
       />
       <h6 className="text-left w-full font-extrabold text-black">
         {profile?.username ?? "Name Not Set"}

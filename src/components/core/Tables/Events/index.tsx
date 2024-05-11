@@ -10,6 +10,7 @@ import { HiClock } from "react-icons/hi2";
 // import { eventsColumns } from "@/utils/columns";
 import { useState } from "react";
 import { Modal } from "@mantine/core";
+import EventsActions from "../../actions/Events";
 
 const EventsTable = ({
   dataProps,
@@ -103,7 +104,7 @@ const EventsTable = ({
     {
       accessorKey: "Actions",
       header: ({ column }) => <></>,
-      cell: ({ row }) => <HiDotsVertical />,
+      cell: ({ row }) => <EventsActions data={row.original} />,
     },
   ];
   return (
