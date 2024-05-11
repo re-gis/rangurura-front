@@ -12,6 +12,7 @@ import { ClipLoader } from "react-spinners";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [defaultPic,setDefaultPic] = useState< string| null>("")
   const [load, setLoad] = useState(false);
   const { data, loading }: { data: any; loading: boolean } = useGet({
     src: "/users/me",
@@ -23,7 +24,6 @@ const Profile = () => {
       setFormData({
         cell: data?.data?.cell || "",
         district: data?.data?.district || "",
-        // profile: data?.data?.imageUrl || "",
         name: data?.data?.name || "",
         nationalId: data?.data?.nationalId || "",
         phoneNumber: data?.data?.phoneNumber || "",
@@ -31,13 +31,13 @@ const Profile = () => {
         sector: data?.data?.sector || "",
         village: data?.data?.village || "",
       });
+      setDefaultPic(data?.data?.imageUrl || "")
     }
   }, [data, loading]);
 
   const [formData, setFormData] = useState({
     cell: "",
     district: "",
-    // profile: "",
     name: "",
     nationalId: "",
     phoneNumber: "",
@@ -59,13 +59,19 @@ const Profile = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files?.[0];
     if (image) {
-      setSelectedImage(image);
-      console.log(image.name);
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageDataUrl = reader.result as string;
+        setSelectedImage(imageDataUrl);
+      };
+      reader.readAsDataURL(image);
     }
   };
+  
 
   const editProfile = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  
     // if (!selectedImage) {
     //   notifications.show({
     //     title: "Profile pic not found",
@@ -76,14 +82,18 @@ const Profile = () => {
     //   });
     //   return;
     // }
+  
     setLoad(true);
+    
+    // Convert the details to query parameters
     const detailsQueryParam = encodeURIComponent(JSON.stringify(formData));
-    // const profileQueryParam = encodeURIComponent(JSON.stringify(selectedImage));
-
     const queryParams = `?details=${detailsQueryParam}`;
-    // const queryParams = `?details=${detailsQueryParam}&profile=${profileQueryParam}`;
-
-    ApiEndpoint.post(`/users/updateprofile${queryParams}`)
+  
+    // Create FormData object and append the selected image
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("profile", selectedImage);
+  
+    ApiEndpoint.post(`/users/updateprofile${queryParams}`, formDataWithImage)
       .then((response) => {
         setLoad(false);
         notifications.show({
@@ -104,7 +114,7 @@ const Profile = () => {
         });
       });
   };
-
+  
   return (
     <div className="bg-white w-full h-[90%] mt-5 rounded-2xl pb-20 float-center">
       <div className="title text-center">
@@ -113,9 +123,18 @@ const Profile = () => {
         </h2>
       </div>
       <div className="lg:flex md:flex block lg:ml-16 mx-10 lg:mx-0 mt-3">
-  {selectedImage ? (
+        {defaultPic && defaultPic?.length > 0 && selectedImage == null ? (
           <Image
-            src={URL.createObjectURL(selectedImage)}
+            src={defaultPic}
+            alt="upload"
+            id="profile"
+            className=" w-4/12 h-64 rounded-2xl bg-contain"
+            width="270"
+            height="100"
+          />
+        ) : selectedImage ? (
+          <Image
+            src={selectedImage}
             alt="upload"
             id="profile"
             className=" w-4/12 h-64 rounded-2xl bg-contain"
@@ -128,7 +147,7 @@ const Profile = () => {
         <div className="lg:ml-20 ml-10 w-56 lg:space-y-6">
           <h1 className="text-xl font-bold mt-16">Hindura ifoto</h1>
           <label
-            htmlFor="profile"
+            htmlFor="profile_b"
             className=" flex bg-[#20603D] py-2 rounded-md px-10 text-white"
           >
             <MdOutlineFileUpload className="w-4 m-1" />
@@ -136,7 +155,7 @@ const Profile = () => {
           </label>
           <input
             type="file"
-            id="profile"
+            id="profile_b"
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageUpload}
