@@ -84,11 +84,8 @@ const Profile = () => {
 
     setLoad(true);
 
-    // Convert the details to query parameters
     const detailsQueryParam = encodeURIComponent(JSON.stringify(formData));
     const queryParams = `?details=${detailsQueryParam}`;
-
-    // Create FormData object and append the selected image
     const formDataWithImage = new FormData();
     formDataWithImage.append("profile", selectedImage);
 
