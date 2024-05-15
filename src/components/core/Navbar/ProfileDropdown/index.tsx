@@ -24,6 +24,7 @@ export default function ProfileDropDown({ type }: { type: string }) {
   const [loading, setLoading] = useState(true);
   const [opened, { open, close }] = useDisclosure(false);
   const [profile, setProfile] = useState({
+    imageUrl: "",
     cell: "",
     district: "",
     name: "",
@@ -74,9 +75,11 @@ export default function ProfileDropDown({ type }: { type: string }) {
           <Menu.Target>
             <div className="md:w-3/5 border-2 border-[#ccc] flex items-center justify-evenly md:py-1 py-[0.2rem] px-1 gap-4 rounded-lg cursor-pointer">
               <Image
-                src={personImg}
+                src={profile?.imageUrl}
                 alt=""
                 className="w-14 h-14 rounded-[100%]"
+                width={100}
+                height={100}
               />
               <div className="flex-col hidden lg:flex">
                 <h6 className="text-[11.4px] font-bold">{profile?.name}</h6>

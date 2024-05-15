@@ -38,3 +38,5 @@ export const getRoleFromLevel = (level: string): string => {
       return "No Role Set";
   }
 };
+
+export const getLeaderProfileById = () => {};

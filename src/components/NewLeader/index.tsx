@@ -46,11 +46,10 @@ const NewLeader = ({ close }: { close: Function }) => {
         setOrganisationLevel("INTARA");
         const provinces = Provinces();
         setLocalLevels([...new Set(provinces)] as never[]);
-      }
-     else if (decodedToken.role === "UMUYOBOZI") {
+      } else if (decodedToken.role === "UMUYOBOZI") {
         ApiEndpoint.get(`/leaders/my_profile`)
           .then((res) => {
-            const leaderData = res?.data?.data?.leader; 
+            const leaderData = res?.data?.data?.leader;
             if (leaderData) {
               const { organizationLevel, location } = leaderData;
               setOrganisationLevel(organizationLevel);
@@ -85,8 +84,7 @@ const NewLeader = ({ close }: { close: Function }) => {
           .catch((error) => {
             console.error("Error fetching UMUYOBOZI data:", error);
           });
-      }
-      else{
+      } else {
         toast.error("You are not allowed to perform this action");
       }
     }
