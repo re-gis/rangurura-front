@@ -1,10 +1,12 @@
 import { getRoleFromLevel } from "@/utils/funcs/funcs";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { GoPerson } from "react-icons/go";
 import { SlLocationPin } from "react-icons/sl";
 
 const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
   const role = getRoleFromLevel(leader?.organizationLevel ?? "");
+  const navigate = useRouter();
   return (
     <div className="w-full h-[250px] rounded-lg flex flex-col items-center gap-2 bg-white justify-start px-3">
       <Image
@@ -34,6 +36,7 @@ const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
           Message
         </button>
         <button
+          onClick={()=> navigate.push(`/app/citizen/leaders/${leader.id}`)}
           type="button"
           className="text-[80%] self-start bg-[#20603D] rounded-md py-2 px-4 text-white"
         >
