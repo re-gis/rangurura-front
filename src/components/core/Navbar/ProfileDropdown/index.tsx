@@ -24,7 +24,7 @@ export default function ProfileDropDown({ type }: { type: string }) {
   const [loading, setLoading] = useState(true);
   const [opened, { open, close }] = useDisclosure(false);
   const [profile, setProfile] = useState({
-    imageUrl:"",
+    imageUrl: "",
     cell: "",
     district: "",
     name: "",
