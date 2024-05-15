@@ -95,3 +95,14 @@ export const governmentOrgs = [
     value: "MINISANTE",
   },
 ];
+
+export const leaderCategory = [
+  {
+    label: "Umuyobozi mukuru",
+    value: " UMUYOBOZI_MUKURU",
+  },
+  {
+    label: "Umuyobozi w'uburezi",
+    value: " UMUYOBOZI_W_UBUREZI",
+  },
+];

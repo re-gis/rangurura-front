@@ -54,8 +54,7 @@ const Login = () => {
             autoClose: 5000,
             icon: <FaRegCheckCircle />,
           });
-        }
-        if (decoded.role?.toLowerCase() == "admin") {
+        } else if (decoded.role?.toLowerCase() == "admin") {
           setDisplayText("Redirecting ...");
           setRedLoading(true);
           navigate.push("/app/admin");
