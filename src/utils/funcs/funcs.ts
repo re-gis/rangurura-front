@@ -39,6 +39,4 @@ export const getRoleFromLevel = (level: string): string => {
   }
 };
 
-export const getLeaderProfileById = ()=>{
-  
-}
+export const getLeaderProfileById = () => {};

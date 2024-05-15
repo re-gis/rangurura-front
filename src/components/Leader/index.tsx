@@ -36,7 +36,7 @@ const Leader = ({ profile, leader }: { profile: any; leader: any }) => {
           Message
         </button>
         <button
-          onClick={()=> navigate.push(`/app/citizen/leaders/${leader.id}`)}
+          onClick={() => navigate.push(`/app/citizen/leaders/${leader.id}`)}
           type="button"
           className="text-[80%] self-start bg-[#20603D] rounded-md py-2 px-4 text-white"
         >
