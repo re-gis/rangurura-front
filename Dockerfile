@@ -10,9 +10,9 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json", "./"]
 
 # Install dependencies using NPM
-RUN npm uninstall eslint
-RUN npm install eslint@^8.56.0
-RUN npm install
+RUN npm uninstall eslint --engine-strict=false
+RUN npm install eslint@^8.56.0 --engine-strict=false
+RUN npm install --engine-strict=false
 
 # If you are building your code for production
 # RUN npm install --production=true
