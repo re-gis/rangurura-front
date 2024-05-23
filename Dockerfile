@@ -11,13 +11,13 @@ COPY ["package.json", "package-lock.json", "./"]
 
 # Install dependencies using NPM
 RUN rm -rf node_modules
-RUN npm install -g npm@10.8.0
-RUN npm install next@latest
-RUN npm install webpack@latest
+RUN npm install -g npm@10.8.0 --force
+RUN npm install next@latest --force
+RUN npm install webpack@latest --force
 RUN npm uninstall eslint --engine-strict=false
 RUN npm audit fix --force
-RUN npm install eslint@^8.56.0 --engine-strict=false
-RUN npm install --engine-strict=false
+RUN npm install eslint@^8.56.0 --engine-strict=false --force
+RUN npm install --engine-strict=false --force
 
 # If you are building your code for production
 # RUN npm install --production=true
