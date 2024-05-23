@@ -10,7 +10,10 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json", "./"]
 
 # Install dependencies using NPM
+RUN rm -rf node_modules
 RUN npm install -g npm@10.8.0
+RUN npm install next@latest
+RUN npm install webpack@latest
 RUN npm uninstall eslint --engine-strict=false
 RUN npm audit fix --force
 RUN npm install eslint@^8.56.0 --engine-strict=false
@@ -25,6 +28,7 @@ COPY . .
 # Build the application (if needed)
 # Replace with your actual build command
 # In Next.js, the build output is typically in the .next folder
+RUN npm cache clean --force
 RUN npm run  build
 
 # Expose the port your application will listen on
