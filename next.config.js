@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: ["icon-library.com", "www.wifo.ac.at","res.cloudinary.com"],
   },
+  experimental:{
+    appDir: true
+  }
 };
 
 module.exports = nextConfig;
